@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0ymdkiekh3ii"]
+
+[ext_resource type="Script" path="res://Scripts/Components/production.gd" id="1_1vqvq"]
+[ext_resource type="Texture2D" uid="uid://c3g35y3nrj4qr" path="res://Ressources/Sprite/mine.png" id="2_1syyo"]
+[ext_resource type="Texture2D" uid="uid://d2ic6e3bpbqih" path="res://Ressources/Sprite/mine_border.png" id="3_r53pr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr3c8"]
+size = Vector2(64, 64)
+
+[node name="Mine" type="Area2D" groups=["selectable"]]
+texture_filter = 1
+script = ExtResource("1_1vqvq")
+
+[node name="ProductionSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_1syyo")
+
+[node name="ProductionBorder" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("3_r53pr")
+
+[node name="RessourceIcon" type="Sprite2D" parent="."]
+position = Vector2(40, -40)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_pr3c8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]

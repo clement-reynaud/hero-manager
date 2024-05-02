@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitType" load_steps=3 format=3 uid="uid://6vvegclqx78l"]
+
+[ext_resource type="Texture2D" uid="uid://c8krcwgelpuja" path="res://Ressources/Sprite/icon_miner.png" id="1_tppds"]
+[ext_resource type="Script" path="res://Scripts/Models/unitType.gd" id="2_mems5"]
+
+[resource]
+script = ExtResource("2_mems5")
+name = "Miner"
+description = ""
+icon_sprite = ExtResource("1_tppds")
+background_color = Color(0.462745, 0.364706, 0.262745, 1)

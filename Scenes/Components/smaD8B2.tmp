@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3e8cdf1tb828"]
+
+[ext_resource type="Script" path="res://Scripts/Components/storage.gd" id="1_wqbfa"]
+[ext_resource type="Texture2D" uid="uid://c3g35y3nrj4qr" path="res://Ressources/Sprite/mine.png" id="2_quojs"]
+[ext_resource type="Texture2D" uid="uid://d2ic6e3bpbqih" path="res://Ressources/Sprite/mine_border.png" id="3_x67ia"]
+[ext_resource type="PackedScene" uid="uid://b1ku2igmg36dd" path="res://Scenes/UI/inventory_ui.tscn" id="4_gw1mp"]
+[ext_resource type="Texture2D" uid="uid://ckccbkdtj47co" path="res://Ressources/Sprite/UI/inventory_button.png" id="5_g5a4n"]
+[ext_resource type="Texture2D" uid="uid://dv5dva8vctu1h" path="res://Ressources/Sprite/UI/inventory_button_pressed.png" id="6_o5vi4"]
+[ext_resource type="Texture2D" uid="uid://ja47gtwtcfwf" path="res://Ressources/Sprite/UI/button_base.png" id="7_fd5b5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr3c8"]
+size = Vector2(64, 64)
+
+[node name="SmallStorage" type="Area2D" groups=["selectable"]]
+texture_filter = 1
+script = ExtResource("1_wqbfa")
+
+[node name="StorageSprite" type="Sprite2D" parent="."]
+modulate = Color(0.301961, 0.760784, 0, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("2_quojs")
+
+[node name="StorageBorder" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("3_x67ia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_pr3c8")
+
+[node name="InventoryUI" parent="." instance=ExtResource("4_gw1mp")]
+offset_left = -175.0
+offset_top = -49.0
+offset_right = -175.0
+offset_bottom = -49.0
+
+[node name="StorageButtonContainer" type="HBoxContainer" parent="."]
+offset_left = -34.0
+offset_top = 77.0
+offset_right = 34.0
+offset_bottom = 110.0
+
+[node name="InventoryButton" type="TextureButton" parent="StorageButtonContainer"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_g5a4n")
+texture_pressed = ExtResource("6_o5vi4")
+
+[node name="TextureButton2" type="TextureButton" parent="StorageButtonContainer"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("7_fd5b5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="toggled" from="StorageButtonContainer/InventoryButton" to="InventoryUI" method="_on_inventory_button_toggled"]

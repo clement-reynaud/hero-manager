@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://quc265jiaydt"]
+
+[ext_resource type="Script" path="res://Scripts/Components/entity.gd" id="1_owdls"]
+[ext_resource type="Texture2D" uid="uid://dx3yn46wj5xe7" path="res://Ressources/Sprite/Token/token_border.png" id="2_hi464"]
+[ext_resource type="Texture2D" uid="uid://dml8vx1cqi7u8" path="res://Ressources/Texture/ring-texture.png" id="3_6i07u"]
+[ext_resource type="Texture2D" uid="uid://dw2qgfrm6370p" path="res://Ressources/Sprite/Token/token_background.png" id="3_reqdr"]
+[ext_resource type="PackedScene" uid="uid://b1ku2igmg36dd" path="res://Scenes/UI/inventory_ui.tscn" id="5_low12"]
+[ext_resource type="Texture2D" uid="uid://ckccbkdtj47co" path="res://Ressources/Sprite/UI/inventory_button.png" id="6_6opgg"]
+[ext_resource type="Texture2D" uid="uid://ja47gtwtcfwf" path="res://Ressources/Sprite/UI/button_base.png" id="6_uwgwj"]
+[ext_resource type="Texture2D" uid="uid://dv5dva8vctu1h" path="res://Ressources/Sprite/UI/inventory_button_pressed.png" id="7_akb31"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6phm3"]
+radius = 41.1096
+
+[node name="Entity" type="CharacterBody2D" groups=["selectable", "unit"]]
+visibility_layer = 513
+z_index = 2
+input_pickable = true
+script = ExtResource("1_owdls")
+
+[node name="TokenBorder" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("2_hi464")
+
+[node name="TokenBackground" type="Sprite2D" parent="."]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("3_reqdr")
+
+[node name="TokenIcon" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_6phm3")
+
+[node name="TimerProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 65.0
+offset_bottom = 65.0
+scale = Vector2(0.7, 0.7)
+step = 0.5
+fill_mode = 4
+texture_under = ExtResource("3_6i07u")
+texture_progress = ExtResource("3_6i07u")
+tint_under = Color(0.211765, 0.211765, 0.211765, 0.670588)
+tint_progress = Color(0, 0.745098, 0, 1)
+
+[node name="InventoryUI" parent="." instance=ExtResource("5_low12")]
+offset_left = -155.0
+offset_top = -47.0
+offset_right = -155.0
+offset_bottom = -47.0
+
+[node name="EntityButtonContainer" type="HBoxContainer" parent="."]
+offset_left = -52.0
+offset_top = 45.0
+offset_right = 52.0
+offset_bottom = 78.0
+
+[node name="InventoryButton" type="TextureButton" parent="EntityButtonContainer"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("6_6opgg")
+texture_pressed = ExtResource("7_akb31")
+
+[node name="TextureButton2" type="TextureButton" parent="EntityButtonContainer"]
+visible = false
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("6_uwgwj")
+
+[node name="TextureButton3" type="TextureButton" parent="EntityButtonContainer"]
+visible = false
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("6_uwgwj")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="toggled" from="EntityButtonContainer/InventoryButton" to="InventoryUI" method="_on_inventory_button_toggled"]

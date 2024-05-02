@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://quc265jiaydt"]
+
+[ext_resource type="Texture2D" uid="uid://d3a3gehqsb0mf" path="res://icon.svg" id="1_a2h5m"]
+[ext_resource type="Script" path="res://Scripts/entity.gd" id="1_owdls"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pybe8"]
+size = Vector2(62, 63)
+
+[node name="Entity" type="CharacterBody2D"]
+script = ExtResource("1_owdls")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, -33)
+scale = Vector2(0.492188, 0.492188)
+texture = ExtResource("1_a2h5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32.5)
+shape = SubResource("RectangleShape2D_pybe8")
