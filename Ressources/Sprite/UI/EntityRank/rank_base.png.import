@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vlek4o766of8"
-path="res://.godot/imported/gold_ore.png-c0502bf56421bee788754c8d077d253e.ctex"
+uid="uid://cikfrp7qk4tdo"
+path="res://.godot/imported/rank_base.png-d5ed5f0c0d72591110a41b715d41412d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/gold_ore.png"
-dest_files=["res://.godot/imported/gold_ore.png-c0502bf56421bee788754c8d077d253e.ctex"]
+source_file="res://Ressources/Sprite/UI/EntityRank/rank_base.png"
+dest_files=["res://.godot/imported/rank_base.png-d5ed5f0c0d72591110a41b715d41412d.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

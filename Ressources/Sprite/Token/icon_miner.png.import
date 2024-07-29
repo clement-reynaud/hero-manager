@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx3dn1l6ukf3p"
-path="res://.godot/imported/small_altar.png-35cf594c2b3cf98b0c04d5d452c07370.ctex"
+uid="uid://c8krcwgelpuja"
+path="res://.godot/imported/icon_miner.png-111fe183982c871bedb54ed9c7ace2af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/small_altar.png"
-dest_files=["res://.godot/imported/small_altar.png-35cf594c2b3cf98b0c04d5d452c07370.ctex"]
+source_file="res://Ressources/Sprite/Token/icon_miner.png"
+dest_files=["res://.godot/imported/icon_miner.png-111fe183982c871bedb54ed9c7ace2af.ctex"]
 
 [params]
 

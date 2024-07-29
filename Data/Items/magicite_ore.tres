@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MaterialItem" load_steps=3 format=3 uid="uid://g1sr8dlr1iyv"]
 
-[ext_resource type="Texture2D" uid="uid://d1hepoi1u0gn0" path="res://Ressources/Sprite/magicite_ore.png" id="1_e35g4"]
+[ext_resource type="Texture2D" uid="uid://d1hepoi1u0gn0" path="res://Ressources/Sprite/Ressources/magicite_ore.png" id="1_e35g4"]
 [ext_resource type="Script" path="res://Scripts/Models/material.gd" id="1_eqep8"]
 
 [resource]

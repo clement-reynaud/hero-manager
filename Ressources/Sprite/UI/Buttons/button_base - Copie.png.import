@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5a47025gtbtp"
-path="res://.godot/imported/button_altar_summon.png-14a1a263025dd8f32d43788fe1c2fbbc.ctex"
+uid="uid://cja0km0pqqarv"
+path="res://.godot/imported/button_base - Copie.png-2465aa3857c404da9cea87f024082b55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/UI/button_altar_summon.png"
-dest_files=["res://.godot/imported/button_altar_summon.png-14a1a263025dd8f32d43788fe1c2fbbc.ctex"]
+source_file="res://Ressources/Sprite/UI/Buttons/button_base - Copie.png"
+dest_files=["res://.godot/imported/button_base - Copie.png-2465aa3857c404da9cea87f024082b55.ctex"]
 
 [params]
 

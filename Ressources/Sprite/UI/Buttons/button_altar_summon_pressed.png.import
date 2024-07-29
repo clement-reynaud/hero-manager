@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3g35y3nrj4qr"
-path="res://.godot/imported/mine.png-df70f75a4a47d3facca1665745262e72.ctex"
+uid="uid://cvyvl4u1nwa1l"
+path="res://.godot/imported/button_altar_summon_pressed.png-ca60ffe3001065e30e2771cc251614e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/mine.png"
-dest_files=["res://.godot/imported/mine.png-df70f75a4a47d3facca1665745262e72.ctex"]
+source_file="res://Ressources/Sprite/UI/Buttons/button_altar_summon_pressed.png"
+dest_files=["res://.godot/imported/button_altar_summon_pressed.png-ca60ffe3001065e30e2771cc251614e3.ctex"]
 
 [params]
 

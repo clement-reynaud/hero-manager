@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1hepoi1u0gn0"
-path="res://.godot/imported/magicite_ore.png-fc8169f8c51b4ba2edfde07d2015a060.ctex"
+uid="uid://d2ic6e3bpbqih"
+path="res://.godot/imported/mine_border.png-141c646df8e2174fe9b843ea14d2ad2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/magicite_ore.png"
-dest_files=["res://.godot/imported/magicite_ore.png-fc8169f8c51b4ba2edfde07d2015a060.ctex"]
+source_file="res://Ressources/Sprite/Building/mine_border.png"
+dest_files=["res://.godot/imported/mine_border.png-141c646df8e2174fe9b843ea14d2ad2a.ctex"]
 
 [params]
 

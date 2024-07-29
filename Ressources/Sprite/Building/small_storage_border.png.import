@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckccbkdtj47co"
-path="res://.godot/imported/inventory_button.png-cbcd1187d8c7179986bf14b4684119f9.ctex"
+uid="uid://cubo8g1pmcwru"
+path="res://.godot/imported/small_storage_border.png-e14853b8f988625b353dd7431fe3d8e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/UI/inventory_button.png"
-dest_files=["res://.godot/imported/inventory_button.png-cbcd1187d8c7179986bf14b4684119f9.ctex"]
+source_file="res://Ressources/Sprite/Building/small_storage_border.png"
+dest_files=["res://.godot/imported/small_storage_border.png-e14853b8f988625b353dd7431fe3d8e6.ctex"]
 
 [params]
 

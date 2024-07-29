@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://quc265jiaydt"]
+[gd_scene load_steps=11 format=3 uid="uid://quc265jiaydt"]
 
 [ext_resource type="Script" path="res://Scripts/Components/entity.gd" id="1_owdls"]
 [ext_resource type="Texture2D" uid="uid://dx3yn46wj5xe7" path="res://Ressources/Sprite/Token/token_border.png" id="2_hi464"]
 [ext_resource type="Texture2D" uid="uid://dml8vx1cqi7u8" path="res://Ressources/Texture/ring-texture.png" id="3_6i07u"]
 [ext_resource type="Texture2D" uid="uid://dw2qgfrm6370p" path="res://Ressources/Sprite/Token/token_background.png" id="3_reqdr"]
 [ext_resource type="PackedScene" uid="uid://b1ku2igmg36dd" path="res://Scenes/UI/inventory_ui.tscn" id="5_low12"]
-[ext_resource type="Texture2D" uid="uid://ckccbkdtj47co" path="res://Ressources/Sprite/UI/inventory_button.png" id="6_6opgg"]
-[ext_resource type="Texture2D" uid="uid://ja47gtwtcfwf" path="res://Ressources/Sprite/UI/button_base.png" id="6_uwgwj"]
-[ext_resource type="Texture2D" uid="uid://dv5dva8vctu1h" path="res://Ressources/Sprite/UI/inventory_button_pressed.png" id="7_akb31"]
+[ext_resource type="Texture2D" uid="uid://ckccbkdtj47co" path="res://Ressources/Sprite/UI/Buttons/inventory_button.png" id="6_6opgg"]
+[ext_resource type="Texture2D" uid="uid://ja47gtwtcfwf" path="res://Ressources/Sprite/UI/Buttons/button_base.png" id="6_uwgwj"]
+[ext_resource type="Texture2D" uid="uid://dv5dva8vctu1h" path="res://Ressources/Sprite/UI/Buttons/inventory_button_pressed.png" id="7_akb31"]
+[ext_resource type="Texture2D" uid="uid://cwenyab64d72w" path="res://Ressources/Sprite/UI/EntityRank/rank_1.png" id="9_npxqf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6phm3"]
 radius = 41.1096
@@ -34,6 +35,12 @@ scale = Vector2(0.75, 0.75)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_6phm3")
+
+[node name="EntityRankSprite" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, 18)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_npxqf")
 
 [node name="TimerProgressBar" type="TextureProgressBar" parent="."]
 offset_left = -35.0

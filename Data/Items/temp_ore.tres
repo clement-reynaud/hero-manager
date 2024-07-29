@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MaterialItem" load_steps=3 format=3 uid="uid://bju7451u1146f"]
 
-[ext_resource type="Texture2D" uid="uid://cn0quaa3ih0hs" path="res://Ressources/Sprite/iron_ore.png" id="1_ys3qn"]
+[ext_resource type="Texture2D" uid="uid://cn0quaa3ih0hs" path="res://Ressources/Sprite/Ressources/iron_ore.png" id="1_ys3qn"]
 [ext_resource type="Script" path="res://Scripts/Models/material.gd" id="2_g3c4n"]
 
 [resource]

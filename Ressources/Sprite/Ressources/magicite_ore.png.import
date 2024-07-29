@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xvehqtqcf1wd"
-path="res://.godot/imported/button_pop.png-f2cb923860c67afeca4a7035a1c59841.ctex"
+uid="uid://d1hepoi1u0gn0"
+path="res://.godot/imported/magicite_ore.png-a9a9753d46823b0a3a3764c4fea52d34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/UI/button_pop.png"
-dest_files=["res://.godot/imported/button_pop.png-f2cb923860c67afeca4a7035a1c59841.ctex"]
+source_file="res://Ressources/Sprite/Ressources/magicite_ore.png"
+dest_files=["res://.godot/imported/magicite_ore.png-a9a9753d46823b0a3a3764c4fea52d34.ctex"]
 
 [params]
 

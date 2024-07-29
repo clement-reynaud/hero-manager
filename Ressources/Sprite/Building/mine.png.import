@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cja0km0pqqarv"
-path="res://.godot/imported/button_base - Copie.png-df2b33d02d2c7e18dd3636fa9816cfe2.ctex"
+uid="uid://c3g35y3nrj4qr"
+path="res://.godot/imported/mine.png-f3ea5fd7544435f98f8aac4ff30e28e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/UI/button_base - Copie.png"
-dest_files=["res://.godot/imported/button_base - Copie.png-df2b33d02d2c7e18dd3636fa9816cfe2.ctex"]
+source_file="res://Ressources/Sprite/Building/mine.png"
+dest_files=["res://.godot/imported/mine.png-f3ea5fd7544435f98f8aac4ff30e28e4.ctex"]
 
 [params]
 

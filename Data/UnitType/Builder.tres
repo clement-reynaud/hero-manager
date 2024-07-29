@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitType" load_steps=3 format=3 uid="uid://bkwa8glpke0ev"]
 
-[ext_resource type="Texture2D" uid="uid://beqoxa6pmgw62" path="res://Ressources/Sprite/icon_builder.png" id="1_86pac"]
+[ext_resource type="Texture2D" uid="uid://beqoxa6pmgw62" path="res://Ressources/Sprite/Token/icon_builder.png" id="1_86pac"]
 [ext_resource type="Script" path="res://Scripts/Models/unitType.gd" id="1_p6m7c"]
 
 [resource]

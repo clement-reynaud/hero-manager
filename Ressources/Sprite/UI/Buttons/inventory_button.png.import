@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bffnc5gehlb6l"
-path="res://.godot/imported/GoldMine.png-53608601ac434167edadbf6a34bb7061.ctex"
+uid="uid://ckccbkdtj47co"
+path="res://.godot/imported/inventory_button.png-23d07a81a695062f6c6a09aef38894db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/GoldMine.png"
-dest_files=["res://.godot/imported/GoldMine.png-53608601ac434167edadbf6a34bb7061.ctex"]
+source_file="res://Ressources/Sprite/UI/Buttons/inventory_button.png"
+dest_files=["res://.godot/imported/inventory_button.png-23d07a81a695062f6c6a09aef38894db.ctex"]
 
 [params]
 

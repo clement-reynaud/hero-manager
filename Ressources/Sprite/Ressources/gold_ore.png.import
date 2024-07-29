@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvyvl4u1nwa1l"
-path="res://.godot/imported/button_altar_summon_pressed.png-f900d47027738afa2cffa4a03f0528eb.ctex"
+uid="uid://vlek4o766of8"
+path="res://.godot/imported/gold_ore.png-96c68dc66e5b7985ba8f7e445364c20e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/UI/button_altar_summon_pressed.png"
-dest_files=["res://.godot/imported/button_altar_summon_pressed.png-f900d47027738afa2cffa4a03f0528eb.ctex"]
+source_file="res://Ressources/Sprite/Ressources/gold_ore.png"
+dest_files=["res://.godot/imported/gold_ore.png-96c68dc66e5b7985ba8f7e445364c20e.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

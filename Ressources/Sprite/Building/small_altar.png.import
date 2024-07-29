@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ic6e3bpbqih"
-path="res://.godot/imported/mine_border.png-f960c777c66891f440b791565dcc494b.ctex"
+uid="uid://dx3dn1l6ukf3p"
+path="res://.godot/imported/small_altar.png-421066fcbe8522f0e683a211bd35952f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/mine_border.png"
-dest_files=["res://.godot/imported/mine_border.png-f960c777c66891f440b791565dcc494b.ctex"]
+source_file="res://Ressources/Sprite/Building/small_altar.png"
+dest_files=["res://.godot/imported/small_altar.png-421066fcbe8522f0e683a211bd35952f.ctex"]
 
 [params]
 

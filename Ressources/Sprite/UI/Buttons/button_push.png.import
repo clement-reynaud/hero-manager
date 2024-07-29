@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t8kjx0w3fndy"
-path="res://.godot/imported/mine_entrance.png-cac57bf181b0261cb014498973509f2b.ctex"
+uid="uid://cjvnwurn261gg"
+path="res://.godot/imported/button_push.png-0c9eafa38e37fd26c9c470bdf4ac47a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/mine_entrance.png"
-dest_files=["res://.godot/imported/mine_entrance.png-cac57bf181b0261cb014498973509f2b.ctex"]
+source_file="res://Ressources/Sprite/UI/Buttons/button_push.png"
+dest_files=["res://.godot/imported/button_push.png-0c9eafa38e37fd26c9c470bdf4ac47a0.ctex"]
 
 [params]
 

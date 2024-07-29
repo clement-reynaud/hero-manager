@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8krcwgelpuja"
-path="res://.godot/imported/icon_miner.png-dad68419b34333c94983e289e7e44b50.ctex"
+uid="uid://xvehqtqcf1wd"
+path="res://.godot/imported/button_pop.png-a0866e4145de0e4b5708986ed2a8c3b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/icon_miner.png"
-dest_files=["res://.godot/imported/icon_miner.png-dad68419b34333c94983e289e7e44b50.ctex"]
+source_file="res://Ressources/Sprite/UI/Buttons/button_pop.png"
+dest_files=["res://.godot/imported/button_pop.png-a0866e4145de0e4b5708986ed2a8c3b7.ctex"]
 
 [params]
 

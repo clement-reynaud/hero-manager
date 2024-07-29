@@ -1,4 +1,7 @@
 extends CharacterBody2D
+class_name Entity
+
+var rank = 1
 
 # Variables
 var speed = 300
@@ -42,6 +45,8 @@ func _process(delta):
 		# Set timer invisible
 		timer_progress_bar.visible = false
 
+	$EntityRankSprite.texture = load("res://Ressources/Sprite/UI/EntityRank/rank_" + str(rank) + ".png")
+
 # Called every physics frame
 func _physics_process(delta):
 	# Move towards the target position if it's set
@@ -61,8 +66,20 @@ func move_to_target():
 	if get_slide_collision_count() > 0:
 		for i in range(get_slide_collision_count()):
 			var collision = get_slide_collision(i)
-			if collision.get_collider().is_in_group("unit") and collision.get_collider().target_position == Vector2.ZERO:
+			var collider = collision.get_collider()
+			if collider.is_in_group("unit") and collider.target_position == Vector2.ZERO:
 				target_position = Vector2.ZERO
+				if collider.unit_type == unit_type and collider.rank == rank:
+					collider.rank += 1
+					delete_self()
+
+
+func delete_entity(entity:Entity):
+	entity.delete_self()
+
+func delete_self():
+	queue_free()
+	Global.summoned_entity -= 1
 
 # Function to set the target position for the unit to move towards
 func set_target_position(new_target):
