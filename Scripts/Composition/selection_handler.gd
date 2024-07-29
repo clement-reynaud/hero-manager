@@ -30,7 +30,6 @@ func clear_select(world_node):
 func select():
 	selected = true
 
-# Function to deselect the unit
 func deselect():
 	selected = false
 

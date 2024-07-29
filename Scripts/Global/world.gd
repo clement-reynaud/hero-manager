@@ -54,14 +54,20 @@ func _unhandled_input(event):
 		query.transform = Transform2D(0, (drag_end + drag_start) / 2)
 		selected = space.intersect_shape(query)
 
-		
-		if selected.size() <= 0:
-			deselect_all()
-			return
+		deselect_all()
+
+		var has_unit = false
 
 		for item in selected:
 			if item.collider.is_in_group("unit"):
-				item.collider.select()
+				has_unit = true
+
+		for item in selected:
+			if item.collider.is_in_group("selectable"):
+				if has_unit and item.collider.is_in_group("unit"):
+					item.collider.select()
+				elif not has_unit:
+					item.collider.select()
 
 
 			

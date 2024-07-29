@@ -72,7 +72,7 @@ func set_target_position(new_target):
 func add_item(item:Item, amount:int = 1):
 	inventory_handler.add_item(item, amount)
 
-func transfer_items(item:Item, amount:int, target_inventory_handler:InventoryHandler):
+func transfer_item(item:Item, amount:int, target_inventory_handler:InventoryHandler):
 	inventory_handler.transfer_item(item, amount, target_inventory_handler)
 
 func get_items():

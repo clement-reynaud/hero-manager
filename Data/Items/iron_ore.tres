@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_0eyli")
-seconds_to_produce = 1
+seconds_to_produce = 3.0
 name = "Iron Ore"
 description = ""
 type = 3

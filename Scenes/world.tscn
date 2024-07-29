@@ -1,16 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://5eyvubtp86e5"]
+[gd_scene load_steps=15 format=3 uid="uid://5eyvubtp86e5"]
 
 [ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
-[ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="1_x566y"]
 [ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
 [ext_resource type="Resource" uid="uid://6vvegclqx78l" path="res://Data/UnitType/Miner.tres" id="3_0o8sm"]
 [ext_resource type="PackedScene" uid="uid://c0ymdkiekh3ii" path="res://Scenes/Components/mine.tscn" id="3_oyn5g"]
 [ext_resource type="Texture2D" uid="uid://81wi1dqx32g6" path="res://Ressources/TileSet/tiles2.png" id="5_lxjy8"]
 [ext_resource type="Script" path="res://Scripts/Global/mapGen.gd" id="6_64m3d"]
 [ext_resource type="Resource" uid="uid://g1sr8dlr1iyv" path="res://Data/Items/magicite_ore.tres" id="8_50ooe"]
-[ext_resource type="Resource" uid="uid://bju7451u1146f" path="res://Data/Items/temp_ore.tres" id="9_p6xnx"]
+[ext_resource type="Resource" uid="uid://bno4jpv5dk12j" path="res://Data/Items/iron_ore.tres" id="9_vt08y"]
 [ext_resource type="Resource" uid="uid://c84tate226u53" path="res://Data/Items/gold_ore.tres" id="10_ytd6m"]
 [ext_resource type="PackedScene" uid="uid://d3e8cdf1tb828" path="res://Scenes/Components/small_storage.tscn" id="11_1dhqu"]
+[ext_resource type="PackedScene" uid="uid://dv3pcl1wyds8x" path="res://Scenes/Components/small_altar.tscn" id="12_mdsko"]
+[ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
 texture = ExtResource("5_lxjy8")
@@ -41,15 +42,8 @@ script = ExtResource("1_jc1xp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 326)
+zoom = Vector2(0.8, 0.8)
 script = ExtResource("2_auns3")
-
-[node name="Entity" parent="." instance=ExtResource("1_x566y")]
-position = Vector2(364, 293)
-unit_type = ExtResource("3_0o8sm")
-
-[node name="Entity2" parent="." instance=ExtResource("1_x566y")]
-position = Vector2(699, 415)
-unit_type = ExtResource("3_0o8sm")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -4
@@ -58,16 +52,20 @@ format = 2
 script = ExtResource("6_64m3d")
 
 [node name="Mine" parent="." instance=ExtResource("3_oyn5g")]
-position = Vector2(111, 154)
+position = Vector2(89, 517)
 ressource = ExtResource("8_50ooe")
 
 [node name="Mine2" parent="." instance=ExtResource("3_oyn5g")]
 position = Vector2(346, 115)
-ressource = ExtResource("9_p6xnx")
+ressource = ExtResource("9_vt08y")
 
 [node name="Mine3" parent="." instance=ExtResource("3_oyn5g")]
-position = Vector2(836, 167)
+position = Vector2(1002, 497)
 ressource = ExtResource("10_ytd6m")
 
 [node name="SmallStorage" parent="." instance=ExtResource("11_1dhqu")]
-position = Vector2(923, 477)
+position = Vector2(593, 56)
+
+[node name="SmallAltar" parent="." instance=ExtResource("12_mdsko")]
+position = Vector2(577, 327)
+summonableUnits = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("3_0o8sm"), ExtResource("13_yd346")])

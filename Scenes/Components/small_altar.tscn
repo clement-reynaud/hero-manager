@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv3pcl1wyds8x"]
+
+[ext_resource type="Texture2D" uid="uid://dx3dn1l6ukf3p" path="res://Ressources/Sprite/small_altar.png" id="1_7ccju"]
+[ext_resource type="Script" path="res://Scripts/Components/altar.gd" id="1_rf74m"]
+[ext_resource type="Texture2D" uid="uid://l5dt0uxltomf" path="res://Ressources/Sprite/small_altar_border.png" id="2_7jprt"]
+[ext_resource type="Texture2D" uid="uid://5a47025gtbtp" path="res://Ressources/Sprite/UI/button_altar_summon.png" id="4_8xn8m"]
+[ext_resource type="Texture2D" uid="uid://cvyvl4u1nwa1l" path="res://Ressources/Sprite/UI/button_altar_summon_pressed.png" id="5_c14b8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm06u"]
+size = Vector2(64, 64)
+
+[node name="SmallAltar" type="Area2D" groups=["selectable"]]
+script = ExtResource("1_rf74m")
+
+[node name="AltarSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_7ccju")
+
+[node name="AltarBorder" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("2_7jprt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_lm06u")
+
+[node name="AltarButtonContainer" type="HBoxContainer" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = 49.0
+offset_right = 16.0
+offset_bottom = 81.0
+
+[node name="SummonButton" type="TextureButton" parent="AltarButtonContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_8xn8m")
+texture_pressed = ExtResource("5_c14b8")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="pressed" from="AltarButtonContainer/SummonButton" to="." method="summon"]

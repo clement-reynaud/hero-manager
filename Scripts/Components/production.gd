@@ -1,12 +1,10 @@
-extends Area2D
+extends Building
 
 @export var ressource: MaterialItem = null
 
 var timers = {}
 
 var allowed_unit_types: Array[UnitType] = []
-
-var selection_handler:SelectionHandler = preload("res://Scripts/Composition/selection_handler.gd").new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	selection_handler.handleSelection($ProductionBorder)
+	process_selection_handler($ProductionBorder)
 
 func _on_timer_timeout(unit):
 	unit.add_item(ressource, 1)
@@ -34,10 +32,6 @@ func _on_timer_timeout(unit):
 		# Destroy timer node
 		timers[unit.get_instance_id()].queue_free()
 		timers.erase(unit.get_instance_id())
-
-
-	
-
 
 func _on_body_entered(body):
 	if body.is_in_group("unit") and body.unit_type in allowed_unit_types and not timers.has(body.get_instance_id()) and not body.is_inventory_full():
@@ -57,21 +51,3 @@ func _on_body_exited(body):
 		var unit = timers[body.get_instance_id()].get_parent()
 		timers[unit.get_instance_id()].queue_free()
 		timers.erase(unit.get_instance_id())
-
-# SELECTION FUNCTIONS
-
-# Function to select the unit
-func select():
-	selection_handler.select()
-		
-# Function to deselect the unit
-func deselect():
-	selection_handler.deselect()
-
-func is_selected():
-	return selection_handler.is_selected()
-
-
-func _on_input_event(viewport, event, shape_idx):
-	if event.is_action_released("select"):
-		selection_handler.clear_select($"..")
