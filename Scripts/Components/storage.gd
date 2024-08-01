@@ -1,7 +1,5 @@
 extends Building
 
-var timers = {}
-
 enum TransferState {
 	PUSH,
 	POP
@@ -27,35 +25,21 @@ func _on_timer_timeout(unit):
 	elif transfer_state == TransferState.POP:
 		transfer_item(get_items()[0], 1, unit.inventory_handler)
 
-	if get_overlapping_bodies().has(unit):
-		if timers.has(unit.get_instance_id()) and timers[unit.get_instance_id()].is_stopped() and unit.inventory_handler.get_items().size() > 0:
-			timers[unit.get_instance_id()].start()
-		else:
-			timers[unit.get_instance_id()].queue_free()
-			timers.erase(unit.get_instance_id())
-	else:
-		# Destroy timer node
-		timers[unit.get_instance_id()].queue_free()
-		timers.erase(unit.get_instance_id())	
+	if get_overlapping_bodies().has(unit) and unit.inventory_handler.get_items().size() > 0 and not inventory_handler.is_inventory_full():
+			create_storage_timer(unit)
 
 func _on_body_entered(body):
+	handle_timer_on_enter(body)
+
 	if body.is_in_group("unit") and not timers.has(body.get_instance_id()):
-		if (body.inventory_handler.get_items().size() > 0 and transfer_state == TransferState.PUSH and is_inventory_full() == false) or (inventory_handler.get_items().size() > 0 and transfer_state == TransferState.POP and body.is_inventory_full() == false):
-			var new_timer = Timer.new()
-			if new_timer:
-				new_timer.name = "TimerProgress"
-				new_timer.one_shot = true
-				new_timer.wait_time = transfer_time
-				new_timer.timeout.connect(_on_timer_timeout.bind(body))
-				body.add_child(new_timer)
-				new_timer.start()
-				timers[body.get_instance_id()] = new_timer
+		if (body.inventory_handler.get_items().size() > 0 and transfer_state == TransferState.PUSH and not is_inventory_full()) or (inventory_handler.get_items().size() > 0 and transfer_state == TransferState.POP and body.is_inventory_full()):
+			create_storage_timer(body)
+
+func create_storage_timer(linked_body):
+	update_timer(linked_body, transfer_time / linked_body.rank)
 
 func _on_body_exited(body):
-	if body.is_in_group("unit") and timers.has(body.get_instance_id()):
-		var unit = timers[body.get_instance_id()].get_parent()
-		timers[unit.get_instance_id()].queue_free()
-		timers.erase(unit.get_instance_id())	
+	handle_timer_on_exit(body)	
 
 func reset_timer():
 	for timer in timers.values():

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Entity
 
-var rank = 1
+@export var rank = 1
 
 # Variables
 var speed = 300
@@ -14,9 +14,10 @@ var timer_progress_bar = null
 var selection_handler:SelectionHandler = preload("res://Scripts/Composition/selection_handler.gd").new()
 var inventory_handler:InventoryHandler = preload("res://Scripts/Composition/inventory_handler.gd").new()
 
+var overlapping_buildings:Array[Building] = []
 
 # Called when the node enters the scene tree for the first time
-func _ready():
+func _ready():	
 	if unit_type == null:
 		unit_type = UnitType.new()
 		print("Unit type not set for unit " + name)
@@ -37,7 +38,7 @@ func _process(delta):
 
 	# If the unit has a timer child store it
 	var timer = get_node_or_null("TimerProgress")
-	if timer:
+	if timer and not timer.is_stopped():
 		# Set timer visible
 		timer_progress_bar.visible = true
 		timer_progress_bar.value = (timer.time_left / timer.wait_time) * 100

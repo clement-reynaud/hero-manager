@@ -15,7 +15,6 @@ func _process(delta):
 func add_entity_to_field(offset = false):
 	var unit_type = summonableUnits[randi() % summonableUnits.size()]
 	var unit = load("res://Scenes/Components/entity.tscn").instantiate()
-	print("Summoning " + unit_type.name)
 	unit.unit_type = unit_type
 
 	var extents = $AltarCollisionShape2D.shape.extents

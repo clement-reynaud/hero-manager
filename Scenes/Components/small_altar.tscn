@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lm06u"]
 size = Vector2(64, 64)
 
-[node name="SmallAltar" type="Area2D" groups=["selectable"]]
+[node name="SmallAltar" type="Area2D" groups=["building", "selectable"]]
 script = ExtResource("1_rf74m")
 
 [node name="AltarSprite" type="Sprite2D" parent="."]

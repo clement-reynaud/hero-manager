@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5eyvubtp86e5"]
+[gd_scene load_steps=16 format=3 uid="uid://5eyvubtp86e5"]
 
 [ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
 [ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://c84tate226u53" path="res://Data/Items/gold_ore.tres" id="10_ytd6m"]
 [ext_resource type="PackedScene" uid="uid://d3e8cdf1tb828" path="res://Scenes/Components/small_storage.tscn" id="11_1dhqu"]
 [ext_resource type="PackedScene" uid="uid://dv3pcl1wyds8x" path="res://Scenes/Components/small_altar.tscn" id="12_mdsko"]
+[ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="13_hwf0l"]
 [ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
@@ -64,8 +65,13 @@ position = Vector2(1002, 497)
 ressource = ExtResource("10_ytd6m")
 
 [node name="SmallStorage" parent="." instance=ExtResource("11_1dhqu")]
-position = Vector2(593, 56)
+position = Vector2(570, 71)
 
 [node name="SmallAltar" parent="." instance=ExtResource("12_mdsko")]
 position = Vector2(577, 327)
 summonableUnits = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("3_0o8sm"), ExtResource("13_yd346")])
+
+[node name="Entity" parent="." instance=ExtResource("13_hwf0l")]
+position = Vector2(391, 322)
+rank = 3
+unit_type = ExtResource("3_0o8sm")
