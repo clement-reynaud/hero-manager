@@ -87,7 +87,6 @@ func handle_timer_on_enter(body):
 			building.stop_unit_timer(body)
 		
 		body.overlapping_buildings.append(self)
-		print(body.overlapping_buildings.size())
 
 func handle_timer_on_exit(body):
 	if body.is_in_group("unit"):

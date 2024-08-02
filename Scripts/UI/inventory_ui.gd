@@ -41,7 +41,7 @@ func draw_inventory(inventory):
 		
 		# If new row increase height
 		if cpt > 5:
-			height = base_height + floor(cpt - 1 / 5) * new_item.texture.get_height()
+			height = base_height + floor((cpt - 1) / 5) * new_item.texture.get_height()
 		else:
 			height = base_height
 

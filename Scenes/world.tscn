@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://5eyvubtp86e5"]
+[gd_scene load_steps=19 format=3 uid="uid://5eyvubtp86e5"]
 
 [ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
 [ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dv3pcl1wyds8x" path="res://Scenes/Components/small_altar.tscn" id="12_mdsko"]
 [ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="13_hwf0l"]
 [ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
+[ext_resource type="Texture2D" uid="uid://dml8vx1cqi7u8" path="res://Ressources/Texture/ring-texture.png" id="14_hsddj"]
+[ext_resource type="Script" path="res://Scripts/UI/GUI.gd" id="14_lphng"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
 texture = ExtResource("5_lxjy8")
@@ -38,12 +40,15 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_gcm7b")
 
+[sub_resource type="LabelSettings" id="LabelSettings_2sfu8"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_jc1xp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(577, 326)
-zoom = Vector2(0.8, 0.8)
+position = Vector2(576, 324)
 script = ExtResource("2_auns3")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -66,12 +71,34 @@ ressource = ExtResource("10_ytd6m")
 
 [node name="SmallStorage" parent="." instance=ExtResource("11_1dhqu")]
 position = Vector2(570, 71)
+inventory_capacity = 20
 
 [node name="SmallAltar" parent="." instance=ExtResource("12_mdsko")]
 position = Vector2(577, 327)
 summonableUnits = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("3_0o8sm"), ExtResource("13_yd346")])
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("14_lphng")
+
+[node name="TokenCpt" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 127.0
+offset_bottom = 44.0
+
+[node name="TokenIcon" type="TextureRect" parent="CanvasLayer/TokenCpt"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("14_hsddj")
+expand_mode = 3
+
+[node name="TokenCptText" type="Label" parent="CanvasLayer/TokenCpt"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 / 10"
+label_settings = SubResource("LabelSettings_2sfu8")
+
 [node name="Entity" parent="." instance=ExtResource("13_hwf0l")]
-position = Vector2(391, 322)
+position = Vector2(331, 317)
 rank = 3
 unit_type = ExtResource("3_0o8sm")

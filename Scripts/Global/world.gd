@@ -2,7 +2,6 @@ extends Node2D
 
 var TARGET_POSITION = Vector2.ZERO
 
-
 var dragging = false  # Are we currently dragging?
 
 var drag_start = Vector2.ZERO  # Location where drag began.
@@ -28,11 +27,29 @@ func move_handler():
 	TARGET_POSITION = get_global_mouse_position()
 	set_units_target_positions()
 
-# For each selected unit, move towards the target position
 func set_units_target_positions():
-	for unit in get_tree().get_nodes_in_group("unit"):
+	var units = get_tree().get_nodes_in_group("unit")
+	var selected_units = []
+	
+	# Filter selected units
+	for unit in units:
 		if unit.is_selected():
-			unit.set_target_position(TARGET_POSITION)
+			selected_units.append(unit)
+
+	# Calculate the spacing between units
+	var spacing = 40
+
+
+
+	if selected_units.size() == 1:
+		selected_units[0].set_target_position(TARGET_POSITION)
+	else:
+		# Distribute units in a circle around the target position
+		for i in range(selected_units.size()):
+			var unit = selected_units[i]
+			var angle = 2 * PI * i / selected_units.size()
+			var offset = Vector2(cos(angle), sin(angle)) * spacing
+			unit.set_target_position(TARGET_POSITION + offset)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("select"):

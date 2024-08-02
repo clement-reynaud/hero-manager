@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cwenyab64d72w" path="res://Ressources/Sprite/UI/EntityRank/rank_1.png" id="9_npxqf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6phm3"]
-radius = 41.1096
+radius = 25.0
 
 [node name="Entity" type="CharacterBody2D" groups=["selectable", "unit"]]
 visibility_layer = 513
@@ -22,15 +22,15 @@ script = ExtResource("1_owdls")
 [node name="TokenBorder" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = 1
-scale = Vector2(0.65, 0.65)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_hi464")
 
 [node name="TokenBackground" type="Sprite2D" parent="."]
-scale = Vector2(0.65, 0.65)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_reqdr")
 
 [node name="TokenIcon" type="Sprite2D" parent="."]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.515625, 0.515625)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -43,10 +43,17 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("9_npxqf")
 
 [node name="TimerProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -35.0
 offset_top = -35.0
 offset_right = 65.0
 offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 step = 0.5
 fill_mode = 4
@@ -57,15 +64,15 @@ tint_progress = Color(0, 0.745098, 0, 1)
 
 [node name="InventoryUI" parent="." instance=ExtResource("5_low12")]
 offset_left = -155.0
-offset_top = -47.0
+offset_top = 45.0
 offset_right = -155.0
-offset_bottom = -47.0
+offset_bottom = 45.0
 
 [node name="EntityButtonContainer" type="HBoxContainer" parent="."]
 offset_left = -52.0
-offset_top = 45.0
+offset_top = 36.0
 offset_right = 52.0
-offset_bottom = 78.0
+offset_bottom = 69.0
 
 [node name="InventoryButton" type="TextureButton" parent="EntityButtonContainer"]
 layout_mode = 2

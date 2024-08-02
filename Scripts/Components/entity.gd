@@ -16,6 +16,8 @@ var inventory_handler:InventoryHandler = preload("res://Scripts/Composition/inve
 
 var overlapping_buildings:Array[Building] = []
 
+var movement_line: Line2D
+
 # Called when the node enters the scene tree for the first time
 func _ready():	
 	if unit_type == null:
@@ -29,6 +31,11 @@ func _ready():
 	selection_handler.nodeToDisplay.append($EntityButtonContainer)
 	
 	inventory_handler.set_inventory_ui($InventoryUI)
+
+	movement_line = Line2D.new()
+	movement_line.name = "MovementLine"
+	movement_line.z_index = -1
+	add_child(movement_line)
 
 # Called every frame
 func _process(delta):
@@ -54,11 +61,27 @@ func _physics_process(delta):
 	if target_position != Vector2.ZERO:
 		move_to_target()
 
+func _draw_movement_line():
+	if target_position != Vector2.ZERO:
+		if get_node_or_null("MovementLine") == null:
+			movement_line = Line2D.new()
+
+		var start_position = 0
+		var end_position = to_local(target_position)
+
+		movement_line.points = [start_position, end_position]
+		movement_line.default_color = unit_type.background_color
+		movement_line.width = 2
+
+func _delete_movement_line():
+	movement_line.queue_free()
+
 # Function to handle movement towards target position
 func move_to_target():
 	velocity = (target_position - position).normalized() * speed
 	move_and_slide()
-
+	_draw_movement_line()
+	
 	# If the unit is close enough to the target position, stop moving
 	if position.distance_to(target_position) < 5:
 		target_position = Vector2.ZERO
@@ -69,7 +92,6 @@ func move_to_target():
 			var collision = get_slide_collision(i)
 			var collider = collision.get_collider()
 			if collider.is_in_group("unit") and collider.target_position == Vector2.ZERO:
-				target_position = Vector2.ZERO
 				if collider.unit_type == unit_type and collider.rank == rank:
 					collider.rank += 1
 					delete_self()
@@ -108,7 +130,6 @@ func select():
 # Function to deselect the unit
 func deselect():
 	selection_handler.deselect()
-	target_position = Vector2.ZERO
 
 func is_selected():
 	return selection_handler.is_selected()
