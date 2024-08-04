@@ -102,7 +102,7 @@ func delete_entity(entity:Entity):
 
 func delete_self():
 	queue_free()
-	Global.summoned_entity -= 1
+	Global_Variables.summoned_entity -= 1
 
 # Function to set the target position for the unit to move towards
 func set_target_position(new_target):

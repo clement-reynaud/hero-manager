@@ -81,6 +81,11 @@ func stop_unit_timer(unit):
 		var timer = timers[unit.get_instance_id()]
 		timer.stop()
 
+func reset_timer():
+	for timer in timers.values():
+		timer.stop()
+	timers = {}
+
 func handle_timer_on_enter(body):
 	if body.is_in_group("unit") and not timers.has(body.get_instance_id()):
 		for building in body.overlapping_buildings:

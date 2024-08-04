@@ -23,11 +23,11 @@ func add_entity_to_field(offset = false):
 
 	unit.position = $AltarCollisionShape2D.global_position + Vector2(x, y)
 	$"..".add_child(unit)
-	Global.summoned_entity += 1
+	Global_Variables.summoned_entity += 1
 
 func summon():
 	if summonableUnits.size() > 0:
-		if Global.summoned_entity < Global.max_summoned_entity:
+		if Global_Variables.summoned_entity < Global_Variables.max_summoned_entity:
 				add_entity_to_field()
 		else:
 			print("max entity reached")

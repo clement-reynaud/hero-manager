@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://cba4sbhb5ue1j"]
+
+[ext_resource type="Script" path="res://Scripts/UI/GUI.gd" id="1_lsmhb"]
+[ext_resource type="Texture2D" uid="uid://dml8vx1cqi7u8" path="res://Ressources/Texture/ring-texture.png" id="2_aveb7"]
+[ext_resource type="Texture2D" uid="uid://ckccbkdtj47co" path="res://Ressources/Sprite/UI/Buttons/inventory_button.png" id="3_qd1bj"]
+[ext_resource type="Texture2D" uid="uid://dv5dva8vctu1h" path="res://Ressources/Sprite/UI/Buttons/inventory_button_pressed.png" id="4_3qc2p"]
+[ext_resource type="Texture2D" uid="uid://dstpobnp0wlpv" path="res://Ressources/Sprite/UI/Background_2.png" id="5_go5v5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2sfu8"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_lsmhb")
+
+[node name="TokenCpt" type="HBoxContainer" parent="."]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 127.0
+offset_bottom = 44.0
+
+[node name="TokenIcon" type="TextureRect" parent="TokenCpt"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("2_aveb7")
+expand_mode = 3
+
+[node name="TokenCptText" type="Label" parent="TokenCpt"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 / 10"
+label_settings = SubResource("LabelSettings_2sfu8")
+
+[node name="GUIButtons" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 37.0
+grow_horizontal = 0
+
+[node name="OpenInventoryButton" type="TextureButton" parent="GUIButtons"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("3_qd1bj")
+texture_pressed = ExtResource("4_3qc2p")
+
+[node name="InventoryListTexture" type="NinePatchRect" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_top = 40.0
+offset_right = -5.0
+offset_bottom = 322.0
+grow_horizontal = 0
+texture = ExtResource("5_go5v5")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="InventoryListContainer" type="ScrollContainer" parent="InventoryListTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryListBox" type="VBoxContainer" parent="InventoryListTexture/InventoryListContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="GUIButtons/OpenInventoryButton" to="." method="_on_open_inventory_button_pressed"]
