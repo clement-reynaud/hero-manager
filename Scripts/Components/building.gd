@@ -1,7 +1,7 @@
 extends Area2D
 class_name Building
 
-var allowed_unit_types: Array[UnitType] = []
+@export var allowed_unit_types: Array[UnitType] = []
 
 # SELECTION
 var selection_handler:SelectionHandler = preload("res://Scripts/Composition/selection_handler.gd").new()

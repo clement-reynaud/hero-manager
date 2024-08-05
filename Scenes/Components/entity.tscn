@@ -18,7 +18,6 @@ visibility_layer = 513
 z_index = 2
 input_pickable = true
 script = ExtResource("1_owdls")
-rank = null
 
 [node name="TokenBorder" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -66,13 +65,13 @@ tint_under = Color(0.211765, 0.211765, 0.211765, 0.670588)
 tint_progress = Color(0, 0.745098, 0, 1)
 
 [node name="InventoryUI" parent="." instance=ExtResource("5_low12")]
-visible = true
 offset_left = -43.0
 offset_top = 79.0
 offset_right = -43.0
 offset_bottom = 79.0
 
 [node name="EntityButtonContainer" type="HBoxContainer" parent="."]
+visible = false
 offset_left = -52.0
 offset_top = 36.0
 offset_right = 52.0

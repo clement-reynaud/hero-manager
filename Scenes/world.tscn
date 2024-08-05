@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://5eyvubtp86e5"]
+[gd_scene load_steps=20 format=3 uid="uid://5eyvubtp86e5"]
 
 [ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
 [ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
@@ -13,7 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://dv3pcl1wyds8x" path="res://Scenes/Components/small_altar.tscn" id="12_mdsko"]
 [ext_resource type="PackedScene" uid="uid://cba4sbhb5ue1j" path="res://Scenes/UI/gui.tscn" id="13_cjumw"]
 [ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="13_hwf0l"]
+[ext_resource type="Resource" uid="uid://lgdtwopweksf" path="res://Data/UnitType/Lumberjack.tres" id="13_mooeg"]
 [ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
+[ext_resource type="PackedScene" uid="uid://ndqu3m84whkv" path="res://Scenes/Components/tree.tscn" id="16_3ogij"]
+[ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="17_7q4ie"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
 texture = ExtResource("5_lxjy8")
@@ -53,7 +56,7 @@ format = 2
 script = ExtResource("6_64m3d")
 
 [node name="Mine" parent="." instance=ExtResource("3_oyn5g")]
-position = Vector2(89, 517)
+position = Vector2(268, -292)
 ressource = ExtResource("8_50ooe")
 
 [node name="Mine2" parent="." instance=ExtResource("3_oyn5g")]
@@ -61,22 +64,31 @@ position = Vector2(346, 115)
 ressource = ExtResource("9_vt08y")
 
 [node name="Mine3" parent="." instance=ExtResource("3_oyn5g")]
-position = Vector2(1002, 497)
+position = Vector2(684, -243)
 ressource = ExtResource("10_ytd6m")
 
 [node name="SmallStorage" parent="." instance=ExtResource("11_1dhqu")]
-position = Vector2(570, 71)
+position = Vector2(789, 134)
 transfer_time = 3
 inventory_capacity = 21
 
 [node name="SmallAltar" parent="." instance=ExtResource("12_mdsko")]
 position = Vector2(577, 327)
-summonableUnits = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("3_0o8sm"), ExtResource("13_yd346")])
+summonableUnits = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("3_0o8sm"), ExtResource("13_yd346"), ExtResource("13_mooeg")])
 
 [node name="GUI" parent="." instance=ExtResource("13_cjumw")]
 unique_name_in_owner = true
 
+[node name="Tree" parent="." instance=ExtResource("16_3ogij")]
+position = Vector2(266, 485)
+ressource = ExtResource("17_7q4ie")
+
 [node name="Entity" parent="." instance=ExtResource("13_hwf0l")]
-position = Vector2(331, 317)
+position = Vector2(213, 302)
+rank = 3
+unit_type = ExtResource("13_mooeg")
+
+[node name="Entity2" parent="." instance=ExtResource("13_hwf0l")]
+position = Vector2(399, 311)
 rank = 3
 unit_type = ExtResource("3_0o8sm")

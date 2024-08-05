@@ -22,6 +22,7 @@ func add_entity_to_field(offset = false):
 	var y = randf_range(-extents.y, extents.y)
 
 	unit.position = $AltarCollisionShape2D.global_position + Vector2(x, y)
+	unit.rank = 1
 	$"..".add_child(unit)
 	Global_Variables.summoned_entity += 1
 

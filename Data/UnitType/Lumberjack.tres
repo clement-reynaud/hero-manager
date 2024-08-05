@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitType" load_steps=3 format=3 uid="uid://lgdtwopweksf"]
+
+[ext_resource type="Texture2D" uid="uid://c8626uq1hekod" path="res://Ressources/Sprite/Token/icon_lumberjack.png" id="1_8edua"]
+[ext_resource type="Script" path="res://Scripts/Models/unitType.gd" id="1_d7i6y"]
+
+[resource]
+script = ExtResource("1_d7i6y")
+name = "Lumberjack"
+description = ""
+icon_sprite = ExtResource("1_8edua")
+background_color = Color(0, 0.270588, 0, 1)

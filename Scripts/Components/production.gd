@@ -4,9 +4,6 @@ extends Building
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Load resources and append them to the array
-	allowed_unit_types.append(preload("res://Data/UnitType/Miner.tres"))
-
 	# Set the sprite based on the resource type   
 	$RessourceIcon.texture = ressource.icon_sprite	
 

@@ -39,7 +39,7 @@ func _on_body_entered(body):
 			create_storage_timer(body)
 
 func create_storage_timer(linked_body):
-	update_timer(linked_body, transfer_time / linked_body.rank)
+	update_timer(linked_body, transfer_time)
 
 func _on_body_exited(body):
 	handle_timer_on_exit(body)	
