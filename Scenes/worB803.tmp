@@ -12,12 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://d3e8cdf1tb828" path="res://Scenes/Components/small_storage.tscn" id="11_1dhqu"]
 [ext_resource type="PackedScene" uid="uid://dv3pcl1wyds8x" path="res://Scenes/Components/small_altar.tscn" id="12_mdsko"]
 [ext_resource type="PackedScene" uid="uid://cba4sbhb5ue1j" path="res://Scenes/UI/gui.tscn" id="13_cjumw"]
+[ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="13_hwf0l"]
 [ext_resource type="Resource" uid="uid://lgdtwopweksf" path="res://Data/UnitType/Lumberjack.tres" id="13_mooeg"]
 [ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
 [ext_resource type="Resource" uid="uid://w4d8bodw7rvc" path="res://Data/Building/small_storage.tres" id="15_s5x11"]
 [ext_resource type="PackedScene" uid="uid://ndqu3m84whkv" path="res://Scenes/Components/tree.tscn" id="16_3ogij"]
 [ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="17_7q4ie"]
-[ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="18_cjvxv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
 texture = ExtResource("5_lxjy8")
@@ -78,11 +78,19 @@ position = Vector2(577, 327)
 summonableUnits = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("3_0o8sm"), ExtResource("13_yd346"), ExtResource("13_mooeg")])
 
 [node name="GUI" parent="." instance=ExtResource("13_cjumw")]
+unique_name_in_owner = true
 techtree = Array[Resource("res://Scripts/Models/building_blueprint.gd")]([ExtResource("15_s5x11")])
 
 [node name="Tree" parent="." instance=ExtResource("16_3ogij")]
 position = Vector2(266, 485)
 ressource = ExtResource("17_7q4ie")
 
-[node name="Entity" parent="." instance=ExtResource("18_cjvxv")]
-position = Vector2(552, 548)
+[node name="Entity" parent="." instance=ExtResource("13_hwf0l")]
+position = Vector2(213, 302)
+rank = 3
+unit_type = ExtResource("13_mooeg")
+
+[node name="Entity2" parent="." instance=ExtResource("13_hwf0l")]
+position = Vector2(399, 311)
+rank = 3
+unit_type = ExtResource("3_0o8sm")

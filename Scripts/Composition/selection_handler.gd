@@ -9,10 +9,11 @@ var selected = false
 var nodeToDisplay:Array[Node] = []
 
 func handleSelection(borderSprite:Sprite2D):
-	if selected:
-		borderSprite.modulate = SELECT_COLOR
-	else:
-		borderSprite.modulate = DEFAULT_SELECT_COLOR
+	if borderSprite != null:
+		if selected:
+			borderSprite.modulate = SELECT_COLOR
+		else:
+			borderSprite.modulate = DEFAULT_SELECT_COLOR
 
 
 func handleSelectedNodeDisplay():

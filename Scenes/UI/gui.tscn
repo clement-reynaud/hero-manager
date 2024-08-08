@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cba4sbhb5ue1j"]
+[gd_scene load_steps=9 format=3 uid="uid://cba4sbhb5ue1j"]
 
 [ext_resource type="Script" path="res://Scripts/UI/GUI.gd" id="1_lsmhb"]
 [ext_resource type="Texture2D" uid="uid://dml8vx1cqi7u8" path="res://Ressources/Texture/ring-texture.png" id="2_aveb7"]
 [ext_resource type="Texture2D" uid="uid://ckccbkdtj47co" path="res://Ressources/Sprite/UI/Buttons/inventory_button.png" id="3_qd1bj"]
 [ext_resource type="Texture2D" uid="uid://dv5dva8vctu1h" path="res://Ressources/Sprite/UI/Buttons/inventory_button_pressed.png" id="4_3qc2p"]
+[ext_resource type="Texture2D" uid="uid://ds5xyhf7pybxv" path="res://Ressources/Sprite/UI/Buttons/button_build_menu.png" id="5_0hp25"]
 [ext_resource type="Texture2D" uid="uid://dstpobnp0wlpv" path="res://Ressources/Sprite/UI/Background_2.png" id="5_go5v5"]
+[ext_resource type="Texture2D" uid="uid://ordtytgmrn8f" path="res://Ressources/Sprite/UI/Buttons/button_build_menu_pressed.png" id="6_oa1f3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2sfu8"]
 font_size = 30
@@ -26,28 +28,74 @@ texture = ExtResource("2_aveb7")
 expand_mode = 3
 
 [node name="TokenCptText" type="Label" parent="TokenCpt"]
-unique_name_in_owner = true
 layout_mode = 2
 text = "0 / 10"
 label_settings = SubResource("LabelSettings_2sfu8")
 
-[node name="GUIButtons" type="HBoxContainer" parent="."]
+[node name="GUITopRightButtons" type="HBoxContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -37.0
-offset_top = 5.0
-offset_right = -5.0
-offset_bottom = 37.0
+offset_left = -36.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 36.0
 grow_horizontal = 0
 
-[node name="OpenInventoryButton" type="TextureButton" parent="GUIButtons"]
+[node name="OpenInventoryButton" type="TextureButton" parent="GUITopRightButtons"]
 layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("3_qd1bj")
 texture_pressed = ExtResource("4_3qc2p")
 
-[node name="InventoryListTexture" type="NinePatchRect" parent="."]
+[node name="GUIBottomRightButtons" type="HBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -36.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="OpenBuildMenuButton" type="TextureButton" parent="GUIBottomRightButtons"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("5_0hp25")
+texture_pressed = ExtResource("6_oa1f3")
+
+[node name="BuildMenu" type="NinePatchRect" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -431.0
+offset_top = -252.0
+offset_right = -4.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("5_go5v5")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="BuildMenuGrid" type="GridContainer" parent="BuildMenu"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 423.0
+offset_bottom = 220.0
+theme_override_constants/v_separation = 40
+columns = 6
+
+[node name="InventoryList" type="NinePatchRect" parent="."]
 visible = false
 anchors_preset = 1
 anchor_left = 1.0
@@ -64,7 +112,7 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="InventoryListContainer" type="ScrollContainer" parent="InventoryListTexture"]
+[node name="InventoryListContainer" type="ScrollContainer" parent="InventoryList"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,7 +124,8 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InventoryListBox" type="VBoxContainer" parent="InventoryListTexture/InventoryListContainer"]
+[node name="InventoryListBox" type="VBoxContainer" parent="InventoryList/InventoryListContainer"]
 layout_mode = 2
 
-[connection signal="pressed" from="GUIButtons/OpenInventoryButton" to="." method="_on_open_inventory_button_pressed"]
+[connection signal="pressed" from="GUITopRightButtons/OpenInventoryButton" to="." method="_on_open_inventory_button_pressed"]
+[connection signal="pressed" from="GUIBottomRightButtons/OpenBuildMenuButton" to="." method="_on_open_build_button_pressed"]

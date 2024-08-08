@@ -102,3 +102,9 @@ func _draw():
 func deselect_all():
 	for unit in get_tree().get_nodes_in_group("selectable"):
 		unit.deselect()
+
+func add_building_to_world(building:Building_Blueprint):
+	var new_building = building.scene.instantiate()
+	new_building.position = Vector2(0, 0)
+	add_child(new_building)
+	print("added building")

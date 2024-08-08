@@ -22,10 +22,10 @@ func _process(delta):
 
 func _on_timer_timeout(unit):
 	if transfer_state == TransferState.PUSH:
-		%GUI.add_item_to_global_inventory(unit.get_items()[0])
+		$"../GUI".add_item_to_global_inventory(unit.get_items()[0])
 		unit.transfer_item(unit.get_items()[0], 1, inventory_handler)
 	elif transfer_state == TransferState.POP:
-		%GUI.remove_item_from_global_inventory(get_items()[0])
+		$"../GUI".remove_item_from_global_inventory(get_items()[0])
 		transfer_item(get_items()[0], 1, unit.inventory_handler)
 
 	if get_overlapping_bodies().has(unit) and (unit.inventory_handler.get_items().size() > 0 and transfer_state == TransferState.PUSH and not is_inventory_full()) or (inventory_handler.get_items().size() > 0 and transfer_state == TransferState.POP and not unit.is_inventory_full()):

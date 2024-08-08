@@ -1,17 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://14giryo00ji0"]
+[gd_scene load_steps=2 format=3 uid="uid://14giryo00ji0"]
 
 [ext_resource type="Script" path="res://Scripts/UI/inventory_list_item.gd" id="1_6o572"]
-[ext_resource type="Texture2D" uid="uid://cn0quaa3ih0hs" path="res://Ressources/Sprite/Ressources/iron_ore.png" id="1_jsny5"]
 
 [node name="InventoryListItem" type="HBoxContainer"]
 script = ExtResource("1_6o572")
 
 [node name="InventoryListIcon" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_jsny5")
 expand_mode = 2
 
 [node name="InventoryListLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "1"
