@@ -58,16 +58,10 @@ func set_cost(ressources:Array[MaterialItem]):
 					
 func blink_cost(color: Color, blink_duration: float = 0.5) -> void:
 	var container = $BuildingMenuItemContainer/BuildingCostContainer
-	var labels = []
+	var labels:Array[Label] = []
 	
 	for node in container.get_children():
 		if node is Label:
-			node.set_meta("original_color",node.get("custom_colors/font_color")) # Store the original color
-			node.set("theme_override_colors/font_color",color)			
 			labels.append(node)
 
-	await get_tree().create_timer(blink_duration).timeout
-
-	for label in labels:
-		# Create a coroutine to revert the color after a delay
-		label.set("theme_override_colors/font_color",label.get_meta("original_color")) # Revert to the original color
+	Global_Functions.blink_label(labels, blink_duration, color)

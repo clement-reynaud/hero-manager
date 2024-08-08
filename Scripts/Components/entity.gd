@@ -13,6 +13,7 @@ var timer_progress_bar = null
 
 var selection_handler:SelectionHandler = preload("res://Scripts/Composition/selection_handler.gd").new()
 var inventory_handler:InventoryHandler = preload("res://Scripts/Composition/inventory_handler.gd").new()
+var stats:Stats
 
 var overlapping_buildings:Array[Building] = []
 

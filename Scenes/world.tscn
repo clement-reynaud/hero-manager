@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cba4sbhb5ue1j" path="res://Scenes/UI/gui.tscn" id="13_cjumw"]
 [ext_resource type="Resource" uid="uid://lgdtwopweksf" path="res://Data/UnitType/Lumberjack.tres" id="13_mooeg"]
 [ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
-[ext_resource type="Resource" uid="uid://w4d8bodw7rvc" path="res://Data/Building/small_storage.tres" id="15_s5x11"]
+[ext_resource type="Resource" uid="uid://w4d8bodw7rvc" path="res://Data/Building_Blueprint/small_storage.tres" id="15_s5x11"]
 [ext_resource type="PackedScene" uid="uid://ndqu3m84whkv" path="res://Scenes/Components/tree.tscn" id="16_3ogij"]
 [ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="17_7q4ie"]
 [ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="18_cjvxv"]

@@ -32,4 +32,4 @@ func summon():
 				add_entity_to_field()
 		else:
 			print("max entity reached")
-			#TODO add visual feedback when reaching max entity
+			Global_Functions.blink_label([get_tree().get_root().get_node("World/GUI").get_node("TokenCpt/TokenCptText")], 1, Color.DARK_RED, Color.BLACK)

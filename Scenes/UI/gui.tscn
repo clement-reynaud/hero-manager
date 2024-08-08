@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cba4sbhb5ue1j"]
+[gd_scene load_steps=8 format=3 uid="uid://cba4sbhb5ue1j"]
 
 [ext_resource type="Script" path="res://Scripts/UI/GUI.gd" id="1_lsmhb"]
 [ext_resource type="Texture2D" uid="uid://dml8vx1cqi7u8" path="res://Ressources/Texture/ring-texture.png" id="2_aveb7"]
@@ -7,10 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://ds5xyhf7pybxv" path="res://Ressources/Sprite/UI/Buttons/button_build_menu.png" id="5_0hp25"]
 [ext_resource type="Texture2D" uid="uid://dstpobnp0wlpv" path="res://Ressources/Sprite/UI/Background_2.png" id="5_go5v5"]
 [ext_resource type="Texture2D" uid="uid://ordtytgmrn8f" path="res://Ressources/Sprite/UI/Buttons/button_build_menu_pressed.png" id="6_oa1f3"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_2sfu8"]
-font_size = 30
-font_color = Color(0, 0, 0, 1)
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_lsmhb")
@@ -29,8 +25,9 @@ expand_mode = 3
 
 [node name="TokenCptText" type="Label" parent="TokenCpt"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
 text = "0 / 10"
-label_settings = SubResource("LabelSettings_2sfu8")
 
 [node name="GUITopRightButtons" type="HBoxContainer" parent="."]
 anchors_preset = 1
@@ -68,6 +65,7 @@ texture_normal = ExtResource("5_0hp25")
 texture_pressed = ExtResource("6_oa1f3")
 
 [node name="BuildMenu" type="NinePatchRect" parent="."]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
