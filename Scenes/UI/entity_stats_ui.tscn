@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://tyyce4atj670"]
+
+[ext_resource type="Script" path="res://Scripts/UI/entity_stats_ui.gd" id="1_wdgq2"]
+[ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="2_wdj51"]
+[ext_resource type="PackedScene" uid="uid://g203chhkvhcm" path="res://Scenes/UI/stat_list_item.tscn" id="3_sa2h2"]
+
+[node name="EntityStatsUI" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wdgq2")
+
+[node name="StatsNinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -55.0
+offset_top = -71.0
+offset_right = 55.0
+offset_bottom = 71.0
+texture = ExtResource("2_wdj51")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="StatList" type="GridContainer" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 103.0
+offset_bottom = 132.0
+columns = 2
+
+[node name="health" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="max_health" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="mana" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="max_mana" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="energy" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="max_energy" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="attack" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="magic" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="defense" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="resistance" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="speed" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[node name="luck" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2

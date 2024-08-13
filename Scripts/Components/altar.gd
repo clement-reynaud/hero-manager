@@ -1,6 +1,6 @@
 extends Building
 
-@export var summonableUnits: Array[UnitType] = []
+@export var summonableUnits: Array[SummonableUnit] = []
 
 var collision_shape = null 
 
@@ -13,7 +13,20 @@ func _process(delta):
 	process_selection_handler($AltarBorder)
 
 func add_entity_to_field(offset = false):
-	var unit_type = summonableUnits[randi() % summonableUnits.size()]
+	var total_weight = 0
+	for unit in summonableUnits:
+		total_weight += unit.weight
+
+	var random_value = randi() % total_weight
+	var cumulative_weight = 0.0
+	var unit_type = null
+
+	for unit in summonableUnits:
+		cumulative_weight += unit.weight
+		if random_value < cumulative_weight:
+			unit_type = unit.unit_type
+			break
+
 	var unit = load("res://Scenes/Components/entity.tscn").instantiate()
 	unit.unit_type = unit_type
 

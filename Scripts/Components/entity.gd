@@ -13,7 +13,7 @@ var timer_progress_bar = null
 
 var selection_handler:SelectionHandler = preload("res://Scripts/Composition/selection_handler.gd").new()
 var inventory_handler:InventoryHandler = preload("res://Scripts/Composition/inventory_handler.gd").new()
-var stats:Stats
+var stats:PlayerStats = PlayerStats.new()
 
 var overlapping_buildings:Array[Building] = []
 
@@ -37,6 +37,26 @@ func _ready():
 	movement_line.name = "MovementLine"
 	movement_line.z_index = -1
 	add_child(movement_line)
+
+	#TEMP
+
+	stats.name = "TEMP NAME"
+	stats.max_health = 10
+	stats.health = 10
+	stats.max_energy = 5
+	stats.energy = 5
+	stats.max_mana = 5
+	stats.mana = 5
+	stats.attack = 5
+	stats.defense = 5
+	stats.magic = 5
+	stats.resistance = 5
+	stats.speed = 5
+	stats.luck = 5
+
+	stats.skills = [
+		load("res://Data/Skills/basic_attack.tres")
+	]
 
 # Called every frame
 func _process(delta):
@@ -105,9 +125,14 @@ func delete_self():
 	queue_free()
 	Global_Variables.summoned_entity -= 1
 
+# MOVEMENT FUNCTIONS
+
 # Function to set the target position for the unit to move towards
 func set_target_position(new_target):
 	target_position = new_target
+
+func is_moving():
+	return target_position != Vector2.ZERO
 
 # INVENTORY FUNCTIONS
 func add_item(item:Item, amount:int = 1):
@@ -134,6 +159,12 @@ func deselect():
 
 func is_selected():
 	return selection_handler.is_selected()
+
+func set_selectable():
+	selection_handler.selectable = true
+
+func set_unselectable():
+	selection_handler.selectable = false
 
 func _on_input_event(viewport, event, shape_idx):
 	if event.is_action_released("select"):

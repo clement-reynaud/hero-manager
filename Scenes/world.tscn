@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://5eyvubtp86e5"]
+[gd_scene load_steps=27 format=3 uid="uid://5eyvubtp86e5"]
 
 [ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
 [ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
@@ -12,12 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://d3e8cdf1tb828" path="res://Scenes/Components/small_storage.tscn" id="11_1dhqu"]
 [ext_resource type="PackedScene" uid="uid://dv3pcl1wyds8x" path="res://Scenes/Components/small_altar.tscn" id="12_mdsko"]
 [ext_resource type="PackedScene" uid="uid://cba4sbhb5ue1j" path="res://Scenes/UI/gui.tscn" id="13_cjumw"]
+[ext_resource type="Script" path="res://Scripts/Models/summonable_unit.gd" id="13_kc3cd"]
 [ext_resource type="Resource" uid="uid://lgdtwopweksf" path="res://Data/UnitType/Lumberjack.tres" id="13_mooeg"]
 [ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
 [ext_resource type="Resource" uid="uid://w4d8bodw7rvc" path="res://Data/Building_Blueprint/small_storage.tres" id="15_s5x11"]
 [ext_resource type="PackedScene" uid="uid://ndqu3m84whkv" path="res://Scenes/Components/tree.tscn" id="16_3ogij"]
+[ext_resource type="Resource" uid="uid://c6heiwdye1sgr" path="res://Data/UnitType/Soldier.tres" id="16_ht82x"]
 [ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="17_7q4ie"]
-[ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="18_cjvxv"]
+[ext_resource type="PackedScene" uid="uid://d2d47b2cnkgpe" path="res://Scenes/Components/dungeon.tscn" id="19_u5e32"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
 texture = ExtResource("5_lxjy8")
@@ -43,6 +45,26 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_gcm7b")
 
+[sub_resource type="Resource" id="Resource_sogao"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("3_0o8sm")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_dibp4"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("13_yd346")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_0uxj6"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("13_mooeg")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_hlf1i"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("16_ht82x")
+weight = 1
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_jc1xp")
 
@@ -55,6 +77,9 @@ z_index = -4
 tile_set = SubResource("TileSet_6fski")
 format = 2
 script = ExtResource("6_64m3d")
+
+[node name="GUI" parent="." instance=ExtResource("13_cjumw")]
+techtree = Array[Resource("res://Scripts/Models/building_blueprint.gd")]([ExtResource("15_s5x11")])
 
 [node name="Mine" parent="." instance=ExtResource("3_oyn5g")]
 position = Vector2(268, -292)
@@ -75,14 +100,12 @@ inventory_capacity = 20
 
 [node name="SmallAltar" parent="." instance=ExtResource("12_mdsko")]
 position = Vector2(577, 327)
-summonableUnits = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("3_0o8sm"), ExtResource("13_yd346"), ExtResource("13_mooeg")])
-
-[node name="GUI" parent="." instance=ExtResource("13_cjumw")]
-techtree = Array[Resource("res://Scripts/Models/building_blueprint.gd")]([ExtResource("15_s5x11")])
+summonableUnits = Array[ExtResource("13_kc3cd")]([SubResource("Resource_sogao"), SubResource("Resource_dibp4"), SubResource("Resource_0uxj6"), SubResource("Resource_hlf1i")])
 
 [node name="Tree" parent="." instance=ExtResource("16_3ogij")]
 position = Vector2(266, 485)
 ressource = ExtResource("17_7q4ie")
 
-[node name="Entity" parent="." instance=ExtResource("18_cjvxv")]
-position = Vector2(552, 548)
+[node name="Dungeon" parent="." instance=ExtResource("19_u5e32")]
+position = Vector2(868, 402)
+allowed_unit_types = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("16_ht82x")])

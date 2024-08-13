@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UnitType" load_steps=3 format=3 uid="uid://c6heiwdye1sgr"]
+
+[ext_resource type="Texture2D" uid="uid://cqw5157dtdi7m" path="res://Ressources/Sprite/Token/icon_sword.png" id="1_b50v8"]
+[ext_resource type="Script" path="res://Scripts/Models/unitType.gd" id="1_pc12f"]
+
+[resource]
+script = ExtResource("1_pc12f")
+name = "Soldier"
+description = ""
+icon_sprite = ExtResource("1_b50v8")
+background_color = Color(0.552941, 0.172549, 0.211765, 1)

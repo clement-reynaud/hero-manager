@@ -72,13 +72,10 @@ func has_ressources(ressources:Array[MaterialItem]):
 	for item in global_inventory:
 		if item in compare_dict:
 			if compare_dict[item].amount <= global_inventory[item].amount:
-				print("has")
 				continue
 			else:
-				print("no")
 				has = false
 		else:
-			print("no")
 			has =  false
 	
 	return has

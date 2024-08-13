@@ -1,22 +1,15 @@
-extends Control
+extends GenericEntityUI
 
 var grid = null
 var ninepatch = null
 
-var is_open = false
-
 func _ready():
+	super._ready()
 	grid = $InvNinePatchRect/GridContainer
 	ninepatch = $InvNinePatchRect
 	
 func _process(delta):
-	if is_open:
-		visible = true
-	else:
-		visible = false
-
-func toggle_is_open():
-	is_open = !is_open
+	super._process(delta)
 
 func draw_inventory(inventory):
 	# Clear grid
@@ -47,8 +40,6 @@ func draw_inventory(inventory):
 
 	ninepatch.size.x = width
 	ninepatch.size.y = height
-		
-		
 
 func _on_inventory_button_toggled(toggled_on):
 	toggle_is_open()

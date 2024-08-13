@@ -3,38 +3,42 @@ class_name Building
 
 @export var allowed_unit_types: Array[UnitType] = []
 
-# func get_random_position_outside_area(area: Area2D, lower_bound: float, upper_bound: float) -> Vector2:
-# 	var area_rect = area.get_collision_shape().get_rect() # Assuming the Area2D has a rectangular collision shape
-# 	var area_position = area.global_position
-# 	var area_size = area_rect.size
+func get_random_position_outside_area(area: Area2D, collision_shape: CollisionShape2D, lower_bound: float, upper_bound: float) -> Vector2:
+	var area_rect = collision_shape.shape.get_rect() # Assuming the Area2D has a rectangular collision shape
+	var area_position = area.global_position
+	var area_size = area_rect.size
 	
-# 	var position = Vector2()
-# 	var angle = randf() * 2 * PI
-# 	var distance = lower_bound + randf() * (upper_bound - lower_bound)
+	var new_position = Vector2()
+	var angle = randf() * 2 * PI
+	var distance = lower_bound + randf() * (upper_bound - lower_bound)
 	
-# 	position.x = cos(angle) * distance
-# 	position.y = sin(angle) * distance
+	new_position.x = cos(angle) * distance
+	new_position.y = sin(angle) * distance
 
-# 	# Determine the side on which to place the position
-# 	if randi() % 2 == 0:
-# 		position.x += area_position.x + (area_size.x / 2 + ((randi() % 2) * 2 - 1) * (area_size.x / 2))
-# 		position.y += area_position.y + ((randi() % 2) * 2 - 1) * (area_size.y / 2)
-# 	else:
-# 		position.x += area_position.x + ((randi() % 2) * 2 - 1) * (area_size.x / 2)
-# 		position.y += area_position.y + (area_size.y / 2 + ((randi() % 2) * 2 - 1) * (area_size.y / 2))
+	# Determine the side on which to place the position
+	if randi() % 2 == 0:
+		new_position.x += area_position.x + (area_size.x / 2 + ((randi() % 2) * 2 - 1) * (area_size.x / 2))
+		new_position.y += area_position.y + ((randi() % 2) * 2 - 1) * (area_size.y / 2)
+	else:
+		new_position.x += area_position.x + ((randi() % 2) * 2 - 1) * (area_size.x / 2)
+		new_position.y += area_position.y + (area_size.y / 2 + ((randi() % 2) * 2 - 1) * (area_size.y / 2))
 
-# 	return position
+	return new_position
 
-# func teleport_all_body_out():
-# 	for body in get_overlapping_bodies():
-# 		if body.is_in_group("unit"):
-# 			body.set_target_position(get_random_position_outside_area(self, get_node("Area2D").get_shape().get_rect().size.x, 200))
+func move_all_body_in_to_position(collision_shape:CollisionShape2D = null, lower_bound: float = 100, upper_bound: float = 200):
+	for body in get_overlapping_bodies():
+		if body.is_in_group("unit"):
+			body.set_target_position(get_random_position_outside_area(self, collision_shape , lower_bound, upper_bound))
+
+func move_body_in_to_position(body:Node2D, collision_shape:CollisionShape2D = null, lower_bound: float = 100, upper_bound: float = 200):
+	body.set_target_position(get_random_position_outside_area(self, collision_shape , lower_bound, upper_bound))
 
 # SELECTION
 var selection_handler:SelectionHandler = preload("res://Scripts/Composition/selection_handler.gd").new()
 
-func ready_selection_handler(nodeToAppend:Node):
-	selection_handler.nodeToDisplay.append(nodeToAppend)
+func ready_selection_handler(nodeToAppend:Node = null):
+	if nodeToAppend != null:
+		selection_handler.nodeToDisplay.append(nodeToAppend)
 
 func process_selection_handler(borderSprite:Sprite2D):
 	selection_handler.handleSelection(borderSprite)
@@ -75,6 +79,7 @@ func get_items():
 var timers = {}
 
 func update_timer(unit, base_wait_time):
+	print("huh")
 	var timer = _get_or_create_timer(unit)
 	timer.wait_time = base_wait_time / unit.rank
 	timer.start()

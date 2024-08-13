@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://dev7akynokuf4"]
+
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_basic_attack.gd" id="1_2dmiy"]
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="1_e8hsi"]
+[ext_resource type="Texture2D" uid="uid://djo6q86s33i5n" path="res://Ressources/Sprite/UI/Stats/attack.png" id="2_jtqvk"]
+
+[resource]
+script = ExtResource("1_e8hsi")
+name = "Basic Attack"
+description = "Inflicts [100%|attack|0.1varia] to a random target "
+icon_sprite = ExtResource("2_jtqvk")
+effect = ExtResource("1_2dmiy")
+cooldown = 0.0
+action_min_time = 1.0
+action_max_time = 3.0

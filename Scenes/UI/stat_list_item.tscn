@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://g203chhkvhcm"]
+
+[ext_resource type="Texture2D" uid="uid://cwenyab64d72w" path="res://Ressources/Sprite/UI/EntityRank/rank_1.png" id="1_c00bk"]
+
+[node name="StatListItem" type="HBoxContainer"]
+
+[node name="StatIcon" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_c00bk")
+expand_mode = 2
+
+[node name="StatValue" type="Label" parent="."]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 11

@@ -54,6 +54,5 @@ func _on_inventory_mode_button_toggled(toggled_on):
 
 	if get_overlapping_bodies().size() > 0:
 		for body in get_overlapping_bodies():
-			print(body.is_in_group("unit"))
 			if body.is_in_group("unit"):
 				create_storage_timer(body)
