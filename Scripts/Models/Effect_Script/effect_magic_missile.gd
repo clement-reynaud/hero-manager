@@ -8,7 +8,7 @@ func cast(caster:Stats,target:Stats) -> String:
 	if(randi() % 100 <= caster.luck):
 		critical = 2
 
-	var damage = floor(((caster.attack * variance * Global_Variables.balance_damage_dealt_multiplier) * critical)  - (target.defense * Global_Variables.balance_damage_reduction_multiplier))
+	var damage = floor(((caster.magic * variance * Global_Variables.balance_damage_dealt_multiplier) * critical)  - (target.resistance * Global_Variables.balance_damage_reduction_multiplier))
 	
 	if damage < 0:
 		damage = 0
@@ -16,7 +16,7 @@ func cast(caster:Stats,target:Stats) -> String:
 	target.health = max(target.health - damage,0)
 
 	var combat_log_string = "[color={color}]{damage}[/color] damage dealt"
-	combat_log_string = combat_log_string.format({"color": Global_Variables.DamageTypeColor[Global_Variables.DamageType.Phyisical], "damage": damage})
-	combat_log_string += " [Critical]" if critical == 2 else ""
+	combat_log_string = combat_log_string.format({"color": Global_Variables.DamageTypeColor[Global_Variables.DamageType.Magic], "damage": damage})
+	combat_log_string += " [b][Critical][/b]" if critical == 2 else ""
 
 	return combat_log_string

@@ -18,25 +18,25 @@ class_name Stats
 @export var skills: Array[Skill]
 
 func get_stats_dict() -> Dictionary:
-    return {
-        "max_health": max_health,
-        "health": health,
-        "max_energy": max_energy,
-        "energy": energy,
-        "max_mana": max_mana,
-        "mana": mana,
-        "attack": attack,
-        "defense": defense,
-        "magic": magic,
-        "resistance": resistance,
-        "speed": speed,
-        "luck": luck
-    }
+	return {
+		"max_health": max_health,
+		"health": health,
+		"max_energy": max_energy,
+		"energy": energy,
+		"max_mana": max_mana,
+		"mana": mana,
+		"attack": attack,
+		"defense": defense,
+		"magic": magic,
+		"resistance": resistance,
+		"speed": speed,
+		"luck": luck
+	}
 
-func get_icon(name) -> Texture2D:
-    var texture = load("res://Ressources/Sprite/UI/Stats/" + name + ".png")
-    if texture == null:
-        return load("res://Ressources/Sprite/UI/Stats/default.png")
-    else:
-        return texture
+func get_icon(stat_name) -> Texture2D:
+	var texture = load("res://Ressources/Sprite/UI/Stats/" + stat_name + ".png")
+	if texture == null:
+		return load("res://Ressources/Sprite/UI/Stats/default.png")
+	else:
+		return texture
 

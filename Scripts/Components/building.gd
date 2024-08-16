@@ -78,10 +78,14 @@ func get_items():
 
 var timers = {}
 
-func update_timer(unit, base_wait_time):
-	print("huh")
+func update_timer(unit, base_wait_time, use_rank_modifier = true):
 	var timer = _get_or_create_timer(unit)
-	timer.wait_time = base_wait_time / unit.rank
+	
+	if use_rank_modifier:
+		timer.wait_time = base_wait_time / unit.rank
+	else:
+		timer.wait_time = base_wait_time
+	
 	timer.start()
 	timers[unit.get_instance_id()] = timer
 

@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2d47b2cnkgpe"]
+[gd_scene load_steps=11 format=3 uid="uid://d2d47b2cnkgpe"]
 
 [ext_resource type="Script" path="res://Scripts/Components/dungeon.gd" id="1_1cw3m"]
 [ext_resource type="Texture2D" uid="uid://cd0ofn54ulsx6" path="res://Ressources/Sprite/Building/dungeon.png" id="1_wo26d"]
 [ext_resource type="Texture2D" uid="uid://droqm4cb2uyj8" path="res://Ressources/Sprite/Building/dungeon_border.png" id="2_y53fr"]
-[ext_resource type="Texture2D" uid="uid://bla1xog3iqvka" path="res://Ressources/Sprite/UI/Buttons/button_stats.png" id="4_6meqn"]
-[ext_resource type="Texture2D" uid="uid://dtygls2ucnigf" path="res://Ressources/Sprite/UI/Buttons/button_stats_pressed.png" id="5_qfsbl"]
+[ext_resource type="Texture2D" uid="uid://cop8krkwbouun" path="res://Ressources/Sprite/UI/Buttons/button_exploration.png" id="4_lup7f"]
+[ext_resource type="Texture2D" uid="uid://hko5x2b2l0ls" path="res://Ressources/Sprite/UI/Buttons/button_exploration_pressed.png" id="5_u5np8"]
+[ext_resource type="Texture2D" uid="uid://c713lcvla53bg" path="res://Ressources/Sprite/UI/Buttons/button_exploration_disabled.png" id="6_vli7k"]
+[ext_resource type="Texture2D" uid="uid://dgf8khjj7dwtb" path="res://Ressources/Sprite/UI/Buttons/button_journal.png" id="7_2g430"]
+[ext_resource type="Texture2D" uid="uid://dwv2ixjur73yk" path="res://Ressources/Sprite/UI/Buttons/button_journal_pressed.png" id="8_gv8k5"]
+[ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="9_wi2cp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr3c8"]
 size = Vector2(54.6154, 59.6154)
@@ -30,16 +34,22 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_pr3c8")
 
 [node name="DungeonButtonContainer" type="HBoxContainer" parent="."]
-offset_left = -16.0
-offset_top = 55.0
-offset_right = 16.0
-offset_bottom = 87.0
+offset_left = -33.8462
+offset_top = 53.8462
+offset_right = 34.1538
+offset_bottom = 85.8462
 
 [node name="ExploreButton" type="TextureButton" parent="DungeonButtonContainer"]
 layout_mode = 2
+texture_normal = ExtResource("4_lup7f")
+texture_pressed = ExtResource("5_u5np8")
+texture_disabled = ExtResource("6_vli7k")
+
+[node name="LogButton" type="TextureButton" parent="DungeonButtonContainer"]
+layout_mode = 2
 toggle_mode = true
-texture_normal = ExtResource("4_6meqn")
-texture_pressed = ExtResource("5_qfsbl")
+texture_normal = ExtResource("7_2g430")
+texture_pressed = ExtResource("8_gv8k5")
 
 [node name="DungeonParticipantCount" type="Label" parent="."]
 offset_left = -20.0
@@ -50,6 +60,104 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "1 / 3"
 horizontal_alignment = 1
 
+[node name="LogUI" type="NinePatchRect" parent="."]
+z_index = 10
+offset_left = -169.0
+offset_top = -196.0
+offset_right = 169.0
+offset_bottom = 52.0
+texture = ExtResource("9_wi2cp")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="LogScroll" type="ScrollContainer" parent="LogUI"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 328.0
+offset_bottom = 238.0
+
+[node name="LogVBox" type="VBoxContainer" parent="LogUI/LogScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="AllyStateUI" type="NinePatchRect" parent="LogUI"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -116.923
+offset_top = -90.0
+offset_right = -0.923126
+offset_bottom = 90.0
+grow_vertical = 2
+texture = ExtResource("9_wi2cp")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="AllyStateScroll" type="ScrollContainer" parent="LogUI/AllyStateUI"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 107.0
+offset_bottom = 169.0
+
+[node name="AllyStateVBox" type="VBoxContainer" parent="LogUI/AllyStateUI/AllyStateScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EnemyStateUI" type="NinePatchRect" parent="LogUI"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 0.923004
+offset_top = -90.0
+offset_right = 116.923
+offset_bottom = 90.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("9_wi2cp")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="EnemyStateScroll" type="ScrollContainer" parent="LogUI/EnemyStateUI"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 107.0
+offset_bottom = 169.0
+
+[node name="EnemyStateVBox" type="VBoxContainer" parent="LogUI/EnemyStateUI/EnemyStateScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="pressed" from="DungeonButtonContainer/ExploreButton" to="." method="_on_explore_button_pressed"]
+[connection signal="pressed" from="DungeonButtonContainer/LogButton" to="." method="_on_log_button_pressed"]
+[connection signal="mouse_entered" from="LogUI" to="LogUI" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LogUI" to="LogUI" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="LogUI/AllyStateUI" to="LogUI/AllyStateUI" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LogUI/AllyStateUI" to="LogUI/AllyStateUI" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="LogUI/EnemyStateUI" to="LogUI/EnemyStateUI" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LogUI/EnemyStateUI" to="LogUI/EnemyStateUI" method="_on_mouse_exited"]

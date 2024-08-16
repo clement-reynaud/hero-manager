@@ -109,3 +109,7 @@ ressource = ExtResource("17_7q4ie")
 [node name="Dungeon" parent="." instance=ExtResource("19_u5e32")]
 position = Vector2(868, 402)
 allowed_unit_types = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("16_ht82x")])
+
+[node name="SmallAltar2" parent="." instance=ExtResource("12_mdsko")]
+position = Vector2(717, 456)
+summonableUnits = Array[ExtResource("13_kc3cd")]([SubResource("Resource_hlf1i")])

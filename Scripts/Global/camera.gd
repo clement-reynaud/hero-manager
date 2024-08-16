@@ -1,5 +1,7 @@
 extends Camera2D
 
+var can_zoom = true
+
 var sensitivity = 1 # Mouse sensitivity.
 var last_mouse_position = Vector2.ZERO
 
@@ -23,10 +25,11 @@ func _process(_delta):
 		last_mouse_position = get_viewport().get_mouse_position()
 
 func zoom():
-	if Input.is_action_just_released('camera_zoom_down'):
-		set_zoom(get_zoom() - Vector2(zoom_speed, zoom_speed))
-	if Input.is_action_just_released('camera_zoom_up'): #and get_zoom() > Vector2.ONE:
-		set_zoom(get_zoom() + Vector2(zoom_speed, zoom_speed))
+	if can_zoom:
+		if Input.is_action_just_released('camera_zoom_down'):
+			set_zoom(get_zoom() - Vector2(zoom_speed, zoom_speed))
+		if Input.is_action_just_released('camera_zoom_up'): #and get_zoom() > Vector2.ONE:
+			set_zoom(get_zoom() + Vector2(zoom_speed, zoom_speed))
 
 func _physics_process(delta):
 	zoom()

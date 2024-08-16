@@ -40,9 +40,10 @@ func _ready():
 
 	#TEMP
 
-	stats.name = "TEMP NAME"
-	stats.max_health = 10
-	stats.health = 10
+	var random_name = randi() % 100
+	stats.name = "Adventurer " + str(random_name)
+	stats.max_health = 2
+	stats.health = 2
 	stats.max_energy = 5
 	stats.energy = 5
 	stats.max_mana = 5
@@ -55,7 +56,8 @@ func _ready():
 	stats.luck = 5
 
 	stats.skills = [
-		load("res://Data/Skills/basic_attack.tres")
+		load("res://Data/Skills/basic_attack.tres"),
+		load("res://Data/Skills/magic_missile.tres")
 	]
 
 # Called every frame

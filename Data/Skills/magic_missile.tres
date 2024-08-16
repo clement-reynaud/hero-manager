@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://cgyvicy346hve"]
+
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_magic_missile.gd" id="1_r4dlw"]
+[ext_resource type="Texture2D" uid="uid://c724ynclpkfto" path="res://Ressources/Sprite/UI/Stats/magic.png" id="2_8371m"]
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="3_e6fv4"]
+
+[resource]
+script = ExtResource("3_e6fv4")
+name = "Magic Missile"
+description = "Inflicts [100%|magic|0.1varia] to a random target "
+icon_sprite = ExtResource("2_8371m")
+effect = ExtResource("1_r4dlw")
+cooldown = 0.0
+action_min_time = 1.0
+action_max_time = 3.0
