@@ -1,7 +1,13 @@
-func get_target(allies: Array, enemies: Array) -> Stats:
+static func can_cast(caster:Stats) -> bool:
+	if caster.mana >= 1:
+		return true
+	else:
+		return false
+
+static func get_target(allies: Array, enemies: Array) -> Stats:
 	return enemies[randi() % enemies.size()]
 
-func cast(caster:Stats,target:Stats) -> String:
+static func cast(caster:Stats,target:Stats) -> String:
 	var critical = 1
 	var variance = randf_range(0.9,1.1)
 
@@ -13,6 +19,7 @@ func cast(caster:Stats,target:Stats) -> String:
 	if damage < 0:
 		damage = 0
 
+	caster.mana = max(caster.mana - 1,0,0)
 	target.health = max(target.health - damage,0)
 
 	var combat_log_string = "[color={color}]{damage}[/color] damage dealt"

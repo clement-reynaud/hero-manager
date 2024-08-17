@@ -91,11 +91,11 @@ func _draw_log():
 		_clear_log()
 
 		for log_line in adventure_handler.combat_log:
-			$LogUI/LogScroll/LogVBox.add_child(_parse_log_line(log_line))
-
 			if log_line.has("linked_message"):
 				for linked_message in log_line.linked_message:
 					$LogUI/LogScroll/LogVBox.add_child(_parse_log_line(linked_message))
+
+			$LogUI/LogScroll/LogVBox.add_child(_parse_log_line(log_line))
 
 		for entity_ressource in adventure_handler.combat_log[0].ressource_snapshot:
 			var entity_ressource_item_instance = entity_ressource_item.instantiate()

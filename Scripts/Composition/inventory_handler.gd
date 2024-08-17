@@ -28,5 +28,11 @@ func transfer_item(item:Item, amount:int, target_inventory_handler:InventoryHand
 		draw_inventory()
 		target_inventory_handler.draw_inventory()
 
+
+func merge_to_inventory(target_inventory_handler:InventoryHandler):
+	target_inventory_handler.inventory.merge_inventory(inventory, true)
+	target_inventory_handler.draw_inventory()
+	
+
 func is_inventory_full():
 	return inventory.is_inventory_full()

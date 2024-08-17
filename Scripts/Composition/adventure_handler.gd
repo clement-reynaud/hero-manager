@@ -122,21 +122,23 @@ func _compare_speed(a, b):
 	return a.speed - b.speed
 
 func _execute_turn(entity):
+
+	var skill_idx = randi() % entity.skills.size()
+	var skill = entity.skills[skill_idx]
+
+	while not skill.effect.can_cast(entity):
+		skill_idx = randi() % entity.skills.size()
+		skill = entity.skills[skill_idx]
+
 	if entity in party_copy:
-		var skill_idx = randi() % entity.skills.size()
-		var skill = entity.skills[skill_idx]
 		_apply_skill(entity, skill, party_copy, enemies)
-	else:
-		var skill_idx = randi() % entity.skills.size()
-		var skill = entity.skills[skill_idx]
+	else: 
 		_apply_skill(entity, skill, enemies, party_copy)
 
 func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
-	var skill_effect = skill.effect.new()
-
-	var target = skill_effect.get_target(skill_allies,skill_enemies)
+	var target = skill.effect.get_target(skill_allies,skill_enemies)
 	var execution_time = randi() % int(skill.action_max_time - skill.action_min_time) + int(skill.action_min_time)
-	var combat_log_string = skill_effect.cast(user, target)
+	var combat_log_string = skill.effect.cast(user, target)
 	var linked_message = _check_for_death()
 
 	var log_line = "[color={caster_string_color}]{caster}[/color] uses [u]{skill}[/u] on [color={target_string_color}]{target}[/color], {log_string}."

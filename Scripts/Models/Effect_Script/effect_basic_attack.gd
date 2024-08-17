@@ -1,7 +1,10 @@
-func get_target(allies: Array, enemies: Array) -> Stats:
+static func can_cast(caster:Stats) -> bool:
+	return true
+
+static func get_target(allies: Array, enemies: Array) -> Stats:
 	return enemies[randi() % enemies.size()]
 
-func cast(caster:Stats,target:Stats) -> String:
+static func cast(caster:Stats,target:Stats) -> String:
 	var critical = 1
 	var variance = randf_range(0.9,1.1)
 
