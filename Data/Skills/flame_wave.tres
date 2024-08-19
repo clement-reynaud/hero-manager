@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://bt0ei44nbq6kb"]
+
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_flame_wave.gd" id="1_61otb"]
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="1_sexfr"]
+[ext_resource type="Texture2D" uid="uid://fo0gost3ydng" path="res://Ressources/Sprite/UI/Stats/wisdom.png" id="2_7lm2m"]
+
+[resource]
+script = ExtResource("1_sexfr")
+name = "Flame Wave"
+description = "Inflicts [50%|magic|magic|0.1varia|floor] to a all targets "
+icon_texture = ExtResource("2_7lm2m")
+effect = ExtResource("1_61otb")
+mana_cost = 5
+custom_ressource_cost = 0
+cooldown = 0.0
+action_min_time = 5.0
+action_max_time = 8.0

@@ -7,9 +7,11 @@
 [resource]
 script = ExtResource("1_e8hsi")
 name = "Basic Attack"
-description = "Inflicts [100%|attack|0.1varia] to a random target "
-icon_sprite = ExtResource("2_jtqvk")
+description = "Inflicts  [100%|attack|attack|0.1varia|floor] to a random target "
+icon_texture = ExtResource("2_jtqvk")
 effect = ExtResource("1_2dmiy")
+mana_cost = 0
+custom_ressource_cost = 0
 cooldown = 0.0
 action_min_time = 1.0
 action_max_time = 3.0

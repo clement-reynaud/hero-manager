@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://5eyvubtp86e5"]
+[gd_scene load_steps=29 format=3 uid="uid://5eyvubtp86e5"]
 
 [ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
 [ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c0ymdkiekh3ii" path="res://Scenes/Components/mine.tscn" id="3_oyn5g"]
 [ext_resource type="Texture2D" uid="uid://81wi1dqx32g6" path="res://Ressources/TileSet/tiles2.png" id="5_lxjy8"]
 [ext_resource type="Script" path="res://Scripts/Global/mapGen.gd" id="6_64m3d"]
+[ext_resource type="Resource" uid="uid://5c0peqv1kpd8" path="res://Data/Building_Blueprint/small_house.tres" id="7_7cjyr"]
 [ext_resource type="Resource" uid="uid://g1sr8dlr1iyv" path="res://Data/Items/magicite_ore.tres" id="8_50ooe"]
 [ext_resource type="Resource" uid="uid://bno4jpv5dk12j" path="res://Data/Items/iron_ore.tres" id="9_vt08y"]
 [ext_resource type="Resource" uid="uid://c84tate226u53" path="res://Data/Items/gold_ore.tres" id="10_ytd6m"]
@@ -80,7 +81,7 @@ format = 2
 script = ExtResource("6_64m3d")
 
 [node name="GUI" parent="." instance=ExtResource("13_cjumw")]
-techtree = Array[Resource("res://Scripts/Models/building_blueprint.gd")]([ExtResource("15_s5x11")])
+techtree = Array[Resource("res://Scripts/Models/building_blueprint.gd")]([ExtResource("15_s5x11"), ExtResource("7_7cjyr")])
 
 [node name="Mine" parent="." instance=ExtResource("3_oyn5g")]
 position = Vector2(268, -292)

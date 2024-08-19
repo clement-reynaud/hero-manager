@@ -19,7 +19,10 @@ var attached_dungeon: Building
 
 var room_cpt = 1
 
-func test_rooms():
+var party_wiped: bool = false
+var enemies_wiped: bool = false
+
+func _test_rooms():
 	var temp_enemy = EnemyStats.new()
 	temp_enemy.name = "Slime"
 	temp_enemy.description = "Slime"
@@ -27,8 +30,6 @@ func test_rooms():
 
 	temp_enemy.max_health = 10
 	temp_enemy.health = 10
-	temp_enemy.max_energy = 1
-	temp_enemy.energy = 1
 	temp_enemy.max_mana = 1
 	temp_enemy.mana = 1
 	temp_enemy.attack = 6
@@ -37,18 +38,19 @@ func test_rooms():
 	temp_enemy.resistance = 1
 	temp_enemy.speed = 1
 	temp_enemy.luck = 1
+	temp_enemy.wisdom = 1
 
 	temp_enemy.skills.append(
 		load("res://Data/Skills/basic_attack.tres")
 	)
 
 	rooms = [
-		[temp_enemy],
+		[temp_enemy, temp_enemy],
 		[temp_enemy, temp_enemy]
 	]
 
 func _init_variables():
-	test_rooms()
+	_test_rooms()
 	room_cpt = 1
 	total_execution_time = 0
 	is_exploring = true
@@ -72,26 +74,28 @@ func _start_exploration():
 	_end_adventure()
 
 func _explore_room(room: Array):
+	enemies_wiped = false
 	enemies = _duplicate_enemies(room)
 
-	var log_string = "Room " + str(room_cpt) + ": ["
+	var log_string = "[right]Room " + str(room_cpt) + ": ["
 	var separator = ""
 	for enemy in enemies:
 		log_string += separator + enemy.name 
 		separator = ", "
 
-	log_string += "]"
+	log_string += "][/right]"
 
 	combat_log_queue.append({"type": "announcement", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
 	room_cpt += 1
 	
-	while party_copy.size() > 0 and enemies.size() > 0:
+	while not party_wiped and not enemies_wiped:
 		var turn_order = _determine_turn_order()
 		for entity in turn_order:
-			if party_copy.size() == 0 or enemies.size() == 0:
+			if party_wiped or enemies_wiped:
 				break
 			_execute_turn(entity)
-	if party_copy.size() == 0:
+			turn_order = _determine_turn_order()
+	if party_wiped:
 		is_exploring = false
 
 func _duplicate_party() -> Array:
@@ -116,41 +120,57 @@ func _duplicate_enemies(room: Array) -> Array:
 func _determine_turn_order() -> Array:
 	var all_entities = party_copy + enemies
 	all_entities.sort_custom(Callable(self, "_compare_speed"))
+	
 	return all_entities
 
 func _compare_speed(a, b):
 	return a.speed - b.speed
 
-func _execute_turn(entity):
+func _execute_turn(entity:Stats):
+	if entity.health > 0:
+		var skill_idx = randi() % entity.skills.size()
+		var skill = entity.skills[skill_idx]
 
-	var skill_idx = randi() % entity.skills.size()
-	var skill = entity.skills[skill_idx]
+		while not skill.effect.can_cast(entity, skill):
+			skill_idx = randi() % entity.skills.size()
+			skill = entity.skills[skill_idx]
 
-	while not skill.effect.can_cast(entity):
-		skill_idx = randi() % entity.skills.size()
-		skill = entity.skills[skill_idx]
-
-	if entity in party_copy:
-		_apply_skill(entity, skill, party_copy, enemies)
-	else: 
-		_apply_skill(entity, skill, enemies, party_copy)
+		if entity in party_copy:
+			_apply_skill(entity, skill, party_copy, enemies)
+		else: 
+			_apply_skill(entity, skill, enemies, party_copy)
 
 func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
+	# target can be either an enemy or an ally, in an array or not
 	var target = skill.effect.get_target(skill_allies,skill_enemies)
+
 	var execution_time = randi() % int(skill.action_max_time - skill.action_min_time) + int(skill.action_min_time)
-	var combat_log_string = skill.effect.cast(user, target)
+
+	var combat_log_string = skill.effect.cast(user, target, skill)
 	var linked_message = _check_for_death()
 
 	var log_line = "[color={caster_string_color}]{caster}[/color] uses [u]{skill}[/u] on [color={target_string_color}]{target}[/color], {log_string}."
 
 	var target_string_color = "blue" if target in copy_party_stats else "red"
 	var caster_string_color = "blue" if user in copy_party_stats else "red"
+
+	var target_name = ""
+
+	if typeof(target) == TYPE_ARRAY:
+		var separator = ""
+		for t in target:
+			var is_last = t == target[target.size() - 1] and target.size() > 1
+			target_name += (separator if not is_last else " and ") + t.name
+			separator = ", " if not is_last else ""
+	else:
+		target_name = target.name
+
 	
 	log_line = log_line.format(
 		{
 			"caster": user.name,
 			"skill": skill.name,
-			"target": target.name,
+			"target": target_name,
 			"caster_string_color": caster_string_color,
 			"target_string_color": target_string_color,
 			"log_string": combat_log_string
@@ -165,7 +185,7 @@ func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
 		_initalize_combat_log()
 
 func _end_adventure():
-	if party_copy.size() == 0:
+	if party_wiped:
 		combat_log_queue.append({"type":"announcement","text":"[color=red]All party members are dead. The adventure is over.[/color]", "ressource_snapshot": _make_ressource_snapshot(),"alignement":"center"})
 	else:
 		combat_log_queue.append({"type":"announcement","text":"[color=green]All rooms explored. The adventure is a success.[/color]", "ressource_snapshot": _make_ressource_snapshot(),"alignement":"center"})
@@ -173,21 +193,28 @@ func _end_adventure():
 
 func _check_for_death():
 	var ret = []
+
 	for entity in party_copy:
-		if entity.health <= 0:
-			party_copy.erase(entity)
+		if entity.health <= 0 and not entity.has_status("dead"):
 			var log_string = "[color=blue]" + entity.name + "[/color] died."
 			ret.append({"type": "death", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
-
+			entity.set_status("dead")
 
 	for entity in enemies:
-		if entity.health <= 0:
-			enemies.erase(entity)
+		if entity.health <= 0 and not entity.has_status("dead"):
 			var log_string = "[color=red]" + entity.name + "[/color] died."
 			ret.append({"type": "death", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
+			entity.set_status("dead")
+
+	if party_copy.filter(Global_Functions._is_entity_dead).size() == party_copy.size():
+		party_wiped = true
+		return ret
+
+	if enemies.filter(Global_Functions._is_entity_dead).size() == enemies.size():
+		enemies_wiped = true
+		return ret
 
 	return ret
-
 
 func _set_party_unselectable():
 	for member in party:
@@ -221,7 +248,7 @@ func _initalize_combat_log():
 func _make_ressource_snapshot():
 	var ressource_snapshot = {}
 	for entity in copy_party_stats:
-		ressource_snapshot[entity.name + str(entity.get_reference_count())] = {"name": entity.name, "health": entity.health, "max_health": entity.max_health, "energy": entity.energy, "max_energy": entity.max_energy, "mana": entity.mana, "max_mana": entity.max_mana, "is_player": true}
+		ressource_snapshot[entity.name + str(entity.get_reference_count())] = {"name": entity.name, "health": entity.health, "max_health": entity.max_health, "mana": entity.mana, "max_mana": entity.max_mana, "is_player": true}
 	for entity in enemies:
-		ressource_snapshot[entity.name + str(entity.get_reference_count())] = {"name": entity.name, "health": entity.health, "max_health": entity.max_health, "energy": entity.energy, "max_energy": entity.max_energy, "mana": entity.mana, "max_mana": entity.max_mana, "is_player": false}
+		ressource_snapshot[entity.name + str(entity.get_reference_count())] = {"name": entity.name, "health": entity.health, "max_health": entity.max_health, "mana": entity.mana, "max_mana": entity.max_mana, "is_player": false}
 	return ressource_snapshot

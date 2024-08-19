@@ -91,11 +91,12 @@ func _draw_log():
 		_clear_log()
 
 		for log_line in adventure_handler.combat_log:
+			$LogUI/LogScroll/LogVBox.add_child(_parse_log_line(log_line))
+
 			if log_line.has("linked_message"):
 				for linked_message in log_line.linked_message:
-					$LogUI/LogScroll/LogVBox.add_child(_parse_log_line(linked_message))
+					$LogUI/LogScroll/LogVBox.add_child(_parse_log_line(linked_message,true))
 
-			$LogUI/LogScroll/LogVBox.add_child(_parse_log_line(log_line))
 
 		for entity_ressource in adventure_handler.combat_log[0].ressource_snapshot:
 			var entity_ressource_item_instance = entity_ressource_item.instantiate()
@@ -125,7 +126,7 @@ func _process_combat_log_queue(timer: Timer):
 	adventure_handler.combat_log_queue.remove_at(0)
 
 	if log_line.type != "announcement":
-		log_line.text = _format_time(cumulative_wait_time) + ":\n " + log_line.text
+		log_line.text = "[center]" + _format_time(cumulative_wait_time) + ":[/center]\n " + log_line.text
 
 	log_line.text = log_line.text + "\n"
 
@@ -134,19 +135,26 @@ func _process_combat_log_queue(timer: Timer):
 	if adventure_handler.combat_log_queue.size() > 0:
 		var combat_log_timer = Timer.new()
 		combat_log_timer.one_shot = true
-		combat_log_timer.wait_time = log_line.execution_time if log_line.has("execution_time") else 0
-		combat_log_timer.timeout.connect(self._process_combat_log_queue.bind(combat_log_timer))
-		add_child(combat_log_timer)
-		combat_log_timer.start()
+
+		if log_line.has("execution_time"):
+			combat_log_timer.wait_time = log_line.execution_time 
+			combat_log_timer.timeout.connect(self._process_combat_log_queue.bind(combat_log_timer))
+			add_child(combat_log_timer)
+			combat_log_timer.start()
+		else:
+			_process_combat_log_queue(combat_log_timer)
 	
 	_draw_log()
 
 
-func _parse_log_line(log_line:Dictionary):
+func _parse_log_line(log_line:Dictionary, linked_message:bool = false):
 	var label = RichTextLabel.new()
 	var text = log_line.text
 	label.fit_content = true
 	label.bbcode_enabled = true
+
+	if linked_message:
+		text = " | " + text
 
 	if log_line.type == "announcement":	
 		text = "[font_size=15][color=black][b]" + text + "[/b][/color][/font_size]"

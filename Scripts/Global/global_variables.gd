@@ -6,14 +6,16 @@ var max_summoned_entity = 5;
 var balance_damage_dealt_multiplier = 1
 var balance_damage_reduction_multiplier = 1
 
-enum DamageType {
-    Phyisical,
+enum EffectType {
+    Attack,
     Magic,
-    True
+    True,
+    Heal
 }
 
-var DamageTypeColor = {
-    DamageType.Phyisical: "#c96800",
-    DamageType.Magic: "#00a8ff",
-    DamageType.True: "white"
+var EffectTypeColor = {
+    EffectType.Attack: "#c96800",
+    EffectType.Magic: "#006da6",
+    EffectType.True: "white",
+    EffectType.Heal: "green"
 }

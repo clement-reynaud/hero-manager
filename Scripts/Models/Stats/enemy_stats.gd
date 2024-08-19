@@ -13,8 +13,6 @@ func duplicate() -> EnemyStats:
 	new_stat.name = name
 	new_stat.max_health = max_health
 	new_stat.health = health
-	new_stat.max_energy = max_energy
-	new_stat.energy = energy
 	new_stat.max_mana = max_mana
 	new_stat.mana = mana
 	new_stat.attack = attack
@@ -23,6 +21,7 @@ func duplicate() -> EnemyStats:
 	new_stat.resistance = resistance
 	new_stat.speed = speed
 	new_stat.luck = luck
+	new_stat.wisdom = wisdom
 	new_stat.skills = skills
 
 	return new_stat

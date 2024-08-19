@@ -11,6 +11,7 @@ script = ExtResource("1_m6mii")
 
 [node name="EntityName" type="Label" parent="."]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "TEST"
 
@@ -18,6 +19,14 @@ text = "TEST"
 layout_mode = 2
 value = 50.0
 nine_patch_stretch = true
-stretch_margin_bottom = 10
+stretch_margin_bottom = 8
+texture_under = ExtResource("2_2jani")
+texture_progress = ExtResource("3_jee5v")
+
+[node name="ManaBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_bottom = 8
 texture_under = ExtResource("2_2jani")
 texture_progress = ExtResource("3_jee5v")

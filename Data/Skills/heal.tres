@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://chv56hn7p4je"]
+
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_heal.gd" id="1_2nhx8"]
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="1_4fv57"]
+[ext_resource type="Texture2D" uid="uid://c2ooef7ojbueu" path="res://Ressources/Sprite/UI/Stats/max_health.png" id="1_sgcs7"]
+
+[resource]
+script = ExtResource("1_4fv57")
+name = "Heal"
+description = "Heal [10%|magic|heal|0.5varia|ceil] on a random ally (including self)"
+icon_texture = ExtResource("1_sgcs7")
+effect = ExtResource("1_2nhx8")
+mana_cost = 3
+custom_ressource_cost = 0
+cooldown = 0.0
+action_min_time = 3.0
+action_max_time = 5.0
