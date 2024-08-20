@@ -1,9 +1,7 @@
 extends Stats
 class_name PlayerStats
 
-@export var level: int = 1
-@export var experience: int = 0
-@export var experience_to_next_level: int = 100
+@export var knowledge: int = 0
 
 @export var health_growth: int = 50
 @export var mana_growth: int = 50
@@ -16,44 +14,63 @@ class_name PlayerStats
 
 @export var available_skills: Array[Skill]
 
-func duplicate() -> PlayerStats:
-	var new_stat = PlayerStats.new()
+var attached_entity = null
 
-	new_stat.level = level
-	new_stat.experience = experience
-	new_stat.experience_to_next_level = experience_to_next_level
+# func duplicate() -> PlayerStats:
+# 	var new_stat = PlayerStats.new()
 
-	new_stat.health_growth = health_growth
-	new_stat.mana_growth = mana_growth
-	new_stat.attack_growth = attack_growth
-	new_stat.defense_growth = defense_growth
-	new_stat.magic_growth = magic_growth
-	new_stat.resistance_growth = resistance_growth
-	new_stat.speed_growth = speed_growth
-	new_stat.luck_growth = luck_growth
+# 	new_stat.health_growth = health_growth
+# 	new_stat.mana_growth = mana_growth
+# 	new_stat.attack_growth = attack_growth
+# 	new_stat.defense_growth = defense_growth
+# 	new_stat.magic_growth = magic_growth
+# 	new_stat.resistance_growth = resistance_growth
+# 	new_stat.speed_growth = speed_growth
+# 	new_stat.luck_growth = luck_growth
 
-	new_stat.name = name
-	new_stat.max_health = max_health
-	new_stat.health = health
-	new_stat.max_mana = max_mana
-	new_stat.mana = mana
-	new_stat.attack = attack
-	new_stat.defense = defense
-	new_stat.magic = magic
-	new_stat.resistance = resistance
-	new_stat.speed = speed
-	new_stat.luck = luck
+# 	new_stat.name = name
+# 	new_stat.max_health = max_health
+# 	new_stat.health = health
+# 	new_stat.max_mana = max_mana
+# 	new_stat.mana = mana
+# 	new_stat.attack = attack
+# 	new_stat.defense = defense
+# 	new_stat.magic = magic
+# 	new_stat.resistance = resistance
+# 	new_stat.speed = speed
+# 	new_stat.luck = luck
 
-	new_stat.wisdom = wisdom
-	new_stat.skills = skills
+# 	new_stat.wisdom = wisdom
+	
+# 	new_stat.skills = skills
+# 	new_stat.available_skills = available_skills
 
-	return new_stat
+# 	return new_stat
 
-func init():
+func init(node: Node):
 	setup_stats()
 	randomize_growth()
 	upgrade_stats(2)
 	full_restore()
+
+	attached_entity = node
+
+func get_stats_dict() -> Dictionary:
+	return {
+		"max_health": max_health,
+		"health": health,
+		"max_mana": max_mana,
+		"mana": mana,
+		"attack": attack,
+		"defense": defense,
+		"magic": magic,
+		"resistance": resistance,
+		"speed": speed,
+		"luck": luck,
+		"wisdom": wisdom,
+		"knowledge": knowledge
+	}
+
 
 func setup_stats():
 	name = "Adventurer " + str(randi() % 100)
@@ -67,7 +84,7 @@ func setup_stats():
 	resistance = 5
 	speed = 5
 	luck = 5
-	wisdom = 3
+	wisdom = 2
 
 	available_skills = [
 		load("res://Data/Skills/basic_attack.tres"),
@@ -97,10 +114,6 @@ func randomize_growth():
 			break
 
 func level_up():
-	level += 1
-	experience = 0
-	experience_to_next_level = level * 100
-
 	upgrade_stats()
 	full_restore()
 

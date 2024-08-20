@@ -7,6 +7,8 @@ func _process(delta):
 	super._process(delta)
 
 func _draw_stats(stats:Stats):
+	$StatsNinePatchRect/NameInputBorder/EntityName.text = stats.name
+
 	var stats_dict = stats.get_stats_dict()
 
 	for child in stats_dict:
@@ -17,3 +19,5 @@ func _on_stats_button_toggled(toggled_on):
 	toggle_is_open()
 	_draw_stats(attached_entity.stats)
 
+func _on_name_input_changed(new_text):
+	attached_entity.stats.name = new_text

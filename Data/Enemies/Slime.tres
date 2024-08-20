@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=5 format=3 uid="uid://bxxb4mgkell5n"]
+
+[ext_resource type="Resource" uid="uid://dp5secevwl56n" path="res://Data/Items/slime_goop.tres" id="1_goi48"]
+[ext_resource type="Script" path="res://Scripts/Models/Stats/enemy_stats.gd" id="1_oxsfv"]
+[ext_resource type="Texture2D" uid="uid://c4kqm4pduva57" path="res://Ressources/Sprite/Enemies/Slime.png" id="2_h74ei"]
+[ext_resource type="Resource" uid="uid://dev7akynokuf4" path="res://Data/Skills/basic_attack.tres" id="3_10im8"]
+
+[resource]
+script = ExtResource("1_oxsfv")
+description = "A simple slime living in the dungeon"
+sprite = ExtResource("2_h74ei")
+knowledge_reward = 5
+loot = Array[Resource("res://Scripts/Models/item.gd")]([ExtResource("1_goi48")])
+name = "Slime"
+max_health = 10
+health = 10
+max_mana = 0
+mana = 0
+attack = 6
+defense = 2
+magic = 0
+resistance = 0
+speed = 1
+luck = 1
+wisdom = 1
+_status = Array[String]([])
+skills = Array[Resource("res://Scripts/Models/skill.gd")]([ExtResource("3_10im8")])

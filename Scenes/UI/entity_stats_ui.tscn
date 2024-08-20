@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://tyyce4atj670"]
+[gd_scene load_steps=5 format=3 uid="uid://tyyce4atj670"]
 
 [ext_resource type="Script" path="res://Scripts/UI/entity_stats_ui.gd" id="1_wdgq2"]
 [ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="2_wdj51"]
 [ext_resource type="PackedScene" uid="uid://g203chhkvhcm" path="res://Scenes/UI/stat_list_item.tscn" id="3_sa2h2"]
+[ext_resource type="Texture2D" uid="uid://cfjgmrf1veg7c" path="res://Ressources/Sprite/UI/Border_1.png" id="4_v1swq"]
 
 [node name="EntityStatsUI" type="Control"]
 z_index = 1
@@ -18,6 +19,7 @@ script = ExtResource("1_wdgq2")
 
 [node name="StatsNinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
+offset_top = -19.0
 offset_right = 110.0
 offset_bottom = 142.0
 texture = ExtResource("2_wdj51")
@@ -28,12 +30,47 @@ patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[node name="NameInputBorder" type="NinePatchRect" parent="StatsNinePatchRect"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 14.0
+offset_right = 102.0
+offset_bottom = 27.0
+texture = ExtResource("4_v1swq")
+region_rect = Rect2(1, 1, 62, 62)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="EntityName" type="LineEdit" parent="StatsNinePatchRect/NameInputBorder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -6.5
+offset_right = 427.5
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Adventurer"
+placeholder_text = "Name"
+alignment = 1
+context_menu_enabled = false
+flat = true
+
 [node name="StatList" type="GridContainer" parent="StatsNinePatchRect"]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 10.0
+offset_top = 32.0
 offset_right = 103.0
-offset_bottom = 132.0
+offset_bottom = 154.0
 columns = 2
 
 [node name="health" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
@@ -68,3 +105,8 @@ layout_mode = 2
 
 [node name="wisdom" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
 layout_mode = 2
+
+[node name="knowledge" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+layout_mode = 2
+
+[connection signal="text_changed" from="StatsNinePatchRect/NameInputBorder/EntityName" to="." method="_on_name_input_changed"]

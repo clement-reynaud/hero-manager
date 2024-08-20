@@ -5,7 +5,6 @@ var rooms: Array[Array] = []
 var is_exploring: bool = false
 var total_execution_time: int = 0
 
-
 var party: Array = []
 var party_copy: Array = []
 var copy_party_stats: Array = []
@@ -22,27 +21,10 @@ var room_cpt = 1
 var party_wiped: bool = false
 var enemies_wiped: bool = false
 
+var loots: Array[Item] = []
+
 func _test_rooms():
-	var temp_enemy = EnemyStats.new()
-	temp_enemy.name = "Slime"
-	temp_enemy.description = "Slime"
-	#temp_enemy.sprite = load("res://Ressources/Sprites/Enemies/Slime.png")
-
-	temp_enemy.max_health = 10
-	temp_enemy.health = 10
-	temp_enemy.max_mana = 1
-	temp_enemy.mana = 1
-	temp_enemy.attack = 6
-	temp_enemy.defense = 1
-	temp_enemy.magic = 1
-	temp_enemy.resistance = 1
-	temp_enemy.speed = 1
-	temp_enemy.luck = 1
-	temp_enemy.wisdom = 1
-
-	temp_enemy.skills.append(
-		load("res://Data/Skills/basic_attack.tres")
-	)
+	var temp_enemy = load("res://Data/Enemies/Slime.tres")
 
 	rooms = [
 		[temp_enemy, temp_enemy],
@@ -56,6 +38,7 @@ func _init_variables():
 	is_exploring = true
 	combat_log_queue = []
 	combat_log = []
+	loots = []
 
 func adventure(dungeon: Building):
 	attached_dungeon = dungeon
@@ -103,6 +86,7 @@ func _duplicate_party() -> Array:
 	copy_party_stats = []
 	for member in party:
 		var copy = _clone_stats(member.stats, false)
+		copy.set_meta("original_stats", member.stats)
 		new_party.append(copy)
 		copy_party_stats.append(copy)
 	return new_party
@@ -119,12 +103,16 @@ func _duplicate_enemies(room: Array) -> Array:
 
 func _determine_turn_order() -> Array:
 	var all_entities = party_copy + enemies
-	all_entities.sort_custom(Callable(self, "_compare_speed"))
 	
-	return all_entities
+	var turn_order = []
+	for entity in all_entities:
+		if entity.health > 0:
+			turn_order.append(entity)
 
-func _compare_speed(a, b):
-	return a.speed - b.speed
+	turn_order.sort_custom(func(a, b): return a.speed > b.speed)
+	
+	return turn_order
+
 
 func _execute_turn(entity:Stats):
 	if entity.health > 0:
@@ -189,7 +177,17 @@ func _end_adventure():
 		combat_log_queue.append({"type":"announcement","text":"[color=red]All party members are dead. The adventure is over.[/color]", "ressource_snapshot": _make_ressource_snapshot(),"alignement":"center"})
 	else:
 		combat_log_queue.append({"type":"announcement","text":"[color=green]All rooms explored. The adventure is a success.[/color]", "ressource_snapshot": _make_ressource_snapshot(),"alignement":"center"})
+
+		var knowledge_reward = 0
+		for room in rooms:
+			for enemy in room:
+				knowledge_reward += enemy.knowledge_reward
+
+		for entity in party_copy:
+			entity.knowledge += ceil(knowledge_reward / party_copy.size())
+
 	is_exploring = false
+	_apply_stats_changes()
 
 func _check_for_death():
 	var ret = []
@@ -205,6 +203,8 @@ func _check_for_death():
 			var log_string = "[color=red]" + entity.name + "[/color] died."
 			ret.append({"type": "death", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
 			entity.set_status("dead")
+
+			loots.append_array(entity.loot)
 
 	if party_copy.filter(Global_Functions._is_entity_dead).size() == party_copy.size():
 		party_wiped = true
@@ -252,3 +252,13 @@ func _make_ressource_snapshot():
 	for entity in enemies:
 		ressource_snapshot[entity.name + str(entity.get_reference_count())] = {"name": entity.name, "health": entity.health, "max_health": entity.max_health, "mana": entity.mana, "max_mana": entity.max_mana, "is_player": false}
 	return ressource_snapshot
+
+func _apply_stats_changes():
+	for entity in party_copy:
+		entity.get_meta("original_stats").health = entity.health
+		entity.get_meta("original_stats").mana = entity.mana
+		entity.get_meta("original_stats").knowledge = entity.knowledge
+
+	for i in loots.size():
+		var item = loots[i]
+		party_copy[i % party_copy.size()].get_meta("original_stats").attached_entity.add_item(item,1)

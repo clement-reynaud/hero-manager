@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MaterialItem" load_steps=3 format=3 uid="uid://dp5secevwl56n"]
+
+[ext_resource type="Script" path="res://Scripts/Models/material.gd" id="1_dxciw"]
+[ext_resource type="Texture2D" uid="uid://dh0e5s5mrjfb8" path="res://Ressources/Sprite/Ressources/slime_goop.png" id="1_k2h1d"]
+
+[resource]
+script = ExtResource("1_dxciw")
+seconds_to_produce = 0.0
+name = "Slime Goop"
+description = "Dropped from Slime in dungeons"
+type = 3
+icon_sprite = ExtResource("1_k2h1d")

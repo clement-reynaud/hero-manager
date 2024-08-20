@@ -38,7 +38,7 @@ func _ready():
 	movement_line.z_index = -1
 	add_child(movement_line)
 
-	stats.init()
+	stats.init(self)
 
 # Called every frame
 func _process(delta):

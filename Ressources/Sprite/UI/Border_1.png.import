@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba07dpft2ffkp"
-path="res://.godot/imported/speed - Copy.png-004711a6c83da54a447e78b4999e4695.ctex"
+uid="uid://cfjgmrf1veg7c"
+path="res://.godot/imported/Border_1.png-5e30da7276b93d75159ddff5dbd8c443.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/UI/Stats/speed - Copy.png"
-dest_files=["res://.godot/imported/speed - Copy.png-004711a6c83da54a447e78b4999e4695.ctex"]
+source_file="res://Ressources/Sprite/UI/Border_1.png"
+dest_files=["res://.godot/imported/Border_1.png-5e30da7276b93d75159ddff5dbd8c443.ctex"]
 
 [params]
 
