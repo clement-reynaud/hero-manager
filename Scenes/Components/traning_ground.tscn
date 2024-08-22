@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://ijeooolmdx8m"]
+
+[ext_resource type="Script" path="res://Scripts/Components/traning.gd" id="1_mpihs"]
+[ext_resource type="Resource" uid="uid://c6heiwdye1sgr" path="res://Data/UnitType/Soldier.tres" id="2_21j77"]
+[ext_resource type="Texture2D" uid="uid://dnm053u7gc81t" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/border_0.png" id="2_jd33x"]
+[ext_resource type="Texture2D" uid="uid://c2rahl0k0p8qy" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/training_ground_background.png" id="3_5jj6v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1iw7"]
+radius = 33.0792
+
+[node name="TrainingGround" type="Area2D" groups=["building", "selectable"]]
+texture_filter = 1
+scale = Vector2(1.3, 1.3)
+script = ExtResource("1_mpihs")
+allowed_unit_types = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("2_21j77")])
+
+[node name="TrainingBorder" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("2_jd33x")
+
+[node name="TrainingSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_5jj6v")
+
+[node name="TrainingCollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_k1iw7")
+
+[node name="TrainingButtonContainer" type="HBoxContainer" parent="."]
+offset_left = -33.8462
+offset_top = 53.8462
+offset_right = 34.1538
+offset_bottom = 85.8462
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

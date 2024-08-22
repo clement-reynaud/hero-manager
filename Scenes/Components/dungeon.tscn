@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://d2d47b2cnkgpe"]
 
 [ext_resource type="Script" path="res://Scripts/Components/dungeon.gd" id="1_1cw3m"]
-[ext_resource type="Texture2D" uid="uid://cd0ofn54ulsx6" path="res://Ressources/Sprite/Building/dungeon.png" id="1_wo26d"]
-[ext_resource type="Texture2D" uid="uid://droqm4cb2uyj8" path="res://Ressources/Sprite/Building/dungeon_border.png" id="2_y53fr"]
+[ext_resource type="Texture2D" uid="uid://tjj31prtwfpm" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/dungeon_background.png" id="2_sxmac"]
+[ext_resource type="Texture2D" uid="uid://dnm053u7gc81t" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/border_0.png" id="3_vp08r"]
 [ext_resource type="Texture2D" uid="uid://cop8krkwbouun" path="res://Ressources/Sprite/UI/Buttons/button_exploration.png" id="4_lup7f"]
 [ext_resource type="Texture2D" uid="uid://hko5x2b2l0ls" path="res://Ressources/Sprite/UI/Buttons/button_exploration_pressed.png" id="5_u5np8"]
 [ext_resource type="Texture2D" uid="uid://c713lcvla53bg" path="res://Ressources/Sprite/UI/Buttons/button_exploration_disabled.png" id="6_vli7k"]
@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dwv2ixjur73yk" path="res://Ressources/Sprite/UI/Buttons/button_journal_pressed.png" id="8_gv8k5"]
 [ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="9_wi2cp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr3c8"]
-size = Vector2(54.6154, 59.6154)
+[sub_resource type="CircleShape2D" id="CircleShape2D_j1lv7"]
+radius = 33.0792
 
 [node name="Dungeon" type="Area2D" groups=["building", "selectable"]]
 texture_filter = 1
@@ -20,24 +20,24 @@ script = ExtResource("1_1cw3m")
 
 [node name="DungeonSprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("1_wo26d")
+texture = ExtResource("2_sxmac")
 
 [node name="DungeonBorder" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = -1
 scale = Vector2(2, 2)
-texture = ExtResource("2_y53fr")
+texture = ExtResource("3_vp08r")
 
 [node name="DungeonCollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_pr3c8")
+shape = SubResource("CircleShape2D_j1lv7")
 
 [node name="DungeonButtonContainer" type="HBoxContainer" parent="."]
-offset_left = -33.8462
-offset_top = 53.8462
-offset_right = 34.1538
-offset_bottom = 85.8462
+offset_left = -33.846
+offset_top = 50.0
+offset_right = 34.154
+offset_bottom = 82.0
 
 [node name="ExploreButton" type="TextureButton" parent="DungeonButtonContainer"]
 layout_mode = 2
@@ -53,9 +53,9 @@ texture_pressed = ExtResource("8_gv8k5")
 
 [node name="DungeonParticipantCount" type="Label" parent="."]
 offset_left = -20.0
-offset_top = -78.0
+offset_top = -89.5384
 offset_right = 20.0
-offset_bottom = -55.0
+offset_bottom = -66.5384
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "1 / 3"
 horizontal_alignment = 1

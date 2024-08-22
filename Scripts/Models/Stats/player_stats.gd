@@ -1,6 +1,7 @@
 extends Stats
 class_name PlayerStats
 
+@export var level = 1
 @export var knowledge: int = 0
 
 @export var health_growth: int = 50
@@ -15,37 +16,7 @@ class_name PlayerStats
 @export var available_skills: Array[Skill]
 
 var attached_entity = null
-
-# func duplicate() -> PlayerStats:
-# 	var new_stat = PlayerStats.new()
-
-# 	new_stat.health_growth = health_growth
-# 	new_stat.mana_growth = mana_growth
-# 	new_stat.attack_growth = attack_growth
-# 	new_stat.defense_growth = defense_growth
-# 	new_stat.magic_growth = magic_growth
-# 	new_stat.resistance_growth = resistance_growth
-# 	new_stat.speed_growth = speed_growth
-# 	new_stat.luck_growth = luck_growth
-
-# 	new_stat.name = name
-# 	new_stat.max_health = max_health
-# 	new_stat.health = health
-# 	new_stat.max_mana = max_mana
-# 	new_stat.mana = mana
-# 	new_stat.attack = attack
-# 	new_stat.defense = defense
-# 	new_stat.magic = magic
-# 	new_stat.resistance = resistance
-# 	new_stat.speed = speed
-# 	new_stat.luck = luck
-
-# 	new_stat.wisdom = wisdom
-	
-# 	new_stat.skills = skills
-# 	new_stat.available_skills = available_skills
-
-# 	return new_stat
+var level_up_function = null
 
 func init(node: Node):
 	setup_stats()
@@ -53,7 +24,14 @@ func init(node: Node):
 	upgrade_stats(2)
 	full_restore()
 
+	level_up_function = Global_Functions.level_up_function[randi() % Global_Functions.level_up_function.size()]
+
 	attached_entity = node
+
+func level_up():
+	level += 1
+	full_restore()
+	return upgrade_stats()
 
 func get_stats_dict() -> Dictionary:
 	return {
@@ -99,35 +77,59 @@ func setup_stats():
 
 func randomize_growth():
 	while true:
-		health_growth = randi() % 18 * 5 + 10
-		mana_growth = randi() % 18 * 5 + 10
-		attack_growth = randi() % 18 * 5 + 10
-		defense_growth = randi() % 18 * 5 + 10
-		magic_growth = randi() % 18 * 5 + 10
-		resistance_growth = randi() % 18 * 5 + 10
-		speed_growth = randi() % 18 * 5 + 10
-		luck_growth = randi() % 18 * 5 + 10
+		health_growth = randi_range(20,80)
+		mana_growth = randi_range(20,80)
+		attack_growth = randi_range(20,80)
+		defense_growth = randi_range(20,80)
+		magic_growth = randi_range(20,80)
+		resistance_growth = randi_range(20,80)
+		speed_growth = randi_range(20,80)
+		luck_growth = randi_range(20,80)
 
 		var total = health_growth + mana_growth + attack_growth + defense_growth + magic_growth + resistance_growth + speed_growth + luck_growth
 
-		if total == 450:
+		if total > 350 and total <= 550:
 			break
 
-func level_up():
-	upgrade_stats()
-	full_restore()
-
 func upgrade_stats(time:int = 1):
-	for i in time:
-		max_health += 1 if randi() % 100 <= health_growth else 0
-		max_mana += 1 if randi() % 100 <= mana_growth else 0
+	var growths = []
 
-		attack += 1 if randi() % 100 <= attack_growth else 0
-		defense += 1 if randi() % 100 <= defense_growth else 0
-		magic += 1 if randi() % 100 <= magic_growth else 0
-		resistance += 1 if randi() % 100 <= resistance_growth else 0
-		speed += 1 if randi() % 100 <= speed_growth else 0
-		luck += 1 if randi() % 100 <= luck_growth else 0
+	for i in time:
+		if randi() % 100 <= health_growth:
+			max_health += 1
+			growths.append("health")
+			growths.append("max_health")
+
+		if randi() % 100 <= mana_growth:
+			max_mana += 1
+			growths.append("mana")
+			growths.append("max_mana")
+
+		if randi() % 100 <= attack_growth:
+			attack += 1
+			growths.append("attack")
+
+		if randi() % 100 <= defense_growth:
+			defense += 1
+			growths.append("defense")
+
+		if randi() % 100 <= magic_growth:
+			magic += 1
+			growths.append("magic")
+
+		if randi() % 100 <= resistance_growth:
+			resistance += 1
+			growths.append("resistance")
+
+		if randi() % 100 <= speed_growth:
+			speed += 1
+			growths.append("speed")
+
+		if randi() % 100 <= luck_growth:
+			luck += 1
+			growths.append("luck")
+
+	return growths
 
 func full_restore():
 	health = max_health

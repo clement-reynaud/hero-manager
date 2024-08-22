@@ -1,38 +1,37 @@
 [gd_scene load_steps=7 format=3 uid="uid://dv3pcl1wyds8x"]
 
-[ext_resource type="Texture2D" uid="uid://dx3dn1l6ukf3p" path="res://Ressources/Sprite/Building/small_altar.png" id="1_7ccju"]
 [ext_resource type="Script" path="res://Scripts/Components/altar.gd" id="1_rf74m"]
-[ext_resource type="Texture2D" uid="uid://l5dt0uxltomf" path="res://Ressources/Sprite/Building/small_altar_border.png" id="2_7jprt"]
+[ext_resource type="Texture2D" uid="uid://dnm053u7gc81t" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/border_0.png" id="2_va6lx"]
+[ext_resource type="Texture2D" uid="uid://bnjw4tuxs8rpb" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/altar_background.png" id="3_w2bf5"]
 [ext_resource type="Texture2D" uid="uid://5a47025gtbtp" path="res://Ressources/Sprite/UI/Buttons/button_altar_summon.png" id="4_8xn8m"]
 [ext_resource type="Texture2D" uid="uid://cvyvl4u1nwa1l" path="res://Ressources/Sprite/UI/Buttons/button_altar_summon_pressed.png" id="5_c14b8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lm06u"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_280pb"]
+radius = 33.0792
 
 [node name="SmallAltar" type="Area2D" groups=["building", "selectable"]]
 script = ExtResource("1_rf74m")
-
-[node name="AltarSprite" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_7ccju")
 
 [node name="AltarBorder" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = -1
 scale = Vector2(2, 2)
-texture = ExtResource("2_7jprt")
+texture = ExtResource("2_va6lx")
+
+[node name="AltarSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_w2bf5")
 
 [node name="AltarCollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_lm06u")
+shape = SubResource("CircleShape2D_280pb")
 
 [node name="AltarButtonContainer" type="HBoxContainer" parent="."]
-visible = false
 offset_left = -16.0
-offset_top = 49.0
+offset_top = 50.0
 offset_right = 16.0
-offset_bottom = 81.0
+offset_bottom = 82.0
 
 [node name="SummonButton" type="TextureButton" parent="AltarButtonContainer"]
 layout_mode = 2

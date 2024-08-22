@@ -173,6 +173,7 @@ func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
 		_initalize_combat_log()
 
 func _end_adventure():
+	#TODO Customize msg with loot and knowledge reward
 	if party_wiped:
 		combat_log_queue.append({"type":"announcement","text":"[color=red]All party members are dead. The adventure is over.[/color]", "ressource_snapshot": _make_ressource_snapshot(),"alignement":"center"})
 	else:
@@ -204,6 +205,7 @@ func _check_for_death():
 			ret.append({"type": "death", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
 			entity.set_status("dead")
 
+			#TODO Add loot %
 			loots.append_array(entity.loot)
 
 	if party_copy.filter(Global_Functions._is_entity_dead).size() == party_copy.size():

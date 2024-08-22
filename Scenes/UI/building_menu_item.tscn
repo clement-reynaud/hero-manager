@@ -2,31 +2,30 @@
 
 [ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="1_a4tal"]
 [ext_resource type="Script" path="res://Scripts/UI/building_menu_item.gd" id="1_ys2fq"]
-[ext_resource type="Texture2D" uid="uid://bnx6y3bec4a1s" path="res://Ressources/Sprite/Building/small_storage.png" id="3_bd5r6"]
+[ext_resource type="Texture2D" uid="uid://bnx6y3bec4a1s" path="res://Ressources/Sprite/Building/Old Building Sprite/small_storage.png" id="3_bd5r6"]
 
-[node name="BuildingMenuItem" type="TextureRect"]
-offset_right = 66.0
-offset_bottom = 64.0
-texture = ExtResource("1_a4tal")
-script = ExtResource("1_ys2fq")
-
-[node name="BuildingMenuItemContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="BuildingMenuItemContainer" type="VBoxContainer"]
 offset_left = -15.0
 offset_right = 81.0
 offset_bottom = 132.0
+script = ExtResource("1_ys2fq")
 
-[node name="BuildingButton" type="TextureButton" parent="BuildingMenuItemContainer"]
+[node name="BuildingButton" type="TextureButton" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("3_bd5r6")
 
-[node name="BuildingLabel" type="Label" parent="BuildingMenuItemContainer"]
+[node name="BuildingLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "AEAZea"
 horizontal_alignment = 1
 
-[node name="BuildingCostContainer" type="HBoxContainer" parent="BuildingMenuItemContainer"]
+[node name="BuildingCostContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
+
+[node name="BuildingMenuItem" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("1_a4tal")

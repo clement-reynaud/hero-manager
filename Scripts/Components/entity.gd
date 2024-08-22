@@ -16,6 +16,7 @@ var inventory_handler:InventoryHandler = preload("res://Scripts/Composition/inve
 var stats:PlayerStats = PlayerStats.new()
 
 var overlapping_buildings:Array[Building] = []
+var marks:Array[String] = []
 
 var movement_line: Line2D
 
@@ -56,7 +57,20 @@ func _process(delta):
 		# Set timer invisible
 		timer_progress_bar.visible = false
 
-	$EntityRankSprite.texture = load("res://Ressources/Sprite/UI/EntityRank/rank_" + str(rank) + ".png")
+	if not unit_type.is_fighter:
+		$EntityButtonContainer/StatsButton.visible = false
+		$EntityButtonContainer/SkillsButton.visible = false
+
+	if marks.has("training"):
+		$EntityStatsUI/LevelUpNinePatchRect.visible = true
+	else:
+		$EntityStatsUI/LevelUpNinePatchRect.visible = false
+
+	var filename = "res://Ressources/Sprite/UI/EntityRank/rank_" + str(rank) + ".png"
+	if ResourceLoader.exists(filename):
+		$EntityRankSprite.texture = load(filename)
+	else:
+		$EntityRankSprite.texture = null
 
 # Called every physics frame
 func _physics_process(delta):
@@ -96,7 +110,7 @@ func move_to_target():
 			var collider = collision.get_collider()
 			if collider.is_in_group("unit") and collider.target_position == Vector2.ZERO:
 				if collider.unit_type == unit_type and collider.rank == rank and not unit_type.is_fighter:
-					collider.rank += 1
+					collider.rank_up()
 					inventory_handler.merge_to_inventory(collider.inventory_handler)
 					delete_self()
 
@@ -107,6 +121,24 @@ func delete_entity(entity:Entity):
 func delete_self():
 	queue_free()
 	Global_Variables.summoned_entity -= 1
+
+# STATS FUNCTIONS
+
+func rank_up():
+	rank += 1
+	$EntityLevelUpParticle.emitting = true
+
+func level_up():
+	var knowledge_required = stats.level_up_function.call(stats.level)
+	
+	if stats.knowledge >= knowledge_required:
+		var growths = stats.level_up()
+		
+		if $EntityStatsUI.visible:
+			$EntityStatsUI.handle_level_up_blink(growths)
+		
+		rank_up()
+		stats.knowledge -= knowledge_required
 
 # MOVEMENT FUNCTIONS
 

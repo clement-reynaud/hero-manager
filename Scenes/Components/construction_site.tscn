@@ -20,7 +20,7 @@ texture = ExtResource("2_p2x6w")
 
 [node name="ConstructionSiteBorder" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(-2.30769, 0)
+position = Vector2(2.44379e-06, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("3_s2ero")
 

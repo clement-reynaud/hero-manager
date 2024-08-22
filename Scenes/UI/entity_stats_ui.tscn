@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://tyyce4atj670"]
+[gd_scene load_steps=9 format=3 uid="uid://tyyce4atj670"]
 
 [ext_resource type="Script" path="res://Scripts/UI/entity_stats_ui.gd" id="1_wdgq2"]
 [ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="2_wdj51"]
 [ext_resource type="PackedScene" uid="uid://g203chhkvhcm" path="res://Scenes/UI/stat_list_item.tscn" id="3_sa2h2"]
 [ext_resource type="Texture2D" uid="uid://cfjgmrf1veg7c" path="res://Ressources/Sprite/UI/Border_1.png" id="4_v1swq"]
+[ext_resource type="Texture2D" uid="uid://chkhcg336a7dt" path="res://Ressources/Sprite/UI/fancy_inventory_background.png" id="5_r8n5n"]
+[ext_resource type="Texture2D" uid="uid://bla1xog3iqvka" path="res://Ressources/Sprite/UI/Buttons/button_stats.png" id="6_aubga"]
+[ext_resource type="Texture2D" uid="uid://dtygls2ucnigf" path="res://Ressources/Sprite/UI/Buttons/button_stats_pressed.png" id="7_tlfle"]
+[ext_resource type="Texture2D" uid="uid://ba07dpft2ffkp" path="res://Ressources/Sprite/UI/Stats/knowledge.png" id="8_ol2wo"]
 
 [node name="EntityStatsUI" type="Control"]
 z_index = 1
@@ -19,7 +23,7 @@ script = ExtResource("1_wdgq2")
 
 [node name="StatsNinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_top = -19.0
+offset_top = -24.0
 offset_right = 110.0
 offset_bottom = 142.0
 texture = ExtResource("2_wdj51")
@@ -33,9 +37,9 @@ axis_stretch_vertical = 1
 [node name="NameInputBorder" type="NinePatchRect" parent="StatsNinePatchRect"]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 14.0
+offset_top = 13.0
 offset_right = 102.0
-offset_bottom = 27.0
+offset_bottom = 34.0
 texture = ExtResource("4_v1swq")
 region_rect = Rect2(1, 1, 62, 62)
 patch_margin_left = 2
@@ -51,14 +55,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -47.5
-offset_top = -6.5
+offset_top = -10.5
 offset_right = 427.5
-offset_bottom = 59.5
+offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "Adventurer"
 placeholder_text = "Name"
 alignment = 1
@@ -68,9 +72,9 @@ flat = true
 [node name="StatList" type="GridContainer" parent="StatsNinePatchRect"]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 32.0
+offset_top = 39.0
 offset_right = 103.0
-offset_bottom = 154.0
+offset_bottom = 161.0
 columns = 2
 
 [node name="health" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
@@ -109,4 +113,67 @@ layout_mode = 2
 [node name="knowledge" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
 layout_mode = 2
 
+[node name="LevelUpNinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -72.0
+offset_right = 138.0
+offset_bottom = -19.0
+texture = ExtResource("5_r8n5n")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="LevelUpButton" type="TextureButton" parent="LevelUpNinePatchRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -16.5
+offset_right = -9.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("6_aubga")
+texture_pressed = ExtResource("7_tlfle")
+
+[node name="KnowledgeCost" type="Label" parent="LevelUpNinePatchRect"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 11.0
+offset_top = -15.5
+offset_right = 61.0
+offset_bottom = 144.5
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0.529412, 0.682353, 1, 1)
+theme_override_font_sizes/font_size = 80
+text = "0"
+vertical_alignment = 1
+
+[node name="KnowledgeIcon" type="TextureRect" parent="LevelUpNinePatchRect/KnowledgeCost"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -45.0
+offset_right = 104.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_ol2wo")
+
 [connection signal="text_changed" from="StatsNinePatchRect/NameInputBorder/EntityName" to="." method="_on_name_input_changed"]
+[connection signal="pressed" from="LevelUpNinePatchRect/LevelUpButton" to="." method="_on_level_up_button_pressed"]

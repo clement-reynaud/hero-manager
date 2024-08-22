@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Building_Blueprint" load_steps=6 format=3 uid="uid://w4d8bodw7rvc"]
 
+[ext_resource type="Texture2D" uid="uid://bei2ofbrleka8" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/storage_background.png" id="1_6eeqr"]
 [ext_resource type="Script" path="res://Scripts/Models/building_blueprint.gd" id="1_8eqo8"]
-[ext_resource type="Texture2D" uid="uid://bnx6y3bec4a1s" path="res://Ressources/Sprite/Building/small_storage.png" id="1_qosts"]
 [ext_resource type="Resource" uid="uid://bno4jpv5dk12j" path="res://Data/Items/iron_ore.tres" id="1_v37c4"]
 [ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="2_tkdbw"]
 [ext_resource type="PackedScene" uid="uid://d3e8cdf1tb828" path="res://Scenes/Components/small_storage.tscn" id="4_0wdui"]
@@ -9,7 +9,7 @@
 [resource]
 script = ExtResource("1_8eqo8")
 name = "Small Storage"
-button_texture = ExtResource("1_qosts")
+button_texture = ExtResource("1_6eeqr")
 description = ""
 cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("1_v37c4"), ExtResource("1_v37c4"), ExtResource("2_tkdbw"), ExtResource("2_tkdbw"), ExtResource("2_tkdbw")])
 build_time = 40.0

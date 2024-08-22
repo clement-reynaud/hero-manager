@@ -1,4 +1,4 @@
-extends TextureRect
+extends VBoxContainer
 
 var scene
 
@@ -7,10 +7,10 @@ func _ready():
 
 
 func set_item(building:Building_Blueprint):
-	var button = $BuildingMenuItemContainer/BuildingButton
+	var button = $BuildingButton
 	button.texture_normal = building.button_texture 
 	button.connect("pressed",Callable(self,"prepare_building_placement").bind(building))
-	$BuildingMenuItemContainer/BuildingLabel.text = building.name 
+	$BuildingLabel.text = building.name 
 	scene = building.scene
 	set_cost(building.cost)
 
@@ -26,14 +26,13 @@ func prepare_building_placement(building:Building_Blueprint):
 		get_tree().get_root().get_node("World").add_child(preview)
 	else:
 		print("Not enough resources")
-		blink_cost(Color.DARK_RED)
-
+		#TODO visual indication of not enough ressources
 
 func has_ressources(building:Building_Blueprint):
 	return get_tree().get_root().get_node("World/GUI").has_ressources(building.cost)
 	
 func set_cost(ressources:Array[MaterialItem]):
-	var container = $BuildingMenuItemContainer/BuildingCostContainer
+	var container = $BuildingCostContainer
 
 	var item_ammount_count = {}
 
@@ -54,14 +53,3 @@ func set_cost(ressources:Array[MaterialItem]):
 
 		container.add_child(img)
 		container.add_child(label)
-
-					
-func blink_cost(color: Color, blink_duration: float = 0.5) -> void:
-	var container = $BuildingMenuItemContainer/BuildingCostContainer
-	var labels:Array[Label] = []
-	
-	for node in container.get_children():
-		if node is Label:
-			labels.append(node)
-
-	Global_Functions.blink_label(labels, blink_duration, color)

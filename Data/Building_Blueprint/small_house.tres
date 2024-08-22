@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Building_Blueprint" load_steps=5 format=3 uid="uid://5c0peqv1kpd8"]
 
-[ext_resource type="Texture2D" uid="uid://ce6bpdfusvilw" path="res://Ressources/Sprite/Building/small_house.png" id="1_grgrf"]
+[ext_resource type="Texture2D" uid="uid://uqhlnwdcxwph" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/house_background.png" id="1_qyols"]
 [ext_resource type="PackedScene" uid="uid://drsfgw7v3snpe" path="res://Scenes/Components/small_house.tscn" id="3_6r1ln"]
 [ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="3_8n4ra"]
 [ext_resource type="Script" path="res://Scripts/Models/building_blueprint.gd" id="5_qywrc"]
@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("5_qywrc")
 name = "Small House"
-button_texture = ExtResource("1_grgrf")
+button_texture = ExtResource("1_qyols")
 description = ""
 cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("3_8n4ra"), ExtResource("3_8n4ra"), ExtResource("3_8n4ra")])
 build_time = 20.0

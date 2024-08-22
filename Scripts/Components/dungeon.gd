@@ -71,11 +71,10 @@ func _on_explore_button_pressed():
 		for entity in _participating_entities:
 			total_rank_sum += entity.rank
 
-		var rank_average = total_rank_sum / _participating_entities.size()
-		var actual_execution_time = adventure_handler.total_execution_time #/ rank_average
+		var actual_execution_time = adventure_handler.total_execution_time
 
 		for entity in _participating_entities:
-			update_timer(entity,ceil(adventure_handler.total_execution_time / rank_average),false)
+			update_timer(entity,adventure_handler.total_execution_time,false)
 
 		_draw_log()
 

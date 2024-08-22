@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://5eyvubtp86e5"]
+[gd_scene load_steps=30 format=3 uid="uid://5eyvubtp86e5"]
 
 [ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
 [ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
@@ -21,7 +21,8 @@
 [ext_resource type="Resource" uid="uid://c6heiwdye1sgr" path="res://Data/UnitType/Soldier.tres" id="16_ht82x"]
 [ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="17_7q4ie"]
 [ext_resource type="PackedScene" uid="uid://d2d47b2cnkgpe" path="res://Scenes/Components/dungeon.tscn" id="19_u5e32"]
-[ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="21_gucou"]
+[ext_resource type="PackedScene" uid="uid://ijeooolmdx8m" path="res://Scenes/Components/traning_ground.tscn" id="22_debwv"]
+[ext_resource type="PackedScene" uid="uid://b2cnrnn2niynn" path="res://Scenes/Components/analyzer.tscn" id="23_dkwus"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
 texture = ExtResource("5_lxjy8")
@@ -47,6 +48,11 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_gcm7b")
 
+[sub_resource type="Resource" id="Resource_hlf1i"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("16_ht82x")
+weight = 1
+
 [sub_resource type="Resource" id="Resource_sogao"]
 script = ExtResource("13_kc3cd")
 unit_type = ExtResource("3_0o8sm")
@@ -60,11 +66,6 @@ weight = 1
 [sub_resource type="Resource" id="Resource_0uxj6"]
 script = ExtResource("13_kc3cd")
 unit_type = ExtResource("13_mooeg")
-weight = 1
-
-[sub_resource type="Resource" id="Resource_hlf1i"]
-script = ExtResource("13_kc3cd")
-unit_type = ExtResource("16_ht82x")
 weight = 1
 
 [node name="World" type="Node2D"]
@@ -100,6 +101,10 @@ position = Vector2(789, 134)
 transfer_time = 3
 inventory_capacity = 20
 
+[node name="SmallAltar2" parent="." instance=ExtResource("12_mdsko")]
+position = Vector2(687, 431)
+summonableUnits = Array[ExtResource("13_kc3cd")]([SubResource("Resource_hlf1i")])
+
 [node name="SmallAltar" parent="." instance=ExtResource("12_mdsko")]
 position = Vector2(577, 327)
 summonableUnits = Array[ExtResource("13_kc3cd")]([SubResource("Resource_sogao"), SubResource("Resource_dibp4"), SubResource("Resource_0uxj6"), SubResource("Resource_hlf1i")])
@@ -112,20 +117,8 @@ ressource = ExtResource("17_7q4ie")
 position = Vector2(868, 402)
 allowed_unit_types = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("16_ht82x")])
 
-[node name="SmallAltar2" parent="." instance=ExtResource("12_mdsko")]
-position = Vector2(717, 456)
-summonableUnits = Array[ExtResource("13_kc3cd")]([SubResource("Resource_hlf1i")])
+[node name="TrainingGround" parent="." instance=ExtResource("22_debwv")]
+position = Vector2(579, 564)
 
-[node name="SmallAltar3" parent="." instance=ExtResource("12_mdsko")]
-position = Vector2(472, 459)
-summonableUnits = Array[ExtResource("13_kc3cd")]([SubResource("Resource_0uxj6")])
-
-[node name="Entity" parent="." instance=ExtResource("21_gucou")]
-position = Vector2(259, 440)
-rank = 4
-unit_type = ExtResource("13_mooeg")
-
-[node name="Entity2" parent="." instance=ExtResource("21_gucou")]
-position = Vector2(277, 532)
-rank = 4
-unit_type = ExtResource("13_mooeg")
+[node name="Analyzer" parent="." instance=ExtResource("23_dkwus")]
+position = Vector2(105, 269)
