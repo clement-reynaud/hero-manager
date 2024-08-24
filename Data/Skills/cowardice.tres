@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://cigy82xq5y4em"]
+
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="1_06ofj"]
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_cowardice.gd" id="1_fnut5"]
+
+[resource]
+script = ExtResource("1_06ofj")
+name = "Cowardice"
+description = ""
+effect = ExtResource("1_fnut5")
+mana_cost = 0
+custom_ressource_cost = 0
+cooldown = 0.0
+action_min_time = 1.0
+action_max_time = 1.0

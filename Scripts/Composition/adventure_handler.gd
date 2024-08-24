@@ -3,6 +3,9 @@ class_name AdventureHandler
 
 var rooms: Array[Array] = []
 var is_exploring: bool = false
+
+var max_time = 10800
+var corruption = false
 var total_execution_time: int = 0
 
 var party: Array = []
@@ -22,6 +25,10 @@ var party_wiped: bool = false
 var enemies_wiped: bool = false
 
 var loots: Array[Item] = []
+
+
+
+var cowardice_skill = load("res://Data/Skills/cowardice.tres")
 
 func _test_rooms():
 	var temp_enemy = load("res://Data/Enemies/Slime.tres")
@@ -78,6 +85,22 @@ func _explore_room(room: Array):
 				break
 			_execute_turn(entity)
 			turn_order = _determine_turn_order()
+ 
+			
+			if total_execution_time >= max_time:
+				if not corruption:
+					combat_log_queue.append({"type": "announcement", "text": "[color=purple]Corruption takes hold, all enemies offensive stats are multplied by 10[/color]", "ressource_snapshot": _make_ressource_snapshot(), "alignement":"center"})
+					corruption = true
+					
+				for enemy in enemies:
+					enemy.attack *= 10
+					enemy.magic *= 10
+
+			if total_execution_time >= max_time * 2:
+				for member in party_copy:
+					member.health -= ceil(member.max_health / 4)
+					
+			_check_for_death()
 	if party_wiped:
 		is_exploring = false
 
@@ -119,9 +142,18 @@ func _execute_turn(entity:Stats):
 		var skill_idx = randi() % entity.skills.size()
 		var skill = entity.skills[skill_idx]
 
+		var ignored_skills = []
 		while not skill.effect.can_cast(entity, skill):
-			skill_idx = randi() % entity.skills.size()
-			skill = entity.skills[skill_idx]
+			ignored_skills.append(skill)
+			
+			var remaining_skills = entity.skills.filter(func(s): return not s in ignored_skills)
+
+			if remaining_skills.size() == 0:
+				skill = cowardice_skill
+				break
+
+			skill_idx = randi() % remaining_skills.size()
+			skill = remaining_skills[skill_idx]
 
 		if entity in party_copy:
 			_apply_skill(entity, skill, party_copy, enemies)
@@ -132,7 +164,7 @@ func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
 	# target can be either an enemy or an ally, in an array or not
 	var target = skill.effect.get_target(skill_allies,skill_enemies)
 
-	var execution_time = randi() % int(skill.action_max_time - skill.action_min_time) + int(skill.action_min_time)
+	var execution_time = randi() % (int(skill.action_max_time - skill.action_min_time) + int(skill.action_min_time))
 
 	var combat_log_string = skill.effect.cast(user, target, skill)
 	var linked_message = _check_for_death()
