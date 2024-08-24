@@ -72,3 +72,17 @@ func remove_status(status_to_remove: String):
 
 func has_status(status_to_check: String) -> bool:
 	return _status.has(status_to_check)
+
+func add_skill(skill: Skill):
+	if not skills.has(skill):
+		skills.append(skill)
+
+func remove_skill(skill: Skill):
+	skills.erase(skill)
+
+func swap_skills(skill1: Skill, skill2: Skill):
+	var skill1_index = skills.find(skill1)
+	var skill2_index = skills.find(skill2)
+
+	skills[skill1_index] = skill2
+	skills[skill2_index] = skill1

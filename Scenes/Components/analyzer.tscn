@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2cnrnn2niynn"]
+[gd_scene load_steps=10 format=3 uid="uid://b2cnrnn2niynn"]
 
 [ext_resource type="Script" path="res://Scripts/Components/analyzer.gd" id="1_eqp57"]
 [ext_resource type="Texture2D" uid="uid://dnm053u7gc81t" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/border_0.png" id="3_u6d8e"]
 [ext_resource type="Texture2D" uid="uid://b8no10bixk7vl" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/analyser_background.png" id="4_4bfcp"]
+[ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="4_ax37p"]
+[ext_resource type="Texture2D" uid="uid://bla1xog3iqvka" path="res://Ressources/Sprite/UI/Buttons/button_stats.png" id="4_epse3"]
+[ext_resource type="Texture2D" uid="uid://dtygls2ucnigf" path="res://Ressources/Sprite/UI/Buttons/button_stats_pressed.png" id="5_ikp7w"]
+[ext_resource type="PackedScene" uid="uid://g203chhkvhcm" path="res://Scenes/UI/stat_list_item.tscn" id="5_p4qex"]
+[ext_resource type="Texture2D" uid="uid://cap5o3b1l4ml2" path="res://Ressources/Sprite/UI/RankLetter/g_rank.png" id="6_lku2w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1iw7"]
 radius = 33.0792
@@ -15,23 +20,133 @@ script = ExtResource("1_eqp57")
 [node name="AnalyzerBorder" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = -1
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_u6d8e")
 
 [node name="AnalyzerSprite" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_4bfcp")
 
 [node name="AnalyzerCollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_k1iw7")
 
 [node name="AnalyzerButtonContainer" type="HBoxContainer" parent="."]
-offset_left = -33.8462
-offset_top = 53.8462
-offset_right = 34.1538
-offset_bottom = 85.8462
+visible = false
+offset_left = -16.0
+offset_top = 50.0
+offset_right = 16.0
+offset_bottom = 82.0
+
+[node name="DisplayButton" type="TextureButton" parent="AnalyzerButtonContainer"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("4_epse3")
+texture_pressed = ExtResource("5_ikp7w")
+
+[node name="AnalyserDisplay" type="Control" parent="."]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_top = -8.46154
+offset_right = 40.0
+offset_bottom = 31.5384
+
+[node name="GrowthNinePatchRect" type="NinePatchRect" parent="AnalyserDisplay"]
+layout_mode = 0
+offset_left = -84.0
+offset_top = -59.0
+offset_right = 84.0
+offset_bottom = 58.0
+texture = ExtResource("4_ax37p")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="GrowthList" type="GridContainer" parent="AnalyserDisplay/GrowthNinePatchRect"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 46.0
+offset_right = 458.0
+offset_bottom = 358.0
+scale = Vector2(0.2, 0.2)
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="health" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+layout_mode = 2
+
+[node name="mana" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+layout_mode = 2
+
+[node name="attack" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+layout_mode = 2
+
+[node name="magic" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+layout_mode = 2
+
+[node name="defense" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+layout_mode = 2
+
+[node name="resistance" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+layout_mode = 2
+
+[node name="speed" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+layout_mode = 2
+
+[node name="luck" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+layout_mode = 2
+
+[node name="GrowthRank" type="TextureRect" parent="AnalyserDisplay/GrowthNinePatchRect"]
+layout_mode = 2
+offset_left = 63.6154
+offset_top = 13.3846
+offset_right = 90.6154
+offset_bottom = 40.3846
+texture = ExtResource("6_lku2w")
+expand_mode = 1
+
+[node name="GrowthTotalLabel" type="Label" parent="AnalyserDisplay/GrowthNinePatchRect"]
+layout_mode = 0
+offset_left = 23.3846
+offset_top = 13.0
+offset_right = 204.385
+offset_bottom = 150.0
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "450"
+
+[node name="LevelUpSpeedTitle" type="Label" parent="AnalyserDisplay/GrowthNinePatchRect"]
+layout_mode = 0
+offset_left = 98.8461
+offset_top = 13.0771
+offset_right = 413.846
+offset_bottom = 89.0771
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 55
+text = "LvL Speed:"
+horizontal_alignment = 1
+
+[node name="LevelUpSpeedLabel" type="Label" parent="AnalyserDisplay/GrowthNinePatchRect"]
+layout_mode = 0
+offset_left = 99.8461
+offset_top = 26.1539
+offset_right = 404.846
+offset_bottom = 102.154
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 55
+text = "Slow"
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="toggled" from="AnalyzerButtonContainer/DisplayButton" to="." method="_on_display_button_toggled"]

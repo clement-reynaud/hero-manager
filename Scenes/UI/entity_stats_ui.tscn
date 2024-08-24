@@ -25,7 +25,7 @@ script = ExtResource("1_wdgq2")
 layout_mode = 0
 offset_top = -24.0
 offset_right = 110.0
-offset_bottom = 142.0
+offset_bottom = 119.0
 texture = ExtResource("2_wdj51")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -71,10 +71,11 @@ flat = true
 
 [node name="StatList" type="GridContainer" parent="StatsNinePatchRect"]
 layout_mode = 0
-offset_left = 7.0
+offset_left = 10.0
 offset_top = 39.0
-offset_right = 103.0
-offset_bottom = 161.0
+offset_right = 464.0
+offset_bottom = 509.0
+scale = Vector2(0.2, 0.2)
 columns = 2
 
 [node name="health" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]

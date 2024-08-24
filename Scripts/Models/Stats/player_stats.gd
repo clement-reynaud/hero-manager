@@ -16,7 +16,8 @@ class_name PlayerStats
 @export var available_skills: Array[Skill]
 
 var attached_entity = null
-var level_up_function = null
+var level_up_data = null
+var growth_total = 0
 
 func init(node: Node):
 	setup_stats()
@@ -24,7 +25,24 @@ func init(node: Node):
 	upgrade_stats(2)
 	full_restore()
 
-	level_up_function = Global_Functions.level_up_function[randi() % Global_Functions.level_up_function.size()]
+	if growth_total >= 350 and growth_total <= 399:
+		level_up_data = Global_Functions.level_up_function["fast"]
+
+	if growth_total >= 400 and growth_total <= 449:
+		level_up_data = Global_Functions.level_up_function["medium"]
+
+	if growth_total >= 450 and growth_total <= 499:
+		level_up_data = Global_Functions.level_up_function["medium"]
+
+	if growth_total >= 500 and growth_total <= 549:
+		level_up_data = Global_Functions.level_up_function["slow"]
+
+	if growth_total == 550:
+		level_up_data = Global_Functions.level_up_function["fast"]
+
+	var true_available_skills = available_skills.filter(func(skill): return not skills.has(skill))
+	if skills.size() < wisdom:
+		skills.append(true_available_skills[randi() % true_available_skills.size()])
 
 	attached_entity = node
 
@@ -49,6 +67,17 @@ func get_stats_dict() -> Dictionary:
 		"knowledge": knowledge
 	}
 
+func get_growth_dict() -> Dictionary:
+	return {
+		"health": health_growth,
+		"mana": mana_growth,
+		"attack": attack_growth,
+		"defense": defense_growth,
+		"magic": magic_growth,
+		"resistance": resistance_growth,
+		"speed": speed_growth,
+		"luck": luck_growth
+	}
 
 func setup_stats():
 	name = "Adventurer " + str(randi() % 100)
@@ -89,6 +118,7 @@ func randomize_growth():
 		var total = health_growth + mana_growth + attack_growth + defense_growth + magic_growth + resistance_growth + speed_growth + luck_growth
 
 		if total > 350 and total <= 550:
+			growth_total = total
 			break
 
 func upgrade_stats(time:int = 1):

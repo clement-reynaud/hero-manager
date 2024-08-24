@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cwenyab64d72w" path="res://Ressources/Sprite/UI/EntityRank/rank_1.png" id="1_c00bk"]
 
 [node name="StatListItem" type="HBoxContainer"]
+custom_minimum_size = Vector2(225, 75)
+offset_right = 225.0
+offset_bottom = 94.0
 
 [node name="StatIcon" type="TextureRect" parent="."]
 layout_mode = 2
@@ -13,4 +16,5 @@ expand_mode = 2
 custom_minimum_size = Vector2(26, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 45
+text = "162"

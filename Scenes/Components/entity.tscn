@@ -70,10 +70,11 @@ tint_under = Color(0.211765, 0.211765, 0.211765, 0.670588)
 tint_progress = Color(0, 0.745098, 0, 1)
 
 [node name="EntityStatsUI" parent="." instance=ExtResource("6_o5d83")]
+visible = false
 offset_left = -55.0
-offset_top = -107.0
+offset_top = -84.0
 offset_right = -55.0
-offset_bottom = -107.0
+offset_bottom = -84.0
 
 [node name="EntitySkillsUI" parent="." instance=ExtResource("7_bnh8p")]
 visible = false

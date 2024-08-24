@@ -82,11 +82,8 @@ func format_skill_description(stat: Stats, string: String, detailed: bool = fals
 
 	return description + damage_range + suffix
 
-var level_up_function = [
-	#slow
-	func (level): return ceil(5 * pow(level,3) / 4 + 16),
-	#medium
-	func (level): return ceil(pow(level,3) + 12),
-	#fast
-	func (level): return ceil(4 * pow(level,3) / 5 + 8),
-]
+var level_up_function = {
+	"slow":{"function":func (level): return ceil(5 * pow(level,3) / 4 + 16),"speed":"Slow"},
+	"medium":{"function":func (level): return ceil(pow(level,3) + 12),"speed":"Medium"},
+	"fast":{"function":func (level): return ceil(4 * pow(level,3) / 5 + 8),"speed":"Fast"},
+}

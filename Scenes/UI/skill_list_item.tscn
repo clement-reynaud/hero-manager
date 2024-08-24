@@ -16,6 +16,7 @@ script = ExtResource("1_m82tv")
 layout_mode = 1
 offset_right = 46.0
 offset_bottom = 46.0
+toggle_mode = true
 texture_normal = ExtResource("1_du07m")
 texture_pressed = ExtResource("3_fs7l3")
 ignore_texture_size = true

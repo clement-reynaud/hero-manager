@@ -129,7 +129,7 @@ func rank_up():
 	$EntityLevelUpParticle.emitting = true
 
 func level_up():
-	var knowledge_required = stats.level_up_function.call(stats.level)
+	var knowledge_required = stats.level_up_data["function"].call(stats.level)
 	
 	if stats.knowledge >= knowledge_required:
 		var growths = stats.level_up()

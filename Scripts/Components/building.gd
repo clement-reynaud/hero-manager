@@ -33,6 +33,8 @@ func move_all_body_in_to_position(collision_shape:CollisionShape2D = null, lower
 func move_body_in_to_position(body:Node2D, collision_shape:CollisionShape2D = null, lower_bound: float = 100, upper_bound: float = 200):
 	body.set_target_position(get_random_position_outside_area(self, collision_shape , lower_bound, upper_bound))
 
+# MARKING
+
 func mark_entity(entity:Node2D,mark_name:String):
 	if not entity.marks.has(mark_name) and allowed_unit_types.has(entity.unit_type):
 		entity.marks.append(mark_name)
