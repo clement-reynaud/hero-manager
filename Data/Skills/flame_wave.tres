@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_sexfr")
 name = "Flame Wave"
-description = "Inflicts [50%|magic|magic|0.1varia|floor] to a all targets "
+description = "Inflicts [70%|magic|magic|0.1varia|floor] to a all targets "
 icon_texture = ExtResource("2_7lm2m")
 effect = ExtResource("1_61otb")
 mana_cost = 5

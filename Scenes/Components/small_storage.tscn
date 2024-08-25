@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3e8cdf1tb828"]
+[gd_scene load_steps=11 format=3 uid="uid://d3e8cdf1tb828"]
 
 [ext_resource type="Script" path="res://Scripts/Components/storage.gd" id="1_wqbfa"]
 [ext_resource type="Texture2D" uid="uid://bei2ofbrleka8" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/storage_background.png" id="2_gol58"]
 [ext_resource type="Texture2D" uid="uid://dnm053u7gc81t" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/border_0.png" id="3_ddsbf"]
 [ext_resource type="PackedScene" uid="uid://b1ku2igmg36dd" path="res://Scenes/UI/entity_inventory_ui.tscn" id="4_gw1mp"]
 [ext_resource type="Texture2D" uid="uid://ckccbkdtj47co" path="res://Ressources/Sprite/UI/Buttons/inventory_button.png" id="5_g5a4n"]
+[ext_resource type="PackedScene" uid="uid://e51uc8gem23o" path="res://Scenes/UI/context_button.tscn" id="5_htadh"]
 [ext_resource type="Texture2D" uid="uid://dv5dva8vctu1h" path="res://Ressources/Sprite/UI/Buttons/inventory_button_pressed.png" id="6_o5vi4"]
 [ext_resource type="Texture2D" uid="uid://cjvnwurn261gg" path="res://Ressources/Sprite/UI/Buttons/button_push.png" id="7_k4r1r"]
 [ext_resource type="Texture2D" uid="uid://xvehqtqcf1wd" path="res://Ressources/Sprite/UI/Buttons/button_pop.png" id="8_tv04m"]
@@ -40,20 +41,19 @@ offset_right = -175.0
 offset_bottom = -49.0
 
 [node name="StorageButtonContainer" type="HBoxContainer" parent="."]
+z_index = 1
 offset_left = -34.0
 offset_top = 50.0
 offset_right = 34.0
 offset_bottom = 83.0
 
-[node name="InventoryButton" type="TextureButton" parent="StorageButtonContainer"]
+[node name="InventoryButton" parent="StorageButtonContainer" instance=ExtResource("5_htadh")]
 layout_mode = 2
-toggle_mode = true
 texture_normal = ExtResource("5_g5a4n")
 texture_pressed = ExtResource("6_o5vi4")
 
-[node name="InventoryModeButton" type="TextureButton" parent="StorageButtonContainer"]
+[node name="InventoryModeButton" parent="StorageButtonContainer" instance=ExtResource("5_htadh")]
 layout_mode = 2
-toggle_mode = true
 texture_normal = ExtResource("7_k4r1r")
 texture_pressed = ExtResource("8_tv04m")
 

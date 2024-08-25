@@ -1,5 +1,7 @@
 extends Node
 
+var current_entity = null
+
 var summoned_entity = 0;
 var max_summoned_entity = 5;
 

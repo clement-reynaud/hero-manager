@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh4mqims6sdo"]
+[gd_scene load_steps=7 format=3 uid="uid://dh4mqims6sdo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/entity_skills_ui.gd" id="1_mor60"]
 [ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="2_teepv"]
 [ext_resource type="PackedScene" uid="uid://d2excqtsf861v" path="res://Scenes/UI/skill_list_item.tscn" id="3_r35gs"]
 [ext_resource type="PackedScene" uid="uid://bgvx1mtqn1g7d" path="res://Scenes/UI/availllable_skill_list_item.tscn" id="4_7vdoo"]
+[ext_resource type="Texture2D" uid="uid://dgf6fh0w2oapg" path="res://Ressources/Sprite/UI/Buttons/learn_skill_button.png" id="5_x2qte"]
+[ext_resource type="Texture2D" uid="uid://c8ea5b1y2sh2k" path="res://Ressources/Sprite/UI/Buttons/learn_skill_button_pressed.png" id="6_kcttp"]
 
 [node name="EntitySkillsUI" type="Control"]
 z_index = 1
@@ -16,6 +18,15 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mor60")
+
+[node name="LearnSkillButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -159.0
+offset_top = -163.0
+offset_right = -44.0
+offset_bottom = -138.0
+texture_normal = ExtResource("5_x2qte")
+texture_pressed = ExtResource("6_kcttp")
 
 [node name="SkillsNinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -43,13 +54,14 @@ layout_mode = 0
 offset_left = 9.0
 offset_top = 10.0
 offset_right = 326.0
-offset_bottom = 217.0
+offset_bottom = 194.0
 
 [node name="SkillListVBox" type="VBoxContainer" parent="SkillsNinePatchRect/SkillsList"]
 layout_mode = 2
 
 [node name="SkillListItem" parent="SkillsNinePatchRect/SkillsList/SkillListVBox" instance=ExtResource("3_r35gs")]
 layout_mode = 2
+size_flags_vertical = 8
 
 [node name="AvailableSkillsNinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -86,3 +98,5 @@ layout_mode = 2
 
 [node name="AvailableSkillListItem" parent="AvailableSkillsNinePatchRect/AvailableSkillsList/AvailableSkillListVBox" instance=ExtResource("4_7vdoo")]
 layout_mode = 2
+
+[connection signal="pressed" from="LearnSkillButton" to="." method="_on_learn_skill_button_pressed"]

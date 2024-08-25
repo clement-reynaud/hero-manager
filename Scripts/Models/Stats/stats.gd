@@ -76,7 +76,7 @@ func has_status(status_to_check: String) -> bool:
 func add_skill(skill: Skill):
 	if not skills.has(skill):
 		skills.append(skill)
-
+		
 func remove_skill(skill: Skill):
 	skills.erase(skill)
 

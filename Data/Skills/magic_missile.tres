@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_e6fv4")
 name = "Magic Missile"
-description = "Inflicts [100%|magic|magic|0.1varia|floor] to a random target "
+description = "Inflicts [120%|magic|magic|0.1varia|floor] to a random target "
 icon_texture = ExtResource("2_8371m")
 effect = ExtResource("1_r4dlw")
 mana_cost = 1

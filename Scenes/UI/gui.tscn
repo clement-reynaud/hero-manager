@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cba4sbhb5ue1j"]
+[gd_scene load_steps=9 format=3 uid="uid://cba4sbhb5ue1j"]
 
 [ext_resource type="Script" path="res://Scripts/UI/GUI.gd" id="1_lsmhb"]
 [ext_resource type="Texture2D" uid="uid://dml8vx1cqi7u8" path="res://Ressources/Texture/ring-texture.png" id="2_aveb7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ds5xyhf7pybxv" path="res://Ressources/Sprite/UI/Buttons/button_build_menu.png" id="5_0hp25"]
 [ext_resource type="Texture2D" uid="uid://dstpobnp0wlpv" path="res://Ressources/Sprite/UI/Background_2.png" id="5_go5v5"]
 [ext_resource type="Texture2D" uid="uid://ordtytgmrn8f" path="res://Ressources/Sprite/UI/Buttons/button_build_menu_pressed.png" id="6_oa1f3"]
+[ext_resource type="PackedScene" uid="uid://blka6g6w3ath0" path="res://Scenes/UI/skill_card.tscn" id="8_iqq7s"]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_lsmhb")
@@ -92,6 +93,72 @@ offset_right = 423.0
 offset_bottom = 220.0
 theme_override_constants/v_separation = 40
 columns = 6
+
+[node name="CenterGUIWindow" type="NinePatchRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -485.0
+offset_top = -252.0
+offset_right = 508.0
+offset_bottom = 276.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_go5v5")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="SkillObtention" type="Control" parent="CenterGUIWindow"]
+visible = false
+anchors_preset = 0
+offset_right = 993.0
+offset_bottom = 528.0
+
+[node name="SkillObtentionLabel" type="Label" parent="CenterGUIWindow/SkillObtention"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -483.5
+offset_top = 8.0
+offset_right = 484.5
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Adventurer 1 has leveld up to level 926 ! 
+Choose a skill :"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="SkillObtentionVBox" type="VBoxContainer" parent="CenterGUIWindow/SkillObtention"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 112.0
+offset_right = 973.0
+offset_bottom = 512.0
+alignment = 1
+
+[node name="SkillObtentionHBox" type="HBoxContainer" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="SkillCard3" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
+layout_mode = 2
+
+[node name="SkillCard4" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
+layout_mode = 2
+
+[node name="SkillCard" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
+layout_mode = 2
 
 [node name="InventoryList" type="NinePatchRect" parent="."]
 visible = false

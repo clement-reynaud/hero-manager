@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2d47b2cnkgpe"]
+[gd_scene load_steps=12 format=3 uid="uid://d2d47b2cnkgpe"]
 
 [ext_resource type="Script" path="res://Scripts/Components/dungeon.gd" id="1_1cw3m"]
 [ext_resource type="Texture2D" uid="uid://tjj31prtwfpm" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/dungeon_background.png" id="2_sxmac"]
 [ext_resource type="Texture2D" uid="uid://dnm053u7gc81t" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/border_0.png" id="3_vp08r"]
 [ext_resource type="Texture2D" uid="uid://cop8krkwbouun" path="res://Ressources/Sprite/UI/Buttons/button_exploration.png" id="4_lup7f"]
+[ext_resource type="PackedScene" uid="uid://e51uc8gem23o" path="res://Scenes/UI/context_button.tscn" id="4_vpnfs"]
 [ext_resource type="Texture2D" uid="uid://hko5x2b2l0ls" path="res://Ressources/Sprite/UI/Buttons/button_exploration_pressed.png" id="5_u5np8"]
 [ext_resource type="Texture2D" uid="uid://c713lcvla53bg" path="res://Ressources/Sprite/UI/Buttons/button_exploration_disabled.png" id="6_vli7k"]
 [ext_resource type="Texture2D" uid="uid://dgf8khjj7dwtb" path="res://Ressources/Sprite/UI/Buttons/button_journal.png" id="7_2g430"]
@@ -34,20 +35,20 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_j1lv7")
 
 [node name="DungeonButtonContainer" type="HBoxContainer" parent="."]
+z_index = 1
 offset_left = -33.846
 offset_top = 50.0
 offset_right = 34.154
 offset_bottom = 82.0
 
-[node name="ExploreButton" type="TextureButton" parent="DungeonButtonContainer"]
+[node name="ExploreButton" parent="DungeonButtonContainer" instance=ExtResource("4_vpnfs")]
 layout_mode = 2
 texture_normal = ExtResource("4_lup7f")
 texture_pressed = ExtResource("5_u5np8")
 texture_disabled = ExtResource("6_vli7k")
 
-[node name="LogButton" type="TextureButton" parent="DungeonButtonContainer"]
+[node name="LogButton" parent="DungeonButtonContainer" instance=ExtResource("4_vpnfs")]
 layout_mode = 2
-toggle_mode = true
 texture_normal = ExtResource("7_2g430")
 texture_pressed = ExtResource("8_gv8k5")
 
@@ -156,7 +157,7 @@ size_flags_vertical = 3
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="pressed" from="DungeonButtonContainer/ExploreButton" to="." method="_on_explore_button_pressed"]
-[connection signal="pressed" from="DungeonButtonContainer/LogButton" to="." method="_on_log_button_pressed"]
+[connection signal="toggled" from="DungeonButtonContainer/LogButton" to="." method="_on_log_button_toggled"]
 [connection signal="mouse_entered" from="LogUI" to="LogUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="LogUI" to="LogUI" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="LogUI/AllyStateUI" to="LogUI/AllyStateUI" method="_on_mouse_entered"]

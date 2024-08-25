@@ -7,4 +7,4 @@ static func get_target(allies: Array, enemies: Array):
 	return allies[0]
 
 static func cast(caster:Stats,target, skill:Skill) -> String:
-	return ", due to the lack of options."
+	return " due to the lack of options"

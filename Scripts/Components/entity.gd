@@ -20,6 +20,8 @@ var marks:Array[String] = []
 
 var movement_line: Line2D
 
+var skill_to_learn = 0
+
 # Called when the node enters the scene tree for the first time
 func _ready():	
 	if unit_type == null:
@@ -40,6 +42,7 @@ func _ready():
 	add_child(movement_line)
 
 	stats.init(self)
+	speed = stats.speed * 60		
 
 # Called every frame
 func _process(delta):
@@ -92,6 +95,7 @@ func _draw_movement_line():
 
 func _delete_movement_line():
 	movement_line.queue_free()
+	movement_line = null
 
 # Function to handle movement towards target position
 func move_to_target():
@@ -139,6 +143,13 @@ func level_up():
 		
 		rank_up()
 		stats.knowledge -= knowledge_required
+		
+		#skills level up if number finish by 2, 4, 6, 8 but not 10
+		if stats.level % 2 == 0 and stats.level % 10 != 0:
+			skill_to_learn += 1
+			$"EntityButtonContainer/SkillsButton".notified = true
+			
+		speed = stats.speed * 60
 
 # MOVEMENT FUNCTIONS
 

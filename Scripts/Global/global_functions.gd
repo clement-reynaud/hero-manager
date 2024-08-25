@@ -30,57 +30,54 @@ func _is_entity_alive(entity:Stats):
 	return not _is_entity_dead(entity)
 
 func format_skill_description(stat: Stats, string: String, detailed: bool = false) -> String:
-	var parts = string.split(" [")
-	var description = parts[0]
-	var data = parts[1].split("]")
-	var formula = data[0].split("|")
-	var suffix = data[1]
+	var regex = RegEx.new()
+	regex.compile("\\[(.*?)\\]")
+	var matches = regex.search_all(string)
+	for match in matches:
+		var formula = match.get_string().substr(1, match.get_string().length() - 2).split("|")
+		var ratio = float(formula[0].rstrip("%")) / 100.0
+		var stat_value = stat.get(formula[1])
 
-	var ratio = float(formula[0].trim_suffix("%")) / 100.0
-	var stat_value = stat.get(formula[1])
-	var color_stat = formula[2]
-	var variation = float(formula[3])
-	var rounding = formula[4]
+		var color = ""
+		if stat.get_stats_dict().keys().has(formula[2]):
+			color = stat.get_stat_color(formula[2])
+		elif formula[2] == "heal":
+			color = Global_Variables.EffectTypeColor[Global_Variables.EffectType.Heal]
+		elif formula[2] == "true":
+			color = Global_Variables.EffectTypeColor[Global_Variables.EffectType.True]
 
-	var min_damage = stat_value * ratio
-	if variation != 0:
-		min_damage *= 1 - variation
-	else:
-		min_damage = round(min_damage)
+		var min_variance = 1.0
+		var max_variance = 1.0
 
-	var max_damage = stat_value * ratio
-	if variation != 0:
-		max_damage *= 1 + variation
-	else:
-		max_damage = round(max_damage)
+		if formula[3].ends_with("varia"):
+			var variance_amount = float(formula[3].rstrip("varia"))
+			min_variance = 1.0 - variance_amount
+			max_variance = 1.0 + variance_amount
+		else:
+			min_variance = 1.0
+			max_variance = 1.0
 
-	if rounding == "floor":
-		min_damage = floor(min_damage)
-		max_damage = floor(max_damage)
-	elif rounding == "ceil":
-		min_damage = ceil(min_damage)
-		max_damage = ceil(max_damage)
+		var min_result = stat_value * ratio * min_variance
+		var max_result = stat_value * ratio * max_variance
 
-	var damage_range = ""
-	if min_damage == max_damage:
-		damage_range = " " + str(min_damage)
-	else:
-		damage_range = " " + str(min_damage) + " - " + str(max_damage)
+		if formula[4] == "ceil":
+			min_result = ceil(min_result)
+			max_result = ceil(max_result)
+		elif formula[4] == "floor":
+			min_result = floor(min_result)
+			max_result = floor(max_result)
 
-	var color = ""
-	if stat.get_stats_dict().keys().has(color_stat):
-		color = stat.get_stat_color(color_stat)
-	elif color_stat == "heal":
-		color = Global_Variables.EffectTypeColor[Global_Variables.EffectType.Heal]
-	elif color_stat == "true":
-		color = Global_Variables.EffectTypeColor[Global_Variables.EffectType.True]
+		var replacement = ""
+		if not detailed:
+			if min_result == max_result:
+				replacement = "[color=" + color + "]" + str(min_result) + "[/color]"
+			else:
+				replacement = "[color=" + color + "]" + str(min_result) + " - " + str(max_result) + "[/color]"
+			string = string.replace("[" + match.get_string().substr(1, match.get_string().length() - 2) + "]", replacement)
+		else:
+			string = string.replace("[" + match.get_string().substr(1, match.get_string().length() - 2) + "]", "[color=" + color + "][" + match.get_string().substr(1, match.get_string().length() - 2) + "][/color]")
+	return string
 
-	if not detailed:
-		damage_range = "[color=" + color + "]" + damage_range + "[/color]"
-	else:
-		damage_range = "[color=" + color + "]" + damage_range + " (" + formula[0] + " " + formula[1] + ", " + formula[3] + ", " + formula[4] + ")[/color]"
-
-	return description + damage_range + suffix
 
 var level_up_function = {
 	"slow":{"function":func (level): return ceil(5 * pow(level,3) / 4 + 16),"speed":"Slow"},

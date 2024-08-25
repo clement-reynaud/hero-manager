@@ -2,7 +2,7 @@ extends Stats
 class_name PlayerStats
 
 @export var level = 1
-@export var knowledge: int = 0
+@export var knowledge: int = 230
 
 @export var health_growth: int = 50
 @export var mana_growth: int = 50
@@ -96,12 +96,11 @@ func setup_stats():
 	available_skills = [
 		load("res://Data/Skills/basic_attack.tres"),
 		load("res://Data/Skills/magic_missile.tres"),
-		load("res://Data/Skills/flame_wave.tres"),
-		load("res://Data/Skills/heal.tres"),
 	]
 
 	skills = [
 		load("res://Data/Skills/basic_attack.tres"),
+		load("res://Data/Skills/magic_missile.tres"),
 	]
 
 func randomize_growth():
@@ -168,3 +167,7 @@ func full_restore():
 func update_stats(stats:PlayerStats):
 	health = stats.health
 	mana = stats.mana
+
+func add_available_skill(skill:Skill):
+	if not skill in available_skills:
+		available_skills.append(skill)

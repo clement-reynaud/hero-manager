@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+signal skill_obtained(skill)
 
 var tokenCpt
 var inventory_list_container 
@@ -97,6 +98,52 @@ func update_build_window_display():
 
 			$BuildMenu/BuildMenuGrid.add_child(building_menu_item)
 
+# CENTER WINDOW
+
+func _open_center_window():
+	$CenterGUIWindow.visible = true
+
+func _close_center_window():
+	$CenterGUIWindow.visible = false
+
+# SKILL OBTENTION
+
+func open_skill_obtention_window(entity:Entity):
+	_open_center_window()
+	Global_Variables.current_entity = entity
+
+	var window = $CenterGUIWindow/SkillObtention
+	window.visible = true
+	
+	var string = "{name} has levelled up to level {level} !\nChoose a skill to learn :"
+	string = string.format({"name": entity.stats.name, "level": entity.stats.level})
+	window.get_node("SkillObtentionLabel").text = string 
+
+	var shown_skill=[]
+	for card in window.get_node("SkillObtentionVBox/SkillObtentionHBox").get_children():
+		var learnable_skills = entity.unit_type.learnable_skills.filter(func(skill:Skill): return not entity.stats.available_skills.has(skill) and not shown_skill.has(skill))
+		
+		if learnable_skills.size() <= 0:
+			card.visible = false
+		else:
+			var new_skill = learnable_skills[randi() % learnable_skills.size()]
+			card.visible = true
+			card.connect("skill_chosen", func(skill): emit_signal("skill_obtained", skill))
+			shown_skill.append(new_skill)
+			card.set_skill(new_skill)
+			learnable_skills.remove_at(randi() % learnable_skills.size())
+
+	return self
+
+func close_skill_obtention_window():
+	_close_center_window()
+	Global_Variables.current_entity = null
+
+	var window = $CenterGUIWindow/SkillObtention
+	window.visible = false
+
+	for card in window.get_node("SkillObtentionVBox/SkillObtentionHBox").get_children():
+		card.unset_skill()
 
 
 # SIGNALS

@@ -26,6 +26,7 @@ shape = SubResource("CircleShape2D_xtv7d")
 
 [node name="HouseButtonContainer" type="HBoxContainer" parent="."]
 visible = false
+z_index = 1
 offset_left = -16.0
 offset_top = 49.0
 offset_right = 16.0

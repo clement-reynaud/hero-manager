@@ -33,10 +33,8 @@ func _process(delta):
 
 	if _log_ui_displayed and selection_handler.is_selected():
 		$LogUI.visible = true
-		root_camera.can_zoom = false
 	else:
 		$LogUI.visible = false
-		root_camera.can_zoom = true
 
 
 			
@@ -76,13 +74,6 @@ func _on_explore_button_pressed():
 		for entity in _participating_entities:
 			update_timer(entity,adventure_handler.total_execution_time,false)
 
-		_draw_log()
-
-func _on_log_button_pressed():
-	if $LogUI.visible:
-		_log_ui_displayed = false
-	else:
-		_log_ui_displayed = true
 		_draw_log()
 
 func _draw_log():
@@ -179,3 +170,11 @@ func _format_time(seconds:int) -> String:
 	var s = floor(seconds % 60)
 	var h = floor(m / 60)
 	return "%02d:%02d:%02d" % [h,m,s]
+
+
+func _on_log_button_toggled(toggled_on):
+	if toggled_on:
+		_log_ui_displayed = true
+		_draw_log()
+	else:
+		_log_ui_displayed = false

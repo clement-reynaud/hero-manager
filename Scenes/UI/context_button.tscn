@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://e51uc8gem23o"]
+
+[ext_resource type="Texture2D" uid="uid://b77c474hk3njy" path="res://Ressources/Sprite/UI/notfi_circle.png" id="3_l0y5e"]
+[ext_resource type="Script" path="res://Scripts/UI/context_button.gd" id="3_ut8rf"]
+
+[node name="ContextButton" type="TextureButton"]
+toggle_mode = true
+script = ExtResource("3_ut8rf")
+
+[node name="NotificationCircle" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 36.0
+offset_bottom = 36.0
+texture = ExtResource("3_l0y5e")
+expand_mode = 3

@@ -30,6 +30,7 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_k1iw7")
 
 [node name="TrainingButtonContainer" type="HBoxContainer" parent="."]
+z_index = 1
 offset_left = -33.8462
 offset_top = 53.8462
 offset_right = 34.1538

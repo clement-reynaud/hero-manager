@@ -1,7 +1,7 @@
 extends Effect
 
 static func can_cast(caster:Stats, skill:Skill) -> bool:
-	if caster.mana >= 1:
+	if caster.mana >= skill.mana_cost:
 		return true
 	else:
 		return false
@@ -17,7 +17,8 @@ static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
 	if(randi() % 100 <= caster.luck):
 		critical = 2
 
-	var damage = floor(((caster.magic * variance * Global_Variables.balance_damage_dealt_multiplier) * critical)  - (target.resistance * Global_Variables.balance_damage_reduction_multiplier))
+	var ratio = 1.2
+	var damage = floor(((caster.magic * ratio * variance * Global_Variables.balance_damage_dealt_multiplier) * critical)  - (target.resistance * Global_Variables.balance_damage_reduction_multiplier))
 	
 	if damage < 0:
 		damage = 0

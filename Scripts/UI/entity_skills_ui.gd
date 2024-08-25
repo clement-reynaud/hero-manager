@@ -13,10 +13,17 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 
-	if currently_selected_skill_slot == null:
-		$AvailableSkillsNinePatchRect.visible = false
-	else:
-		$AvailableSkillsNinePatchRect.visible = true
+	for child in $SkillsNinePatchRect/SkillsList/SkillListVBox.get_children():
+		if Input.is_action_pressed("skill_details"):
+			child.custom_minimum_size.y = child.get_node("SkillDetailedText").size.y * child.get_node("SkillDetailedText").scale.y
+		else:
+			child.custom_minimum_size.y = child.get_node("SkillText").size.y * child.get_node("SkillText").scale.y
+
+
+	$AvailableSkillsNinePatchRect.visible = currently_selected_skill_slot != null
+
+	$LearnSkillButton.visible = attached_entity.skill_to_learn > 0
+
 
 func initialize(stats:Stats):
 	var skill_list = $SkillsNinePatchRect/SkillsList/SkillListVBox
@@ -51,9 +58,7 @@ func _on_skills_button_toggled(toggled_on):
 		for child in $SkillsNinePatchRect/SkillsList/SkillListVBox.get_children():
 			child.get_node("SkillIconBackgroundButton").set_pressed(false)
 
-func _on_skill_button_pressed(skill_clicked):
-	#TODO better skill selection
-	
+func _on_skill_button_pressed(skill_clicked):	
 	for child in $SkillsNinePatchRect/SkillsList/SkillListVBox.get_children():
 		if child != skill_clicked:
 			child.get_node("SkillIconBackgroundButton").set_pressed(false)
@@ -110,3 +115,14 @@ func _on_availlable_skills_button_pressed(pressed):
 			availlable_skill.disabled = false
 
 		pressed.disabled = true
+
+func _on_learn_skill_button_pressed():
+	var window = get_tree().get_root().get_node("World/GUI").open_skill_obtention_window(attached_entity)
+	window.connect("skill_obtained",func (skill:Skill): 
+		_draw_skills(attached_entity.stats) 
+		_draw_available_skills()
+
+		if attached_entity.skill_to_learn == 0:
+			attached_entity.get_node("EntityButtonContainer/SkillsButton").notified = false
+	)
+

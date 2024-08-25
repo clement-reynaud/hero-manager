@@ -12,15 +12,15 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="AvailableSkillListItemLabel" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(560, 90)
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
 offset_left = 10.0
-offset_top = 5.0
+offset_top = 19.0
 offset_right = 570.0
-offset_bottom = 95.0
+offset_bottom = 82.0
 mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 65
+theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
 text = "[center]AAAA[/center]"
 fit_content = true

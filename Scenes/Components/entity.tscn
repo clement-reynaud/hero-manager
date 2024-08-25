@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://quc265jiaydt"]
+[gd_scene load_steps=18 format=3 uid="uid://quc265jiaydt"]
 
 [ext_resource type="Script" path="res://Scripts/Components/entity.gd" id="1_owdls"]
 [ext_resource type="Texture2D" uid="uid://dx3yn46wj5xe7" path="res://Ressources/Sprite/Token/token_border.png" id="2_hi464"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bla1xog3iqvka" path="res://Ressources/Sprite/UI/Buttons/button_stats.png" id="9_ajals"]
 [ext_resource type="Texture2D" uid="uid://cwenyab64d72w" path="res://Ressources/Sprite/UI/EntityRank/rank_1.png" id="9_npxqf"]
 [ext_resource type="Texture2D" uid="uid://dtygls2ucnigf" path="res://Ressources/Sprite/UI/Buttons/button_stats_pressed.png" id="10_fkmv5"]
+[ext_resource type="PackedScene" uid="uid://e51uc8gem23o" path="res://Scenes/UI/context_button.tscn" id="13_nnl5b"]
 [ext_resource type="Texture2D" uid="uid://dgf8khjj7dwtb" path="res://Ressources/Sprite/UI/Buttons/button_journal.png" id="13_s7ghi"]
 [ext_resource type="Texture2D" uid="uid://dwv2ixjur73yk" path="res://Ressources/Sprite/UI/Buttons/button_journal_pressed.png" id="14_m4t1q"]
 [ext_resource type="Texture2D" uid="uid://cikfrp7qk4tdo" path="res://Ressources/Sprite/UI/EntityRank/rank_base.png" id="15_fpmvm"]
@@ -88,27 +89,25 @@ offset_right = -155.0
 offset_bottom = 47.0
 
 [node name="EntityButtonContainer" type="GridContainer" parent="."]
+z_index = 1
 offset_left = -52.0
 offset_top = 36.0
 offset_right = 52.0
 offset_bottom = 69.0
 columns = 3
 
-[node name="InventoryButton" type="TextureButton" parent="EntityButtonContainer"]
+[node name="InventoryButton" parent="EntityButtonContainer" instance=ExtResource("13_nnl5b")]
 layout_mode = 2
-toggle_mode = true
 texture_normal = ExtResource("6_6opgg")
 texture_pressed = ExtResource("7_akb31")
 
-[node name="StatsButton" type="TextureButton" parent="EntityButtonContainer"]
+[node name="StatsButton" parent="EntityButtonContainer" instance=ExtResource("13_nnl5b")]
 layout_mode = 2
-toggle_mode = true
 texture_normal = ExtResource("9_ajals")
 texture_pressed = ExtResource("10_fkmv5")
 
-[node name="SkillsButton" type="TextureButton" parent="EntityButtonContainer"]
+[node name="SkillsButton" parent="EntityButtonContainer" instance=ExtResource("13_nnl5b")]
 layout_mode = 2
-toggle_mode = true
 texture_normal = ExtResource("13_s7ghi")
 texture_pressed = ExtResource("14_m4t1q")
 

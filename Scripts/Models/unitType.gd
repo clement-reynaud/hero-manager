@@ -6,3 +6,5 @@ extends Resource
 @export var description: String
 @export var icon_sprite: Texture2D
 @export var background_color: Color
+
+@export var learnable_skills: Array[Skill]

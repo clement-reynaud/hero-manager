@@ -10,6 +10,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 296.0
 offset_bottom = 48.0
+size_flags_vertical = 3
 script = ExtResource("1_m82tv")
 
 [node name="SkillIconBackgroundButton" type="TextureButton" parent="."]
@@ -41,23 +42,24 @@ expand_mode = 1
 layout_mode = 1
 offset_left = 49.0
 offset_right = 12199.0
-offset_bottom = 2350.0
+offset_bottom = 2250.0
 scale = Vector2(0.02, 0.02)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 500
 theme_override_font_sizes/bold_font_size = 600
 bbcode_enabled = true
+fit_content = true
 scroll_active = false
 
 [node name="SkillDetailedText" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 1
 offset_left = 49.0
 offset_right = 12199.0
-offset_bottom = 2350.0
+offset_bottom = 2250.0
 scale = Vector2(0.02, 0.02)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 500
 theme_override_font_sizes/bold_font_size = 600
 bbcode_enabled = true
+fit_content = true
 scroll_active = false

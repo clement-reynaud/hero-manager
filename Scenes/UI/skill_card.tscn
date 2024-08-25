@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://blka6g6w3ath0"]
+
+[ext_resource type="Script" path="res://Scripts/UI/skill_card.gd" id="1_4sici"]
+[ext_resource type="Texture2D" uid="uid://dr2af8gqsho37" path="res://Ressources/Sprite/UI/skill_background.png" id="1_mgshp"]
+[ext_resource type="Texture2D" uid="uid://orwmbqdgjwbf" path="res://Ressources/Sprite/UI/skill_background_pressed.png" id="2_i5sbw"]
+[ext_resource type="Texture2D" uid="uid://dvqvyn80y1m5k" path="res://Ressources/Sprite/Skills/estoc.png" id="3_tgxgx"]
+
+[node name="SkillCard" type="Control"]
+custom_minimum_size = Vector2(256, 320)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -160.0
+offset_right = 128.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4sici")
+
+[node name="SkillCardButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = -16.0
+offset_top = -20.0
+offset_right = 272.0
+offset_bottom = 340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_mgshp")
+texture_pressed = ExtResource("2_i5sbw")
+stretch_mode = 0
+
+[node name="SkillCardIcon" type="TextureRect" parent="SkillCardButton"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 31.0
+offset_right = 205.0
+offset_bottom = 151.0
+texture = ExtResource("3_tgxgx")
+
+[node name="SkillCardName" type="Label" parent="SkillCardButton"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 151.0
+offset_right = 229.0
+offset_bottom = 174.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Estoc"
+horizontal_alignment = 1
+
+[node name="SkillCardDescription" type="RichTextLabel" parent="SkillCardButton"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 171.0
+offset_right = 1226.0
+offset_bottom = 971.0
+scale = Vector2(0.2, 0.2)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "Roll a d100. Depending on the result, inficts either [200%|attack|true|0varia|ceil] to a random enemy (50 or less) or [100%|attack|true|0varia|ceil] to himself (51 and more). The random number is substacted by [50%|luck|luck|0varia|ceil]."
+scroll_active = false

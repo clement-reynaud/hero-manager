@@ -17,7 +17,9 @@ static func cast(caster:Stats,target:Array, skill:Skill) -> String:
 	if(randi() % 100 <= caster.luck):
 		critical = 2
 
-	var base_damage = ((caster.magic/2) * variance * Global_Variables.balance_damage_dealt_multiplier) * critical
+	var ratio = 0.7
+
+	var base_damage = ((caster.magic*ratio) * variance * Global_Variables.balance_damage_dealt_multiplier) * critical
 	
 	if base_damage < 0:
 		base_damage = 0

@@ -164,7 +164,7 @@ func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
 	# target can be either an enemy or an ally, in an array or not
 	var target = skill.effect.get_target(skill_allies,skill_enemies)
 
-	var execution_time = randi() % (int(skill.action_max_time - skill.action_min_time) + int(skill.action_min_time))
+	var execution_time = randi_range(skill.action_min_time,skill.action_max_time)
 
 	var combat_log_string = skill.effect.cast(user, target, skill)
 	var linked_message = _check_for_death()

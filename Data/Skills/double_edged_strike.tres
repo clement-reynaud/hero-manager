@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://cw8f2ubb5kg54"]
+
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="1_bki6a"]
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_double_edged_strike.gd" id="1_ds1l7"]
+[ext_resource type="Texture2D" uid="uid://dvhrujjel1lqy" path="res://Ressources/Sprite/Skills/double_edged_strike.png" id="2_35iyn"]
+
+[resource]
+script = ExtResource("1_bki6a")
+name = "Double Edged Strike"
+description = "Roll a d100. Depending on the result, inficts either [200%|attack|true|0varia|ceil] to a random enemy (50 or less) or [100%|attack|true|0varia|ceil] to himself (51 and more). The random number is substacted by [50%|luck|luck|0varia|ceil]."
+icon_texture = ExtResource("2_35iyn")
+effect = ExtResource("1_ds1l7")
+mana_cost = 2
+custom_ressource_cost = 0
+cooldown = 0.0
+action_min_time = 2.0
+action_max_time = 6.0

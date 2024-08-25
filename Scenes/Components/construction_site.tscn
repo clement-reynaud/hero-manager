@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Components/construction_site.gd" id="1_76nht"]
 [ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="2_lajy1"]
-[ext_resource type="Texture2D" uid="uid://6s5jmotngpnd" path="res://Ressources/Sprite/Building/construction_site.png" id="2_p2x6w"]
-[ext_resource type="Texture2D" uid="uid://c4clnxs4t11va" path="res://Ressources/Sprite/Building/construction_site_border.png" id="3_s2ero"]
+[ext_resource type="Texture2D" uid="uid://6s5jmotngpnd" path="res://Ressources/Sprite/Building/Old Building Sprite/construction_site.png" id="2_p2x6w"]
+[ext_resource type="Texture2D" uid="uid://c4clnxs4t11va" path="res://Ressources/Sprite/Building/Old Building Sprite/construction_site_border.png" id="3_s2ero"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr3c8"]
 size = Vector2(64, 64)
@@ -30,6 +30,7 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_pr3c8")
 
 [node name="ConstructionSiteButtonContainer" type="HBoxContainer" parent="."]
+z_index = 1
 offset_left = -34.0
 offset_top = 50.0
 offset_right = 34.0
