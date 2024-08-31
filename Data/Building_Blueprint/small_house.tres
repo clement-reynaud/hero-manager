@@ -11,5 +11,5 @@ name = "Small House"
 button_texture = ExtResource("1_qyols")
 description = ""
 cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("3_8n4ra"), ExtResource("3_8n4ra"), ExtResource("3_8n4ra")])
-build_time = 20.0
+build_time = 40.0
 scene = ExtResource("3_6r1ln")

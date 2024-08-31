@@ -2,7 +2,7 @@ extends Stats
 class_name PlayerStats
 
 @export var level = 1
-@export var knowledge: int = 230
+@export var knowledge: int = 0
 
 @export var health_growth: int = 50
 @export var mana_growth: int = 50
@@ -96,6 +96,7 @@ func setup_stats():
 	available_skills = [
 		load("res://Data/Skills/basic_attack.tres"),
 		load("res://Data/Skills/magic_missile.tres"),
+		load("res://Data/Skills/taunt.tres"),
 	]
 
 	skills = [

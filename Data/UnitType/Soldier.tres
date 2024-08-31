@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitType" load_steps=9 format=3 uid="uid://c6heiwdye1sgr"]
+[gd_resource type="Resource" script_class="UnitType" load_steps=10 format=3 uid="uid://c6heiwdye1sgr"]
 
 [ext_resource type="Texture2D" uid="uid://cqw5157dtdi7m" path="res://Ressources/Sprite/Token/icon_sword.png" id="1_b50v8"]
 [ext_resource type="Script" path="res://Scripts/Models/unitType.gd" id="1_pc12f"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bt0ei44nbq6kb" path="res://Data/Skills/flame_wave.tres" id="5_0uuwf"]
 [ext_resource type="Resource" uid="uid://chv56hn7p4je" path="res://Data/Skills/heal.tres" id="6_ikj7f"]
 [ext_resource type="Resource" uid="uid://cgyvicy346hve" path="res://Data/Skills/magic_missile.tres" id="7_7y2sq"]
+[ext_resource type="Resource" uid="uid://duvmtn6rqn1nu" path="res://Data/Skills/taunt.tres" id="8_w812f"]
 
 [resource]
 script = ExtResource("1_pc12f")
@@ -16,4 +17,4 @@ is_fighter = true
 description = ""
 icon_sprite = ExtResource("1_b50v8")
 background_color = Color(0.552941, 0.172549, 0.211765, 1)
-learnable_skills = Array[Resource("res://Scripts/Models/skill.gd")]([ExtResource("2_2n3lc"), ExtResource("3_r3s4u"), ExtResource("4_ucu2f"), ExtResource("5_0uuwf"), ExtResource("6_ikj7f"), ExtResource("7_7y2sq")])
+learnable_skills = Array[Resource("res://Scripts/Models/skill.gd")]([ExtResource("2_2n3lc"), ExtResource("3_r3s4u"), ExtResource("4_ucu2f"), ExtResource("5_0uuwf"), ExtResource("6_ikj7f"), ExtResource("7_7y2sq"), ExtResource("8_w812f")])

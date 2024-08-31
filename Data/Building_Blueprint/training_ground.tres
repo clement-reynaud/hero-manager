@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Building_Blueprint" load_steps=7 format=3 uid="uid://b76enl2sogswg"]
+
+[ext_resource type="Texture2D" uid="uid://c2rahl0k0p8qy" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/training_ground_background.png" id="1_b36rq"]
+[ext_resource type="Script" path="res://Scripts/Models/building_blueprint.gd" id="1_w35cs"]
+[ext_resource type="Resource" uid="uid://bno4jpv5dk12j" path="res://Data/Items/iron_ore.tres" id="2_k2u8n"]
+[ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="3_k6wkl"]
+[ext_resource type="Resource" uid="uid://dp5secevwl56n" path="res://Data/Items/slime_goop.tres" id="4_rq1qv"]
+[ext_resource type="PackedScene" uid="uid://ijeooolmdx8m" path="res://Scenes/Components/traning_ground.tscn" id="5_gmkpx"]
+
+[resource]
+script = ExtResource("1_w35cs")
+name = "Training Ground"
+button_texture = ExtResource("1_b36rq")
+description = ""
+cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("2_k2u8n"), ExtResource("3_k6wkl"), ExtResource("4_rq1qv"), ExtResource("4_rq1qv"), ExtResource("4_rq1qv")])
+build_time = 60.0
+scene = ExtResource("5_gmkpx")

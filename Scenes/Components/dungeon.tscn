@@ -43,6 +43,7 @@ offset_bottom = 82.0
 
 [node name="ExploreButton" parent="DungeonButtonContainer" instance=ExtResource("4_vpnfs")]
 layout_mode = 2
+toggle_mode = false
 texture_normal = ExtResource("4_lup7f")
 texture_pressed = ExtResource("5_u5np8")
 texture_disabled = ExtResource("6_vli7k")

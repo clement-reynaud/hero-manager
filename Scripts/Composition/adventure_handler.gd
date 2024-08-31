@@ -26,8 +26,6 @@ var enemies_wiped: bool = false
 
 var loots: Array[Item] = []
 
-
-
 var cowardice_skill = load("res://Data/Skills/cowardice.tres")
 
 func _test_rooms():
@@ -55,6 +53,7 @@ func adventure(dungeon: Building):
 
 func _start_exploration():
 	party_copy = _duplicate_party()
+	_init_current_stats(party_copy)
 
 	for room in rooms:
 		if is_exploring:
@@ -66,6 +65,7 @@ func _start_exploration():
 func _explore_room(room: Array):
 	enemies_wiped = false
 	enemies = _duplicate_enemies(room)
+	_init_current_stats(enemies)
 
 	var log_string = "[right]Room " + str(room_cpt) + ": ["
 	var separator = ""
@@ -80,6 +80,7 @@ func _explore_room(room: Array):
 	
 	while not party_wiped and not enemies_wiped:
 		var turn_order = _determine_turn_order()
+		_count_down_turn_status()
 		for entity in turn_order:
 			if party_wiped or enemies_wiped:
 				break
@@ -93,8 +94,8 @@ func _explore_room(room: Array):
 					corruption = true
 					
 				for enemy in enemies:
-					enemy.attack *= 10
-					enemy.magic *= 10
+					enemy._current_attack *= 10
+					enemy._current_magic *= 10
 
 			if total_execution_time >= max_time * 2:
 				for member in party_copy:
@@ -132,7 +133,7 @@ func _determine_turn_order() -> Array:
 		if entity.health > 0:
 			turn_order.append(entity)
 
-	turn_order.sort_custom(func(a, b): return a.speed > b.speed)
+	turn_order.sort_custom(func(a, b): return a._current_speed > b._current_speed)
 	
 	return turn_order
 
@@ -162,7 +163,7 @@ func _execute_turn(entity:Stats):
 
 func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
 	# target can be either an enemy or an ally, in an array or not
-	var target = skill.effect.get_target(skill_allies,skill_enemies)
+	var target = skill.effect.get_target(user,skill_allies,skill_enemies)
 
 	var execution_time = randi_range(skill.action_min_time,skill.action_max_time)
 
@@ -296,3 +297,13 @@ func _apply_stats_changes():
 	for i in loots.size():
 		var item = loots[i]
 		party_copy[i % party_copy.size()].get_meta("original_stats").attached_entity.add_item(item,1)
+
+func _count_down_turn_status():
+	for entity in party_copy:
+		entity.count_down_turn_status()
+	for entity in enemies:
+		entity.count_down_turn_status()
+
+func _init_current_stats(group):
+	for entity in group:
+		entity.init_current_stats()

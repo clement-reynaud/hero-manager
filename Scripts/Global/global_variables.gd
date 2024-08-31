@@ -8,16 +8,28 @@ var max_summoned_entity = 5;
 var balance_damage_dealt_multiplier = 1
 var balance_damage_reduction_multiplier = 1
 
-enum EffectType {
+enum StatsType {
     Attack,
     Magic,
+    Defense,
+    Resistance,
+    Speed,
+    Luck,
+    Health,
+    Mana,
     True,
     Heal
 }
 
-var EffectTypeColor = {
-    EffectType.Attack: "#c96800",
-    EffectType.Magic: "#006da6",
-    EffectType.True: "white",
-    EffectType.Heal: "green"
+var StatsTypeColor = {
+    StatsType.Attack: "#c96800",
+    StatsType.Magic: "#006da6",
+    StatsType.Defense: "white",
+    StatsType.Resistance: "white",
+    StatsType.Speed: "white",
+    StatsType.Luck: "white",
+    StatsType.Health: "white",
+    StatsType.Mana: "white",
+    StatsType.True: "white",
+    StatsType.Heal: "green"
 }

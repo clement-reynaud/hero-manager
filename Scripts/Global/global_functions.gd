@@ -42,9 +42,9 @@ func format_skill_description(stat: Stats, string: String, detailed: bool = fals
 		if stat.get_stats_dict().keys().has(formula[2]):
 			color = stat.get_stat_color(formula[2])
 		elif formula[2] == "heal":
-			color = Global_Variables.EffectTypeColor[Global_Variables.EffectType.Heal]
+			color = Global_Variables.StatsTypeColor[Global_Variables.StatsType.Heal]
 		elif formula[2] == "true":
-			color = Global_Variables.EffectTypeColor[Global_Variables.EffectType.True]
+			color = Global_Variables.StatsTypeColor[Global_Variables.StatsType.True]
 
 		var min_variance = 1.0
 		var max_variance = 1.0
