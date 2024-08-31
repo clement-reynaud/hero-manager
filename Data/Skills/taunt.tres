@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_k211x")
 name = "Taunt"
-description = "The caster taunt an enemy forcing them to target them. They also gains [10%|defense|defense|0varia|ceil] defense and [10%|resistance|resistance|0varia|ceil] resistance for 3 turns "
+description = "The caster taunt an enemy forcing them to target them. They also gains [10%|defence|defence|0varia|ceil] defence and [10%|resistance|resistance|0varia|ceil] resistance for 3 turns "
 icon_texture = ExtResource("2_642gl")
 effect = ExtResource("1_0o2vs")
 mana_cost = 0

@@ -11,7 +11,7 @@ var balance_damage_reduction_multiplier = 1
 enum StatsType {
     Attack,
     Magic,
-    Defense,
+    Defence,
     Resistance,
     Speed,
     Luck,
@@ -24,7 +24,7 @@ enum StatsType {
 var StatsTypeColor = {
     StatsType.Attack: "#c96800",
     StatsType.Magic: "#006da6",
-    StatsType.Defense: "white",
+    StatsType.Defence: "white",
     StatsType.Resistance: "white",
     StatsType.Speed: "white",
     StatsType.Luck: "white",

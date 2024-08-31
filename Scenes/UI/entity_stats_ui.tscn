@@ -96,7 +96,7 @@ layout_mode = 2
 [node name="magic" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
 layout_mode = 2
 
-[node name="defense" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
+[node name="defence" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
 layout_mode = 2
 
 [node name="resistance" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]

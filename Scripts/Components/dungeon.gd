@@ -12,6 +12,7 @@ var root_camera
 var entity_ressource_item = load("res://Scenes/UI/entity_ressource_item.tscn")
 
 var cumulative_wait_time = 0
+var font_size = 60
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -143,20 +144,29 @@ func _parse_log_line(log_line:Dictionary, linked_message:bool = false):
 	label.fit_content = true
 	label.bbcode_enabled = true
 
+	var current_font_size = font_size
+
 	if linked_message:
 		text = " | " + text
 
 	if log_line.type == "announcement":	
-		text = "[font_size=15][color=black][b]" + text + "[/b][/color][/font_size]"
+		text = "[color=black][b]" + text + "[/b][/color]"
+		current_font_size += current_font_size * 0.3
 
 	elif log_line.type == "combat":
-		text = "[font_size=13][color=black]" + text + "[/color][/font_size]"
+		text = "[color=black]" + text + "[/color]"
+		current_font_size += current_font_size * 0.1
 
 	elif log_line.type == "death":
-		text = "[font_size=13][color=#661c16]" + text + "[/color][/font_size]"
+		text = "[color=#661c16]" + text + "[/color]"
+		current_font_size += current_font_size * 0.1
 
-	if log_line.has("alignement") and log_line.alignement == "center":
-		text = "[center]" + text + "[/center]"
+	if log_line.has("alignement"):
+		text = "[{alignement}]" + text + "[/{alignement}]"
+		text = text.format({"alignement":log_line.alignement})
+
+	text = "[font_size={font_size}]" + text + "[/font_size]"
+	text = text.format({"font_size":current_font_size})
 
 	label.append_text(text)
 	return label

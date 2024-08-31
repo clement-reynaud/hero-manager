@@ -92,7 +92,7 @@ layout_mode = 2
 [node name="magic" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
 layout_mode = 2
 
-[node name="defense" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
+[node name="defence" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]
 layout_mode = 2
 
 [node name="resistance" parent="AnalyserDisplay/GrowthNinePatchRect/GrowthList" instance=ExtResource("5_p4qex")]

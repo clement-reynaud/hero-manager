@@ -67,15 +67,15 @@ func _explore_room(room: Array):
 	enemies = _duplicate_enemies(room)
 	_init_current_stats(enemies)
 
-	var log_string = "[right]Room " + str(room_cpt) + ": ["
+	var log_string = "Room " + str(room_cpt) + ": ["
 	var separator = ""
 	for enemy in enemies:
 		log_string += separator + enemy.name 
 		separator = ", "
 
-	log_string += "][/right]"
+	log_string += "]"
 
-	combat_log_queue.append({"type": "announcement", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
+	combat_log_queue.append({"type": "announcement", "text": log_string, "ressource_snapshot": _make_ressource_snapshot(), "alignement":"right"})
 	room_cpt += 1
 	
 	while not party_wiped and not enemies_wiped:

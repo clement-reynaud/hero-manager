@@ -8,7 +8,7 @@ class_name Stats
 @export var max_mana: int
 @export var mana: int
 @export var attack: int
-@export var defense: int
+@export var defence: int
 @export var magic: int
 @export var resistance: int
 @export var speed: int
@@ -16,7 +16,7 @@ class_name Stats
 @export var wisdom: int
 
 var _current_attack = 0
-var _current_defense = 0
+var _current_defence = 0
 var _current_magic = 0
 var _current_resistance = 0
 var _current_speed = 0
@@ -33,7 +33,7 @@ func get_stats_dict() -> Dictionary:
 		"max_mana": max_mana,
 		"mana": mana,
 		"attack": attack,
-		"defense": defense,
+		"defence": defence,
 		"magic": magic,
 		"resistance": resistance,
 		"speed": speed,
@@ -48,7 +48,7 @@ func get_stat_color(stat):
 		return "blue"
 	elif stat == "attack":
 		return "#c96800"
-	elif stat == "defense":
+	elif stat == "defence":
 		return "yellow"
 	elif stat == "magic":
 		return "#006da6"
@@ -92,7 +92,7 @@ func swap_skills(skill1: Skill, skill2: Skill):
 
 func init_current_stats():
 	_current_attack = attack
-	_current_defense = defense
+	_current_defence = defence
 	_current_magic = magic
 	_current_resistance = resistance
 	_current_speed = speed

@@ -25,28 +25,28 @@ static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
 				enemies.append(caster)
 	})
 
-	#[10%|defense|defense|0varia|ceil] and [10%|resistance|resistance|0varia|ceil]
+	#[10%|defence|defence|0varia|ceil] and [10%|resistance|resistance|0varia|ceil]
 	caster.set_status("Reinforced", {
 		"name": "Reinforced",
 		"turn_cpt": 3,
 		"apply_skill": func (caster_apply: Stats):
-			caster._current_defense += ceil(caster.defense * ratio)
+			caster._current_defence += ceil(caster.defence * ratio)
 			caster._current_resistance += ceil(caster.resistance * ratio),
 		"end_skill": func (caster_end: Stats):
-			caster._current_defense -= ceil(caster.defense * ratio)
+			caster._current_defence -= ceil(caster.defence * ratio)
 			caster._current_resistance -= ceil(caster.resistance * ratio)
 	})
 
-	var bonus_defense = ceil(caster.defense * ratio)
+	var bonus_defence = ceil(caster.defence * ratio)
 	var bonus_resistance = ceil(caster.resistance * ratio)
 	handlePostSkillStatus(caster, target, skill)
 
 
-	var combat_log_string = " they are taunted. {name} gains [color={defense_color}]{bonus_defense}[/color] defense and [color={resistance_color}]{bonus_resistance}[/color] resistance."
+	var combat_log_string = " they are taunted. {name} gains [color={defence_color}]{bonus_defence}[/color] defence and [color={resistance_color}]{bonus_resistance}[/color] resistance."
 	combat_log_string = combat_log_string.format({
 		"name": caster.name,
-		"bonus_defense": bonus_defense, 
-		"defense_color": caster.get_stat_color('defense'),
+		"bonus_defence": bonus_defence, 
+		"defence_color": caster.get_stat_color('defence'),
 		"bonus_resistance": bonus_resistance,
 		"resistance_color": caster.get_stat_color('resistance')
 	})

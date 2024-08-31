@@ -7,7 +7,7 @@ class_name PlayerStats
 @export var health_growth: int = 50
 @export var mana_growth: int = 50
 @export var attack_growth: int = 50
-@export var defense_growth: int = 50
+@export var defence_growth: int = 50
 @export var magic_growth: int = 50
 @export var resistance_growth: int = 50
 @export var speed_growth: int = 50
@@ -58,7 +58,7 @@ func get_stats_dict() -> Dictionary:
 		"max_mana": max_mana,
 		"mana": mana,
 		"attack": attack,
-		"defense": defense,
+		"defence": defence,
 		"magic": magic,
 		"resistance": resistance,
 		"speed": speed,
@@ -72,7 +72,7 @@ func get_growth_dict() -> Dictionary:
 		"health": health_growth,
 		"mana": mana_growth,
 		"attack": attack_growth,
-		"defense": defense_growth,
+		"defence": defence_growth,
 		"magic": magic_growth,
 		"resistance": resistance_growth,
 		"speed": speed_growth,
@@ -86,7 +86,7 @@ func setup_stats():
 	max_mana = 5
 	mana = 5
 	attack = 5
-	defense = 5
+	defence = 5
 	magic = 5
 	resistance = 5
 	speed = 5
@@ -109,13 +109,13 @@ func randomize_growth():
 		health_growth = randi_range(20,80)
 		mana_growth = randi_range(20,80)
 		attack_growth = randi_range(20,80)
-		defense_growth = randi_range(20,80)
+		defence_growth = randi_range(20,80)
 		magic_growth = randi_range(20,80)
 		resistance_growth = randi_range(20,80)
 		speed_growth = randi_range(20,80)
 		luck_growth = randi_range(20,80)
 
-		var total = health_growth + mana_growth + attack_growth + defense_growth + magic_growth + resistance_growth + speed_growth + luck_growth
+		var total = health_growth + mana_growth + attack_growth + defence_growth + magic_growth + resistance_growth + speed_growth + luck_growth
 
 		if total > 350 and total <= 550:
 			growth_total = total
@@ -139,9 +139,9 @@ func upgrade_stats(time:int = 1):
 			attack += 1
 			growths.append("attack")
 
-		if randi() % 100 <= defense_growth:
-			defense += 1
-			growths.append("defense")
+		if randi() % 100 <= defence_growth:
+			defence += 1
+			growths.append("defence")
 
 		if randi() % 100 <= magic_growth:
 			magic += 1

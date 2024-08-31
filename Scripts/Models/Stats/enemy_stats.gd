@@ -19,7 +19,7 @@ class_name EnemyStats
 # 	new_stat.max_mana = max_mana
 # 	new_stat.mana = mana
 # 	new_stat.attack = attack
-# 	new_stat.defense = defense
+# 	new_stat.defence = defence
 # 	new_stat.magic = magic
 # 	new_stat.resistance = resistance
 # 	new_stat.speed = speed
