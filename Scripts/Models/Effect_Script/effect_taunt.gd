@@ -1,6 +1,9 @@
 extends Effect
 
 static func can_cast(caster:Stats, skill:Skill) -> bool:
+	if caster.has_status("Reinforced"):
+		return false
+
 	return true
 
 static func get_target(caster:Stats, allies: Array, enemies: Array):
@@ -12,30 +15,17 @@ static func get_target(caster:Stats, allies: Array, enemies: Array):
 	return alive_enemies[randi() % alive_enemies.size()]
 
 static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
+	var status_reinforced = load("res://Scripts/Models/Status/status_reinforced.gd")
+	var status_taunt = load("res://Scripts/Models/Status/status_taunt.gd")
+
 	handlePreSkillStatus(caster, target, skill)
 
 	var ratio = 0.1
 
-	target.set_status("Taunt", {
-		"name": "Taunt",
-		"turn_cpt": 3,
-		"targeting": func (allies: Array, enemies: Array):
-			if Global_Functions._is_entity_alive(caster):
-				enemies.clear()
-				enemies.append(caster)
-	})
+	target.set_status(status_taunt.get_status_name(), status_taunt.get_status_dict(caster, target))
 
 	#[10%|defence|defence|0varia|ceil] and [10%|resistance|resistance|0varia|ceil]
-	caster.set_status("Reinforced", {
-		"name": "Reinforced",
-		"turn_cpt": 3,
-		"apply_skill": func (caster_apply: Stats):
-			caster._current_defence += ceil(caster.defence * ratio)
-			caster._current_resistance += ceil(caster.resistance * ratio),
-		"end_skill": func (caster_end: Stats):
-			caster._current_defence -= ceil(caster.defence * ratio)
-			caster._current_resistance -= ceil(caster.resistance * ratio)
-	})
+	caster.set_status(status_reinforced.get_status_name(), status_reinforced.get_status_dict(caster, target, ratio))
 
 	var bonus_defence = ceil(caster.defence * ratio)
 	var bonus_resistance = ceil(caster.resistance * ratio)

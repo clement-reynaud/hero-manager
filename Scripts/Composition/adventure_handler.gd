@@ -25,6 +25,7 @@ var party_wiped: bool = false
 var enemies_wiped: bool = false
 
 var loots: Array[Item] = []
+var knowledge_reward = 0
 
 var cowardice_skill = load("res://Data/Skills/cowardice.tres")
 
@@ -37,17 +38,25 @@ func _test_rooms():
 	]
 
 func _init_variables():
-	_test_rooms()
-	room_cpt = 1
-	total_execution_time = 0
+	rooms = []
 	is_exploring = true
+	corruption = false
+	total_execution_time = 0
+	party_copy = []
+	copy_party_stats = []
+	enemies = []
 	combat_log_queue = []
 	combat_log = []
+	room_cpt = 1
+	party_wiped = false
+	enemies_wiped = false
 	loots = []
+	knowledge_reward = 0
 
-func adventure(dungeon: Building):
+func adventure(dungeon: Building, dungeon_layout: DungeonLayout):
 	attached_dungeon = dungeon
 	_init_variables()
+	_init_rooms(dungeon_layout)
 	_set_party_unselectable()
 	_start_exploration()
 
@@ -212,14 +221,6 @@ func _end_adventure():
 	else:
 		combat_log_queue.append({"type":"announcement","text":"[color=green]All rooms explored. The adventure is a success.[/color]", "ressource_snapshot": _make_ressource_snapshot(),"alignement":"center"})
 
-		var knowledge_reward = 0
-		for room in rooms:
-			for enemy in room:
-				knowledge_reward += enemy.knowledge_reward
-
-		for entity in party_copy:
-			entity.knowledge += ceil(knowledge_reward / party_copy.size())
-
 	is_exploring = false
 	_apply_stats_changes()
 
@@ -240,6 +241,7 @@ func _check_for_death():
 
 			#TODO Add loot %
 			loots.append_array(entity.loot)
+			knowledge_reward += entity.knowledge_reward
 
 	if party_copy.filter(Global_Functions._is_entity_dead).size() == party_copy.size():
 		party_wiped = true
@@ -292,6 +294,7 @@ func _apply_stats_changes():
 	for entity in party_copy:
 		entity.get_meta("original_stats").health = entity.health
 		entity.get_meta("original_stats").mana = entity.mana
+		entity.knowledge += ceil(knowledge_reward / party_copy.size())
 		entity.get_meta("original_stats").knowledge = entity.knowledge
 
 	for i in loots.size():
@@ -307,3 +310,8 @@ func _count_down_turn_status():
 func _init_current_stats(group):
 	for entity in group:
 		entity.init_current_stats()
+
+func _init_rooms(layout: DungeonLayout):
+	for room:DungeonRoom in layout.rooms:
+		print(room.enemies)
+		rooms.append(room.enemies)

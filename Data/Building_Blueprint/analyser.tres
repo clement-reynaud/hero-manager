@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Building_Blueprint" load_steps=7 format=3 uid="uid://d083po81oh0e3"]
+
+[ext_resource type="Script" path="res://Scripts/Models/building_blueprint.gd" id="1_85iq4"]
+[ext_resource type="Texture2D" uid="uid://b8no10bixk7vl" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/analyser_background.png" id="1_nlfxt"]
+[ext_resource type="Resource" uid="uid://w1hlm0uhqobi" path="res://Data/Items/crystaline_remains.tres" id="2_gokga"]
+[ext_resource type="Resource" uid="uid://c84tate226u53" path="res://Data/Items/gold_ore.tres" id="3_ebdcn"]
+[ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="4_81l37"]
+[ext_resource type="PackedScene" uid="uid://b2cnrnn2niynn" path="res://Scenes/Components/analyzer.tscn" id="5_n601m"]
+
+[resource]
+script = ExtResource("1_85iq4")
+name = "Analyser"
+button_texture = ExtResource("1_nlfxt")
+description = "An analyser to see the growth of an entity"
+cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("2_gokga"), ExtResource("3_ebdcn"), ExtResource("4_81l37"), ExtResource("4_81l37"), ExtResource("4_81l37")])
+build_time = 180.0
+scene = ExtResource("5_n601m")

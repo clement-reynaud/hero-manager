@@ -25,7 +25,7 @@ static func cast(caster:Stats,target:Array, skill:Skill) -> String:
 
 	var ratio = 0.7
 
-	var base_damage = ((caster._current_magic*ratio) * variance * Global_Variables.balance_damage_dealt_multiplier) * critical
+	var base_damage = calc_damage(caster._current_magic,ratio,variance,critical)
 	
 	if base_damage < 0:
 		base_damage = 0
@@ -34,7 +34,7 @@ static func cast(caster:Stats,target:Array, skill:Skill) -> String:
 
 	var display_damage = []
 	for t in target:
-		var damage = floor(base_damage - (t._current_resistance * Global_Variables.balance_damage_reduction_multiplier))
+		var damage = floor(base_damage - calc_resist(t._current_resistance))
 		
 		if damage < 0:
 			damage = 0

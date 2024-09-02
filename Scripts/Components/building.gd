@@ -3,6 +3,9 @@ class_name Building
 
 @export var allowed_unit_types: Array[UnitType] = []
 
+var _participating_entities = []
+@export var max_entities = 0
+
 func get_random_position_outside_area(area: Area2D, collision_shape: CollisionShape2D, lower_bound: float, upper_bound: float) -> Vector2:
 	var area_rect = collision_shape.shape.get_rect() # Assuming the Area2D has a rectangular collision shape
 	var area_position = area.global_position
@@ -82,6 +85,29 @@ func transfer_item(item:Item, amount:int, target_inventory_handler:InventoryHand
 func get_items():
 	return inventory_handler.get_items()
 
+
+# PARTICIPATING ENTITIES
+func process_participant_count(move_out:bool = false, collision_shape:CollisionShape2D = null):
+	if get_node_or_null("ParticipantCount") != null:
+		if max_entities > 0:
+			$ParticipantCount.visible = true
+			$ParticipantCount.text = str(_participating_entities.size()) + "/" + str(max_entities)
+		else:
+			$ParticipantCount.visible = false
+
+	if move_out:
+		for body in get_overlapping_bodies():
+			if body.is_in_group("unit") and ((not _participating_entities.has(body) and _participating_entities.size() >= max_entities) or (body.unit_type not in allowed_unit_types)):
+				if not body.is_moving():
+					move_body_in_to_position(body, collision_shape, 200)
+
+func add_participating_entity(entity:Node2D):
+	if _participating_entities.size() < max_entities and entity.is_in_group("unit") and entity.unit_type in allowed_unit_types:
+		_participating_entities.append(entity)
+
+func remove_participating_entity(entity:Node2D):
+	if _participating_entities.has(entity):
+		_participating_entities.remove_at(_participating_entities.find(entity))
 
 #TIMERS
 # WARNING To use timers, the child object MUST have a _on_timer_timeout() function 

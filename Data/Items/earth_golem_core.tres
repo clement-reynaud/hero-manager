@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MaterialItem" load_steps=3 format=3 uid="uid://cntbm2lpishpi"]
+
+[ext_resource type="Texture2D" uid="uid://b5sx837pclrn0" path="res://Ressources/Sprite/Ressources/earth_golem_core.png" id="1_w11xi"]
+[ext_resource type="Script" path="res://Scripts/Models/material.gd" id="2_w6egd"]
+
+[resource]
+script = ExtResource("2_w6egd")
+seconds_to_produce = 0.0
+name = "Earth Golem Core"
+description = "Remains of a slain Earth Golem"
+type = 3
+icon_sprite = ExtResource("1_w11xi")

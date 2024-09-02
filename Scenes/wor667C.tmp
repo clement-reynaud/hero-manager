@@ -1,0 +1,173 @@
+[gd_scene load_steps=45 format=3 uid="uid://5eyvubtp86e5"]
+
+[ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
+[ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
+[ext_resource type="Resource" uid="uid://6vvegclqx78l" path="res://Data/UnitType/Miner.tres" id="3_0o8sm"]
+[ext_resource type="PackedScene" uid="uid://c0ymdkiekh3ii" path="res://Scenes/Components/mine.tscn" id="3_oyn5g"]
+[ext_resource type="Texture2D" uid="uid://81wi1dqx32g6" path="res://Ressources/TileSet/tiles2.png" id="5_lxjy8"]
+[ext_resource type="Script" path="res://Scripts/Global/mapGen.gd" id="6_64m3d"]
+[ext_resource type="Resource" uid="uid://5c0peqv1kpd8" path="res://Data/Building_Blueprint/small_house.tres" id="7_7cjyr"]
+[ext_resource type="Resource" uid="uid://g1sr8dlr1iyv" path="res://Data/Items/magicite_ore.tres" id="8_50ooe"]
+[ext_resource type="Resource" uid="uid://b76enl2sogswg" path="res://Data/Building_Blueprint/training_ground.tres" id="8_vm47r"]
+[ext_resource type="Resource" uid="uid://d083po81oh0e3" path="res://Data/Building_Blueprint/analyser.tres" id="9_466yu"]
+[ext_resource type="Resource" uid="uid://bno4jpv5dk12j" path="res://Data/Items/iron_ore.tres" id="9_vt08y"]
+[ext_resource type="Resource" uid="uid://c84tate226u53" path="res://Data/Items/gold_ore.tres" id="10_ytd6m"]
+[ext_resource type="PackedScene" uid="uid://d3e8cdf1tb828" path="res://Scenes/Components/small_storage.tscn" id="11_1dhqu"]
+[ext_resource type="PackedScene" uid="uid://dv3pcl1wyds8x" path="res://Scenes/Components/small_altar.tscn" id="12_mdsko"]
+[ext_resource type="PackedScene" uid="uid://cba4sbhb5ue1j" path="res://Scenes/UI/gui.tscn" id="13_cjumw"]
+[ext_resource type="Script" path="res://Scripts/Models/summonable_unit.gd" id="13_kc3cd"]
+[ext_resource type="Resource" uid="uid://lgdtwopweksf" path="res://Data/UnitType/Lumberjack.tres" id="13_mooeg"]
+[ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
+[ext_resource type="Resource" uid="uid://w4d8bodw7rvc" path="res://Data/Building_Blueprint/small_storage.tres" id="15_s5x11"]
+[ext_resource type="PackedScene" uid="uid://ndqu3m84whkv" path="res://Scenes/Components/tree.tscn" id="16_3ogij"]
+[ext_resource type="Resource" uid="uid://c6heiwdye1sgr" path="res://Data/UnitType/Soldier.tres" id="16_ht82x"]
+[ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="17_7q4ie"]
+[ext_resource type="PackedScene" uid="uid://d2d47b2cnkgpe" path="res://Scenes/Components/dungeon.tscn" id="19_u5e32"]
+[ext_resource type="PackedScene" uid="uid://ijeooolmdx8m" path="res://Scenes/Components/traning_ground.tscn" id="22_debwv"]
+[ext_resource type="PackedScene" uid="uid://b2cnrnn2niynn" path="res://Scenes/Components/analyzer.tscn" id="23_dkwus"]
+[ext_resource type="Resource" uid="uid://bxxb4mgkell5n" path="res://Data/Enemies/Slime.tres" id="24_3ma0a"]
+[ext_resource type="Script" path="res://Scripts/Models/Dungeon/dungeon_room.gd" id="25_1ffg0"]
+[ext_resource type="Script" path="res://Scripts/Models/Dungeon/dungeon_layout.gd" id="26_x1c4t"]
+[ext_resource type="Resource" uid="uid://dov8wjr206vvc" path="res://Data/Enemies/Small_Earth_Golem.tres" id="27_6y4k4"]
+[ext_resource type="Resource" uid="uid://bllama8pgqg0j" path="res://Data/Enemies/Crystal_Apparatus.tres" id="28_a6083"]
+[ext_resource type="PackedScene" uid="uid://d1x830cnhhrct" path="res://Scenes/Components/hot_spring.tscn" id="31_aav1l"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
+texture = ExtResource("5_lxjy8")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6fski"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_gcm7b")
+
+[sub_resource type="Resource" id="Resource_hlf1i"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("16_ht82x")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_sogao"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("3_0o8sm")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_dibp4"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("13_yd346")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_0uxj6"]
+script = ExtResource("13_kc3cd")
+unit_type = ExtResource("13_mooeg")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_xxab0"]
+script = ExtResource("25_1ffg0")
+enemies = Array[Resource("res://Scripts/Models/Stats/enemy_stats.gd")]([ExtResource("24_3ma0a")])
+
+[sub_resource type="Resource" id="Resource_2aiot"]
+script = ExtResource("25_1ffg0")
+enemies = Array[Resource("res://Scripts/Models/Stats/enemy_stats.gd")]([ExtResource("24_3ma0a"), ExtResource("24_3ma0a")])
+
+[sub_resource type="Resource" id="Resource_atu8y"]
+script = ExtResource("26_x1c4t")
+rooms = Array[ExtResource("25_1ffg0")]([SubResource("Resource_xxab0"), SubResource("Resource_2aiot")])
+
+[sub_resource type="Resource" id="Resource_nny3f"]
+script = ExtResource("25_1ffg0")
+enemies = Array[Resource("res://Scripts/Models/Stats/enemy_stats.gd")]([ExtResource("27_6y4k4")])
+
+[sub_resource type="Resource" id="Resource_gyj41"]
+script = ExtResource("25_1ffg0")
+enemies = Array[Resource("res://Scripts/Models/Stats/enemy_stats.gd")]([ExtResource("27_6y4k4"), ExtResource("27_6y4k4")])
+
+[sub_resource type="Resource" id="Resource_4pre2"]
+script = ExtResource("25_1ffg0")
+enemies = Array[Resource("res://Scripts/Models/Stats/enemy_stats.gd")]([ExtResource("27_6y4k4"), ExtResource("28_a6083"), ExtResource("27_6y4k4")])
+
+[sub_resource type="Resource" id="Resource_yoawh"]
+script = ExtResource("26_x1c4t")
+rooms = Array[ExtResource("25_1ffg0")]([SubResource("Resource_nny3f"), SubResource("Resource_gyj41"), SubResource("Resource_4pre2")])
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_jc1xp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("2_auns3")
+
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -4
+tile_set = SubResource("TileSet_6fski")
+format = 2
+script = ExtResource("6_64m3d")
+
+[node name="GUI" parent="." instance=ExtResource("13_cjumw")]
+techtree = Array[Resource("res://Scripts/Models/building_blueprint.gd")]([ExtResource("15_s5x11"), ExtResource("7_7cjyr"), ExtResource("8_vm47r"), ExtResource("9_466yu")])
+
+[node name="Mine" parent="." instance=ExtResource("3_oyn5g")]
+position = Vector2(268, -292)
+ressource = ExtResource("8_50ooe")
+
+[node name="Mine2" parent="." instance=ExtResource("3_oyn5g")]
+position = Vector2(346, 115)
+ressource = ExtResource("9_vt08y")
+
+[node name="Mine3" parent="." instance=ExtResource("3_oyn5g")]
+position = Vector2(684, -243)
+ressource = ExtResource("10_ytd6m")
+
+[node name="SmallStorage" parent="." instance=ExtResource("11_1dhqu")]
+position = Vector2(789, 134)
+transfer_time = 3
+inventory_capacity = 20
+
+[node name="SmallAltar2" parent="." instance=ExtResource("12_mdsko")]
+position = Vector2(991, 286)
+summonableUnits = Array[ExtResource("13_kc3cd")]([SubResource("Resource_hlf1i")])
+
+[node name="SmallAltar" parent="." instance=ExtResource("12_mdsko")]
+position = Vector2(577, 327)
+summonableUnits = Array[ExtResource("13_kc3cd")]([SubResource("Resource_sogao"), SubResource("Resource_dibp4"), SubResource("Resource_0uxj6"), SubResource("Resource_hlf1i")])
+
+[node name="Tree" parent="." instance=ExtResource("16_3ogij")]
+position = Vector2(266, 485)
+ressource = ExtResource("17_7q4ie")
+
+[node name="Dungeon" parent="." instance=ExtResource("19_u5e32")]
+position = Vector2(868, 402)
+dungeon_layout = SubResource("Resource_atu8y")
+allowed_unit_types = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("16_ht82x")])
+max_entities = 3
+
+[node name="Dungeon2" parent="." instance=ExtResource("19_u5e32")]
+position = Vector2(1180, 242)
+dungeon_layout = SubResource("Resource_yoawh")
+allowed_unit_types = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("16_ht82x")])
+max_entities = 3
+
+[node name="TrainingGround" parent="." instance=ExtResource("22_debwv")]
+position = Vector2(579, 564)
+
+[node name="Analyzer" parent="." instance=ExtResource("23_dkwus")]
+position = Vector2(1035, 423)
+allowed_unit_types = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("16_ht82x")])
+max_entities = null
+
+[node name="HotSping" parent="." instance=ExtResource("31_aav1l")]
+position = Vector2(260, 298)

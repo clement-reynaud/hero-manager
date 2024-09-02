@@ -91,6 +91,7 @@ offset_left = 6.0
 offset_top = 6.0
 offset_right = 423.0
 offset_bottom = 220.0
+theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 40
 columns = 6
 
@@ -151,13 +152,16 @@ layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="SkillCard3" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
+[node name="SkillCard1" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
 layout_mode = 2
 
 [node name="SkillCard4" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
 layout_mode = 2
 
-[node name="SkillCard" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
+[node name="SkillCard2" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
+layout_mode = 2
+
+[node name="SkillCard3" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
 layout_mode = 2
 
 [node name="InventoryList" type="NinePatchRect" parent="."]

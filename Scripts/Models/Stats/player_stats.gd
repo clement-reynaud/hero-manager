@@ -85,12 +85,12 @@ func setup_stats():
 	health = 10
 	max_mana = 5
 	mana = 5
-	attack = 5
-	defence = 5
-	magic = 5
-	resistance = 5
-	speed = 5
-	luck = 5
+	attack = 3
+	defence = 3
+	magic = 3
+	resistance = 3
+	speed = 3
+	luck = 3
 	wisdom = 2
 
 	available_skills = [

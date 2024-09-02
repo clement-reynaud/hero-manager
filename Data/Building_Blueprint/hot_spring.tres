@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Building_Blueprint" load_steps=7 format=3 uid="uid://dhulsr1veunb"]
+
+[ext_resource type="Texture2D" uid="uid://bnje2jvraoc1i" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/hot_spring.png" id="1_yo0pq"]
+[ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="2_r8b7q"]
+[ext_resource type="Resource" uid="uid://bno4jpv5dk12j" path="res://Data/Items/iron_ore.tres" id="3_t4mo8"]
+[ext_resource type="Script" path="res://Scripts/Models/building_blueprint.gd" id="4_lp5cr"]
+[ext_resource type="Resource" uid="uid://blq0wcmgikw20" path="res://Data/Items/water_golem_core.tres" id="4_uo6yu"]
+[ext_resource type="PackedScene" uid="uid://d1x830cnhhrct" path="res://Scenes/Components/hot_spring.tscn" id="5_m4r2s"]
+
+[resource]
+script = ExtResource("4_lp5cr")
+name = "Small House"
+button_texture = ExtResource("1_yo0pq")
+description = "Add +2 to the maximum of summonable entity"
+cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("2_r8b7q"), ExtResource("3_t4mo8"), ExtResource("4_uo6yu"), ExtResource("4_uo6yu"), ExtResource("4_uo6yu")])
+build_time = 40.0
+scene = ExtResource("5_m4r2s")

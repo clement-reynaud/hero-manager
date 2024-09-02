@@ -1,13 +1,12 @@
 extends Building
 
-@export var max_entities: int = 3
+@export var dungeon_layout: DungeonLayout
 
 var _log_ui_displayed = false
 
-var _participating_entities = []
-
 var adventure_handler = load("res://Scripts/Composition/adventure_handler.gd").new()
 var root_camera 
+
 
 var entity_ressource_item = load("res://Scenes/UI/entity_ressource_item.tscn")
 
@@ -23,14 +22,7 @@ func _ready():
 func _process(delta):
 	process_selection_handler($DungeonBorder)
 
-	$DungeonParticipantCount.text = str(_participating_entities.size()) + "/" + str(max_entities)
-
-	for body in get_overlapping_bodies():
-		if body.is_in_group("unit") and not _participating_entities.has(body):
-			if not body.is_moving():
-				move_body_in_to_position(body,get_node("DungeonCollisionShape2D"), 200)
-
-	
+	process_participant_count(true, $DungeonCollisionShape2D)
 
 	if _log_ui_displayed and selection_handler.is_selected():
 		$LogUI.visible = true
@@ -43,14 +35,12 @@ func _process(delta):
 func _on_body_entered(body):
 	handle_timer_on_enter(body)
 	#move_all_body_in_to_position(get_node("DungeonCollisionShape2D"), 200)
-	if _participating_entities.size() < max_entities and body.is_in_group("unit") and body.unit_type in allowed_unit_types:
-		_participating_entities.append(body)
+	add_participating_entity(body)
 
 
 func _on_body_exited(body):
 	handle_timer_on_exit(body)
-	if _participating_entities.has(body):
-		_participating_entities.remove_at(_participating_entities.find(body))
+	remove_participating_entity(body)
 
 func _on_explore_button_pressed():
 	if _participating_entities.size() > 0:
@@ -63,7 +53,7 @@ func _on_explore_button_pressed():
 		$DungeonButtonContainer/ExploreButton.disabled = true
 		adventure_handler.party = _participating_entities
 		#adventure_handler.enemies = ennemies
-		adventure_handler.adventure(self)
+		adventure_handler.adventure(self,dungeon_layout)
 
 		var total_rank_sum = 0
 
@@ -166,7 +156,7 @@ func _parse_log_line(log_line:Dictionary, linked_message:bool = false):
 		text = text.format({"alignement":log_line.alignement})
 
 	text = "[font_size={font_size}]" + text + "[/font_size]"
-	text = text.format({"font_size":current_font_size})
+	text = text.format({"font_size":current_font_size})	
 
 	label.append_text(text)
 	return label

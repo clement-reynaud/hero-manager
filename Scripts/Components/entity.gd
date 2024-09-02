@@ -61,7 +61,6 @@ func _process(delta):
 		timer_progress_bar.visible = false
 
 	if not unit_type.is_fighter:
-		$EntityButtonContainer/StatsButton.visible = false
 		$EntityButtonContainer/SkillsButton.visible = false
 
 	if marks.has("training"):

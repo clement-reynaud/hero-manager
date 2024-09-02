@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=6 format=3 uid="uid://bllama8pgqg0j"]
+
+[ext_resource type="Resource" uid="uid://w1hlm0uhqobi" path="res://Data/Items/crystaline_remains.tres" id="1_ikwb3"]
+[ext_resource type="Script" path="res://Scripts/Models/Stats/enemy_stats.gd" id="2_h8lo0"]
+[ext_resource type="Resource" uid="uid://cgyvicy346hve" path="res://Data/Skills/magic_missile.tres" id="3_j1mxw"]
+[ext_resource type="Resource" uid="uid://bt0ei44nbq6kb" path="res://Data/Skills/flame_wave.tres" id="4_nsl4y"]
+[ext_resource type="Texture2D" uid="uid://jr3s1m0odiwf" path="res://Ressources/Sprite/Enemies/Crystal_Apparatus.png" id="5_lijm3"]
+
+[resource]
+script = ExtResource("2_h8lo0")
+description = "A magical device created by an elementalist to protect a dungeon against invader"
+sprite = ExtResource("5_lijm3")
+knowledge_reward = 8
+loot = Array[Resource("res://Scripts/Models/item.gd")]([ExtResource("1_ikwb3")])
+name = "Crystal Apparatus"
+max_health = 15
+health = 15
+max_mana = 20
+mana = 20
+attack = 1
+defence = 4
+magic = 6
+resistance = 6
+speed = 2
+luck = 1
+wisdom = 0
+skills = Array[Resource("res://Scripts/Models/skill.gd")]([ExtResource("3_j1mxw"), ExtResource("3_j1mxw"), ExtResource("3_j1mxw"), ExtResource("4_nsl4y")])

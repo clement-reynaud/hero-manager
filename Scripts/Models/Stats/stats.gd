@@ -22,7 +22,7 @@ var _current_resistance = 0
 var _current_speed = 0
 var _current_luck = 0
 
-@export var _status: Array[Dictionary]
+var _status: Array[Dictionary]
 
 @export var skills: Array[Skill]
 
@@ -149,18 +149,18 @@ func _apply_status(status_name: String, args: Array):
 func apply_targeting_status(allies: Array, enemies: Array):
 	_apply_status("targeting", [allies, enemies])
 
-func apply_pre_skill_cast_status(caster: Stats, target: Stats, skill: Skill):
+func apply_pre_skill_cast_status(caster: Stats, target, skill: Skill):
 	_apply_status("pre_skill_cast", [target, skill])
 
-func apply_post_skill_cast_status(caster: Stats, target: Stats, skill: Skill):
+func apply_post_skill_cast_status(caster: Stats, target, skill: Skill):
 	_apply_status("post_skill_cast", [target, skill])
 
-func apply_pre_skill_target_status(caster: Stats, target: Stats, skill: Skill):
+func apply_pre_skill_target_status(caster: Stats, target, skill: Skill):
 	_apply_status("pre_skill_target", [caster, skill])
 
-func apply_post_skill_target_status(caster: Stats, target: Stats, skill: Skill):
+func apply_post_skill_target_status(caster: Stats, target, skill: Skill):
 	_apply_status("post_skill_target", [caster, skill])
 
-func apply_log_manipulation_status(log_string: String, caster: Stats, target: Stats, skill: Skill):
+func apply_log_manipulation_status(log_string: String, caster: Stats, target, skill: Skill):
 	_apply_status("log_manipulation", [log_string, target, skill])
 

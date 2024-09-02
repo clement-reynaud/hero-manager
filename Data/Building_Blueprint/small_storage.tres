@@ -10,7 +10,7 @@
 script = ExtResource("1_8eqo8")
 name = "Small Storage"
 button_texture = ExtResource("1_6eeqr")
-description = ""
+description = "A storage with 20 slot"
 cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("1_v37c4"), ExtResource("1_v37c4"), ExtResource("2_tkdbw"), ExtResource("2_tkdbw"), ExtResource("2_tkdbw")])
 build_time = 40.0
 scene = ExtResource("4_0wdui")

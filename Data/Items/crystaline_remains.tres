@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MaterialItem" load_steps=3 format=3 uid="uid://w1hlm0uhqobi"]
+
+[ext_resource type="Texture2D" uid="uid://cmpg58dqeb70x" path="res://Ressources/Sprite/Ressources/crystaline_remains.png" id="1_l6dmh"]
+[ext_resource type="Script" path="res://Scripts/Models/material.gd" id="2_66lxd"]
+
+[resource]
+script = ExtResource("2_66lxd")
+seconds_to_produce = 0.0
+name = "Crystaline Remains"
+description = "Magic infused lens found on Crystal Apparatus"
+type = 3
+icon_sprite = ExtResource("1_l6dmh")

@@ -11,7 +11,7 @@
 script = ExtResource("1_w35cs")
 name = "Training Ground"
 button_texture = ExtResource("1_b36rq")
-description = ""
+description = "Allow entity to level up"
 cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("2_k2u8n"), ExtResource("3_k6wkl"), ExtResource("4_rq1qv"), ExtResource("4_rq1qv"), ExtResource("4_rq1qv")])
 build_time = 60.0
 scene = ExtResource("5_gmkpx")

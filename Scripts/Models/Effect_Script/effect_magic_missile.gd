@@ -24,7 +24,7 @@ static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
 		critical = 2
 
 	var ratio = 1.2
-	var damage = floor(((caster._current_magic * ratio * variance * Global_Variables.balance_damage_dealt_multiplier) * critical)  - (target._current_resistance * Global_Variables.balance_damage_reduction_multiplier))
+	var damage = floor(base_damage_formula(caster._current_magic,ratio,variance,critical,target._current_resistance))
 	
 	if damage < 0:
 		damage = 0

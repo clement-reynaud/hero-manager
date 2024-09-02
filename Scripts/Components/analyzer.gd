@@ -2,10 +2,6 @@ extends Building
 
 var _analyzer_displayed = false
 
-var _participating_entity = null
-var max_entities: int = 1
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ready_selection_handler($AnalyzerButtonContainer)
@@ -14,10 +10,7 @@ func _ready():
 func _process(delta):
 	process_selection_handler($AnalyzerBorder)
 	
-	for body in get_overlapping_bodies():
-		if body.is_in_group("unit") and _participating_entity != body:
-			if not body.is_moving():
-				move_body_in_to_position(body,get_node("AnalyzerCollisionShape2D"), 200)
+	process_participant_count(true, $AnalyzerCollisionShape2D)
 
 	if _analyzer_displayed and selection_handler.is_selected():
 		$AnalyserDisplay.visible = true
@@ -25,14 +18,13 @@ func _process(delta):
 		$AnalyserDisplay.visible = false
 
 func _on_body_entered(body):
-	if _participating_entity == null and body.is_in_group("unit") and body.unit_type in allowed_unit_types:
-		_participating_entity = body
+	add_participating_entity(body)
+	if _participating_entities.size() == 0 and body.is_in_group("unit") and body.unit_type in allowed_unit_types:
 		_draw_analyze(body.stats)	
 
 
 func _on_body_exited(body):
-	if _participating_entity == body:
-		_participating_entity = null
+	remove_participating_entity(body)
 
 func _draw_analyze(stats:PlayerStats):
 	var growth_dict = stats.get_growth_dict()
@@ -49,14 +41,15 @@ func _draw_analyze(stats:PlayerStats):
 	$AnalyserDisplay/GrowthNinePatchRect/LevelUpSpeedLabel.text = stats.level_up_data["speed"]
 
 func _on_display_button_toggled(toggled_on):
-	if _participating_entity == null:
+	print(_participating_entities)
+	if _participating_entities.size() == 0:
 		return
 
 	$AnalyserDisplay.visible = toggled_on
 	_analyzer_displayed = toggled_on
 
-	if toggled_on:
-		_draw_analyze(_participating_entity.stats)
+	if toggled_on and _participating_entities.size() > 0:
+		_draw_analyze(_participating_entities[0].stats)
 
 func set_growth_rank_texture(growth_total:int):
 	if growth_total >= 350 and growth_total <= 399:
