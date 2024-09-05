@@ -1,3 +1,4 @@
+
 extends Stats
 class_name EnemyStats
 
@@ -5,7 +6,18 @@ class_name EnemyStats
 @export var sprite: Texture2D
 
 @export var knowledge_reward: int
-@export var loot: Array[Item]
+@export var loot_table: Array[Loot]
+
+func process_loot() -> Array[Item]:
+	var loots: Array[Item] = []
+
+	for loot in loot_table:
+		if randf_range(0, 1) * 100 < loot.chance:
+			for i in randi_range(loot.min_amount, loot.max_amount):
+				loots.append(loot.item)
+
+	return loots
+	
 
 # func duplicate() -> EnemyStats:
 # 	var new_stat = EnemyStats.new()

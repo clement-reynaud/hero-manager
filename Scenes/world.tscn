@@ -167,4 +167,4 @@ position = Vector2(579, 564)
 position = Vector2(1035, 423)
 
 [node name="HotSping" parent="." instance=ExtResource("31_aav1l")]
-position = Vector2(260, 298)
+position = Vector2(185, 246)

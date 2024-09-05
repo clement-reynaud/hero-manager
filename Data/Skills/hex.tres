@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://eka1v6q725sf"]
+
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_hex.gd" id="1_dxn35"]
+[ext_resource type="Texture2D" uid="uid://cukpqxon5rnvm" path="res://Ressources/Sprite/Skills/hex.png" id="2_2is1a"]
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="3_0rijk"]
+
+[resource]
+script = ExtResource("3_0rijk")
+name = "Hex"
+description = "Hex a random non-hexed target to lower their resistance by [20%|resistance|resistance|0varia|ceil] "
+icon_texture = ExtResource("2_2is1a")
+effect = ExtResource("1_dxn35")
+mana_cost = 2
+custom_ressource_cost = 0
+cooldown = 0.0
+action_min_time = 2.0
+action_max_time = 5.0

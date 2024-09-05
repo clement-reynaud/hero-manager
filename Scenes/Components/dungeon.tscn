@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2d47b2cnkgpe"]
+[gd_scene load_steps=16 format=3 uid="uid://d2d47b2cnkgpe"]
 
 [ext_resource type="Script" path="res://Scripts/Components/dungeon.gd" id="1_1cw3m"]
 [ext_resource type="Resource" uid="uid://c6heiwdye1sgr" path="res://Data/UnitType/Soldier.tres" id="2_iqely"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dwv2ixjur73yk" path="res://Ressources/Sprite/UI/Buttons/button_journal_pressed.png" id="8_gv8k5"]
 [ext_resource type="Texture2D" uid="uid://dqn6whddr1102" path="res://Ressources/Sprite/UI/inventory_background.png" id="9_wi2cp"]
 [ext_resource type="PackedScene" uid="uid://s1rwooyghkx3" path="res://Scenes/UI/participant_count.tscn" id="10_4gdw5"]
+[ext_resource type="Script" path="res://Scripts/UI/dungeon_log_ui.gd" id="13_kvan7"]
+[ext_resource type="Texture2D" uid="uid://dml8vx1cqi7u8" path="res://Ressources/Texture/ring-texture.png" id="14_un374"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j1lv7"]
 radius = 33.0792
@@ -60,7 +62,6 @@ texture_pressed = ExtResource("8_gv8k5")
 [node name="ParticipantCount" parent="." instance=ExtResource("10_4gdw5")]
 
 [node name="LogUI" type="NinePatchRect" parent="."]
-visible = false
 z_index = 10
 offset_left = -169.0
 offset_top = -196.0
@@ -73,6 +74,23 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+script = ExtResource("13_kvan7")
+
+[node name="ActionProgressBar" type="TextureProgressBar" parent="LogUI"]
+layout_mode = 1
+offset_left = 9.76923
+offset_top = 9.84615
+offset_right = 109.769
+offset_bottom = 109.846
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.5
+fill_mode = 4
+texture_under = ExtResource("14_un374")
+texture_progress = ExtResource("14_un374")
+tint_under = Color(0.211765, 0.211765, 0.211765, 0.670588)
+tint_progress = Color(0, 0.745098, 0, 1)
 
 [node name="LogScroll" type="ScrollContainer" parent="LogUI"]
 layout_mode = 0

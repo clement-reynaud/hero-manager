@@ -29,14 +29,6 @@ var knowledge_reward = 0
 
 var cowardice_skill = load("res://Data/Skills/cowardice.tres")
 
-func _test_rooms():
-	var temp_enemy = load("res://Data/Enemies/Slime.tres")
-
-	rooms = [
-		[temp_enemy, temp_enemy],
-		[temp_enemy, temp_enemy]
-	]
-
 func _init_variables():
 	rooms = []
 	is_exploring = true
@@ -89,28 +81,34 @@ func _explore_room(room: Array):
 	
 	while not party_wiped and not enemies_wiped:
 		var turn_order = _determine_turn_order()
+		_apply_status("turn_order_manipulation", [turn_order,combat_log_queue], true)
 		_count_down_turn_status()
+		combat_log_queue.append({"type": "announcement", "text": "-------------", "ressource_snapshot": _make_ressource_snapshot(), "alignement":"center"})
 		for entity in turn_order:
-			if party_wiped or enemies_wiped:
-				break
-			_execute_turn(entity)
-			turn_order = _determine_turn_order()
- 
-			
-			if total_execution_time >= max_time:
-				if not corruption:
-					combat_log_queue.append({"type": "announcement", "text": "[color=purple]Corruption takes hold, all enemies offensive stats are multplied by 10[/color]", "ressource_snapshot": _make_ressource_snapshot(), "alignement":"center"})
-					corruption = true
-					
-				for enemy in enemies:
-					enemy._current_attack *= 10
-					enemy._current_magic *= 10
+			var can_play = [true]
+			#THIS IS FUCKED UP BUT I DONT SEE ANOTHER WAY TO DO IT
+			_apply_status_to_one(entity, "turn_manipulation", [entity,can_play,combat_log_queue])
+			if can_play[0]:
+				if party_wiped or enemies_wiped:
+					break
+				_execute_turn(entity)
+				turn_order = _determine_turn_order()
+	
+				
+				if total_execution_time >= max_time:
+					if not corruption:
+						combat_log_queue.append({"type": "announcement", "text": "[color=purple]Corruption takes hold, all enemies offensive stats are multplied by 10[/color]", "ressource_snapshot": _make_ressource_snapshot(), "alignement":"center"})
+						corruption = true
+						
+					for enemy in enemies:
+						enemy._current_attack *= 10
+						enemy._current_magic *= 10
 
-			if total_execution_time >= max_time * 2:
-				for member in party_copy:
-					member.health -= ceil(member.max_health / 4)
-					
-			_check_for_death()
+				if total_execution_time >= max_time * 2:
+					for member in party_copy:
+						member.health -= ceil(member.max_health / 4)
+						
+				_check_for_death()
 	if party_wiped:
 		is_exploring = false
 
@@ -149,26 +147,18 @@ func _determine_turn_order() -> Array:
 
 func _execute_turn(entity:Stats):
 	if entity.health > 0:
-		var skill_idx = randi() % entity.skills.size()
-		var skill = entity.skills[skill_idx]
+		var skill = _select_skill(entity)
 
-		var ignored_skills = []
-		while not skill.effect.can_cast(entity, skill):
-			ignored_skills.append(skill)
-			
-			var remaining_skills = entity.skills.filter(func(s): return not s in ignored_skills)
-
-			if remaining_skills.size() == 0:
-				skill = cowardice_skill
-				break
-
-			skill_idx = randi() % remaining_skills.size()
-			skill = remaining_skills[skill_idx]
-
+		for cd in entity._cooldowns:
+			if entity._cooldowns[cd] > 0:
+				entity._cooldowns[cd] -= 1
+				
 		if entity in party_copy:
 			_apply_skill(entity, skill, party_copy, enemies)
 		else: 
 			_apply_skill(entity, skill, enemies, party_copy)
+
+
 
 func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
 	# target can be either an enemy or an ally, in an array or not
@@ -214,6 +204,25 @@ func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
 	if combat_log.size() == 0:
 		_initalize_combat_log()
 
+func _select_skill(entity):
+	var skill_idx = randi() % entity.skills.size()
+	var skill = entity.skills[skill_idx]
+
+	var ignored_skills = []
+	while not skill.effect.can_cast(entity,party_copy,enemies,skill):
+		ignored_skills.append(skill)
+		
+		var remaining_skills = entity.skills.filter(func(s): return not s in ignored_skills)
+
+		if remaining_skills.size() == 0:
+			skill = cowardice_skill
+			break
+
+		skill_idx = randi() % remaining_skills.size()
+		skill = remaining_skills[skill_idx]
+
+	return skill
+
 func _end_adventure():
 	#TODO Customize msg with loot and knowledge reward
 	if party_wiped:
@@ -239,8 +248,7 @@ func _check_for_death():
 			ret.append({"type": "death", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
 			entity.set_status("dead")
 
-			#TODO Add loot %
-			loots.append_array(entity.loot)
+			loots.append_array(entity.process_loot())
 			knowledge_reward += entity.knowledge_reward
 
 	if party_copy.filter(Global_Functions._is_entity_dead).size() == party_copy.size():
@@ -284,10 +292,11 @@ func _initalize_combat_log():
 
 func _make_ressource_snapshot():
 	var ressource_snapshot = {}
-	for entity in copy_party_stats:
-		ressource_snapshot[entity.name + str(entity.get_reference_count())] = {"name": entity.name, "health": entity.health, "max_health": entity.max_health, "mana": entity.mana, "max_mana": entity.max_mana, "is_player": true}
-	for entity in enemies:
-		ressource_snapshot[entity.name + str(entity.get_reference_count())] = {"name": entity.name, "health": entity.health, "max_health": entity.max_health, "mana": entity.mana, "max_mana": entity.max_mana, "is_player": false}
+
+	for entity in copy_party_stats + enemies:
+		ressource_snapshot[entity.name + str(entity.get_reference_count())] = entity.get_stats_dict()
+		ressource_snapshot[entity.name + str(entity.get_reference_count())].is_player = entity is PlayerStats
+		ressource_snapshot[entity.name + str(entity.get_reference_count())].name = entity.name 
 	return ressource_snapshot
 
 func _apply_stats_changes():
@@ -313,5 +322,17 @@ func _init_current_stats(group):
 
 func _init_rooms(layout: DungeonLayout):
 	for room:DungeonRoom in layout.rooms:
-		print(room.enemies)
 		rooms.append(room.enemies)
+
+func _apply_status(status_type:String,args:Array, send_entity = false):
+	var all_entities = party_copy + enemies
+	
+	for entity in all_entities:
+		var tmp_args = args.duplicate()
+		if send_entity:
+			tmp_args.insert(0,entity)
+
+		entity.callv("apply_"+status_type+"_status", tmp_args)
+
+func _apply_status_to_one(entity: Stats, status_type:String,args:Array):
+	entity.callv("apply_"+status_type+"_status", args)

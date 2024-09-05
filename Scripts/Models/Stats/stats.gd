@@ -23,6 +23,7 @@ var _current_speed = 0
 var _current_luck = 0
 
 var _status: Array[Dictionary]
+var _cooldowns = {}
 
 @export var skills: Array[Skill]
 
@@ -146,21 +147,26 @@ func _apply_status(status_name: String, args: Array):
 			if status.apply_cpt == 0:
 				remove_precise_status(status.status_id)
 
-func apply_targeting_status(allies: Array, enemies: Array):
-	_apply_status("targeting", [allies, enemies])
+func apply_targeting_status(allies: Array, enemies: Array, combat_log_queue = null):
+	_apply_status("targeting", [allies, enemies, combat_log_queue])
 
-func apply_pre_skill_cast_status(caster: Stats, target, skill: Skill):
-	_apply_status("pre_skill_cast", [target, skill])
+func apply_pre_skill_cast_status(caster: Stats, target, skill: Skill, combat_log_queue = null):
+	_apply_status("pre_skill_cast", [target, skill, combat_log_queue])
 
-func apply_post_skill_cast_status(caster: Stats, target, skill: Skill):
-	_apply_status("post_skill_cast", [target, skill])
+func apply_post_skill_cast_status(caster: Stats, target, skill: Skill, combat_log_queue = null):
+	_apply_status("post_skill_cast", [target, skill, combat_log_queue])
 
-func apply_pre_skill_target_status(caster: Stats, target, skill: Skill):
-	_apply_status("pre_skill_target", [caster, skill])
+func apply_pre_skill_target_status(caster: Stats, target, skill: Skill, combat_log_queue = null):
+	_apply_status("pre_skill_target", [caster, skill, combat_log_queue])
 
-func apply_post_skill_target_status(caster: Stats, target, skill: Skill):
-	_apply_status("post_skill_target", [caster, skill])
+func apply_post_skill_target_status(caster: Stats, target, skill: Skill, combat_log_queue = null):
+	_apply_status("post_skill_target", [caster, skill, combat_log_queue])
 
-func apply_log_manipulation_status(log_string: String, caster: Stats, target, skill: Skill):
-	_apply_status("log_manipulation", [log_string, target, skill])
+func apply_log_manipulation_status(log_string: String, caster: Stats, target, skill: Skill, combat_log_queue = null):
+	_apply_status("log_manipulation", [log_string, target, skill, combat_log_queue])
 
+func apply_turn_order_manipulation_status(entity: Stats, turn_order: Array, combat_log_queue = null):
+	_apply_status("turn_order_manipulation", [entity, turn_order, combat_log_queue])
+
+func apply_turn_manipulation_status(entity: Stats, can_play: Array, combat_log_queue = null):
+	_apply_status("turn_manipulation", [entity, can_play, combat_log_queue])

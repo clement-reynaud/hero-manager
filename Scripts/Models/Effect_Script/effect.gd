@@ -9,7 +9,7 @@ static func calc_resist(resist_stat:int) -> float:
 static func base_damage_formula(damaging_stat:int,ratio:float,variance:float,critical:int,resist_stat:int) -> float:
 	return  calc_damage(damaging_stat,ratio,variance,critical) - calc_resist(resist_stat)
 
-static func can_cast(caster:Stats, skill:Skill) -> bool:
+static func can_cast(caster:Stats, allies: Array, enemies: Array ,skill:Skill) -> bool:
 	push_error("Effect.can_cast() should be overridden")
 	return false
 

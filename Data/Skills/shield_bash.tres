@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://cenlo0nymri4q"]
+
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="1_061sj"]
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_shield_bash.gd" id="1_ofvss"]
+[ext_resource type="Texture2D" uid="uid://d270aq7ioyxy2" path="res://Ressources/Sprite/UI/Stats/defence.png" id="1_svh63"]
+
+[resource]
+script = ExtResource("1_061sj")
+name = "Shield Bash"
+description = "Inflicts [10%|attack|attack|0.2varia|floor] + [50%|defence|defence|0.2varia|floor] and has a [2%|defence|defence|0varia|ceil]% chance to Stun the target"
+icon_texture = ExtResource("1_svh63")
+effect = ExtResource("1_ofvss")
+mana_cost = 0
+custom_ressource_cost = 0
+cooldown = 2.0
+action_min_time = 2.0
+action_max_time = 0.0

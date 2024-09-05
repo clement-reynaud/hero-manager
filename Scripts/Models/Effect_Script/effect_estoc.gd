@@ -1,6 +1,6 @@
 extends Effect
 
-static func can_cast(caster:Stats, skill:Skill) -> bool:
+static func can_cast(caster:Stats, allies: Array, enemies: Array ,skill:Skill) -> bool:
 	if caster.mana >= skill.mana_cost:
 		return true
 	else:

@@ -1,16 +1,24 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=5 format=3 uid="uid://bxxb4mgkell5n"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=7 format=3 uid="uid://bxxb4mgkell5n"]
 
 [ext_resource type="Resource" uid="uid://dp5secevwl56n" path="res://Data/Items/slime_goop.tres" id="1_goi48"]
 [ext_resource type="Script" path="res://Scripts/Models/Stats/enemy_stats.gd" id="1_oxsfv"]
+[ext_resource type="Script" path="res://Scripts/Models/Stats/loot.gd" id="2_ad13p"]
 [ext_resource type="Texture2D" uid="uid://c4kqm4pduva57" path="res://Ressources/Sprite/Enemies/Slime.png" id="2_h74ei"]
 [ext_resource type="Resource" uid="uid://dev7akynokuf4" path="res://Data/Skills/basic_attack.tres" id="3_10im8"]
+
+[sub_resource type="Resource" id="Resource_5s3fx"]
+script = ExtResource("2_ad13p")
+item = ExtResource("1_goi48")
+max_amount = 1
+min_amount = 1
+chance = 100.0
 
 [resource]
 script = ExtResource("1_oxsfv")
 description = "A simple slime living in the dungeon"
 sprite = ExtResource("2_h74ei")
 knowledge_reward = 5
-loot = Array[Resource("res://Scripts/Models/item.gd")]([ExtResource("1_goi48")])
+loot_table = Array[ExtResource("2_ad13p")]([SubResource("Resource_5s3fx")])
 name = "Slime"
 max_health = 10
 health = 10

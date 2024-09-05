@@ -1,6 +1,6 @@
 extends Effect
 
-static func can_cast(caster:Stats, skill:Skill) -> bool:
+static func can_cast(caster:Stats, allies: Array, enemies: Array ,skill:Skill) -> bool:
 	if caster.mana >= skill.mana_cost:
 		return true
 	else:
@@ -18,7 +18,7 @@ static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
 	handlePreSkillStatus(caster, target, skill)
 
 	var critical = 1
-	var variance = randf_range(0.9,1.1)
+	var variance = randf_range(0.5,1.5)
 
 	if(randi() % 100 <= caster._current_luck):
 		critical = 2

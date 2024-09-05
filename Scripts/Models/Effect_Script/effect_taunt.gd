@@ -1,9 +1,12 @@
 extends Effect
 
-static func can_cast(caster:Stats, skill:Skill) -> bool:
+static func can_cast(caster:Stats, allies: Array, enemies: Array ,skill:Skill) -> bool:
 	if caster.has_status("Reinforced"):
 		return false
 
+	if enemies.filter(func (entity:Stats) -> bool: return not entity.has_status("Taunt")).size() == 0:
+		return false
+		
 	return true
 
 static func get_target(caster:Stats, allies: Array, enemies: Array):
@@ -15,8 +18,8 @@ static func get_target(caster:Stats, allies: Array, enemies: Array):
 	return alive_enemies[randi() % alive_enemies.size()]
 
 static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
-	var status_reinforced = load("res://Scripts/Models/Status/status_reinforced.gd")
-	var status_taunt = load("res://Scripts/Models/Status/status_taunt.gd")
+	var status_reinforced = load("res://Scripts/Models/Status/status_reinforced.gd").new()
+	var status_taunt = load("res://Scripts/Models/Status/status_taunt.gd").new()
 
 	handlePreSkillStatus(caster, target, skill)
 

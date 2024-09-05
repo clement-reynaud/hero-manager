@@ -41,7 +41,6 @@ func _draw_analyze(stats:PlayerStats):
 	$AnalyserDisplay/GrowthNinePatchRect/LevelUpSpeedLabel.text = stats.level_up_data["speed"]
 
 func _on_display_button_toggled(toggled_on):
-	print(_participating_entities)
 	if _participating_entities.size() == 0:
 		return
 

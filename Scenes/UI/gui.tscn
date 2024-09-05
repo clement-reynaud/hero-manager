@@ -155,9 +155,6 @@ alignment = 1
 [node name="SkillCard1" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
 layout_mode = 2
 
-[node name="SkillCard4" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
-layout_mode = 2
-
 [node name="SkillCard2" parent="CenterGUIWindow/SkillObtention/SkillObtentionVBox/SkillObtentionHBox" instance=ExtResource("8_iqq7s")]
 layout_mode = 2
 

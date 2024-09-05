@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://db7mc7baktavy"]
+[gd_scene load_steps=10 format=3 uid="uid://db7mc7baktavy"]
 
 [ext_resource type="Script" path="res://Scripts/UI/entity_ressource_item.gd" id="1_m6mii"]
 [ext_resource type="Texture2D" uid="uid://bii2ithfx2ofb" path="res://Ressources/Sprite/UI/hp_progress_bar_behind.png" id="2_2jani"]
 [ext_resource type="Texture2D" uid="uid://tn5iwiumqbqc" path="res://Ressources/Sprite/UI/hp_progress_bar_progress.png" id="3_jee5v"]
+[ext_resource type="Texture2D" uid="uid://djo6q86s33i5n" path="res://Ressources/Sprite/UI/Stats/attack.png" id="4_r6j7h"]
+[ext_resource type="Texture2D" uid="uid://c724ynclpkfto" path="res://Ressources/Sprite/UI/Stats/magic.png" id="5_q54i4"]
+[ext_resource type="Texture2D" uid="uid://dfi6tmm4t5qr" path="res://Ressources/Sprite/UI/Stats/speed.png" id="6_wolkk"]
+[ext_resource type="Texture2D" uid="uid://d270aq7ioyxy2" path="res://Ressources/Sprite/UI/Stats/defence.png" id="7_odf20"]
+[ext_resource type="Texture2D" uid="uid://cvldgmxip13kn" path="res://Ressources/Sprite/UI/Stats/resistance.png" id="8_hwo0v"]
+[ext_resource type="Texture2D" uid="uid://tjwkvd2427ne" path="res://Ressources/Sprite/UI/Stats/luck.png" id="9_ddsi3"]
 
 [node name="EntityRessourceItem" type="VBoxContainer"]
-offset_right = 23.0
-offset_bottom = 28.0
+offset_right = 490.0
+offset_bottom = 151.0
 script = ExtResource("1_m6mii")
 
 [node name="EntityName" type="Label" parent="."]
@@ -32,3 +38,75 @@ nine_patch_stretch = true
 stretch_margin_bottom = 8
 texture_under = ExtResource("2_2jani")
 texture_progress = ExtResource("3_jee5v")
+
+[node name="StatContainer" type="GridContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/h_separation = 20
+columns = 6
+
+[node name="attackIcon" type="TextureRect" parent="StatContainer"]
+layout_mode = 2
+texture = ExtResource("4_r6j7h")
+expand_mode = 2
+
+[node name="attackBonus" type="Label" parent="StatContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "TEST"
+
+[node name="magicIcon" type="TextureRect" parent="StatContainer"]
+layout_mode = 2
+texture = ExtResource("5_q54i4")
+expand_mode = 2
+
+[node name="magicBonus" type="Label" parent="StatContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "TEST"
+
+[node name="speedIcon" type="TextureRect" parent="StatContainer"]
+layout_mode = 2
+texture = ExtResource("6_wolkk")
+expand_mode = 2
+
+[node name="speedBonus" type="Label" parent="StatContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "TEST"
+
+[node name="defenceIcon" type="TextureRect" parent="StatContainer"]
+layout_mode = 2
+texture = ExtResource("7_odf20")
+expand_mode = 2
+
+[node name="defenceBonus" type="Label" parent="StatContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "TEST"
+
+[node name="resistanceIcon" type="TextureRect" parent="StatContainer"]
+layout_mode = 2
+texture = ExtResource("8_hwo0v")
+expand_mode = 2
+
+[node name="resistanceBonus" type="Label" parent="StatContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "TEST"
+
+[node name="luckIcon" type="TextureRect" parent="StatContainer"]
+layout_mode = 2
+texture = ExtResource("9_ddsi3")
+expand_mode = 2
+
+[node name="luckBonus" type="Label" parent="StatContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "TEST"

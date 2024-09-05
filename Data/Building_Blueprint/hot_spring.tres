@@ -9,9 +9,9 @@
 
 [resource]
 script = ExtResource("4_lp5cr")
-name = "Small House"
+name = "Hot Spring"
 button_texture = ExtResource("1_yo0pq")
-description = "Add +2 to the maximum of summonable entity"
+description = "Fully recover a max of 2 entity at the same time"
 cost = Array[Resource("res://Scripts/Models/material.gd")]([ExtResource("2_r8b7q"), ExtResource("3_t4mo8"), ExtResource("4_uo6yu"), ExtResource("4_uo6yu"), ExtResource("4_uo6yu")])
 build_time = 40.0
 scene = ExtResource("5_m4r2s")

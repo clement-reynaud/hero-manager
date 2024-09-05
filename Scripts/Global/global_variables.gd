@@ -33,3 +33,15 @@ var StatsTypeColor = {
 	StatsType.True: "white",
 	StatsType.Heal: "green"
 }
+
+enum StatusType {
+	TARGETING,
+	PRE_SKILL_TARGET,
+	PRE_SKILL_CAST,
+	POST_SKILL_TARGET,
+	POST_SKILL_CAST,
+	APPLY_SKILL,
+	END_SKILL,
+	LOG_MANIPULATION,
+	TURN_ORDER_MANIPULATION,
+}
