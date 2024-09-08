@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://blka6g6w3ath0"]
+[gd_scene load_steps=4 format=3 uid="uid://blka6g6w3ath0"]
 
 [ext_resource type="Script" path="res://Scripts/UI/skill_card.gd" id="1_4sici"]
 [ext_resource type="Texture2D" uid="uid://sxl2k0mhx3cj" path="res://Ressources/Sprite/UI/skill_card.png" id="2_j8vmd"]
 [ext_resource type="Texture2D" uid="uid://bclrq6etehjqg" path="res://Ressources/Sprite/UI/skill_card_pressed.png" id="3_o4e6x"]
-[ext_resource type="Texture2D" uid="uid://dvqvyn80y1m5k" path="res://Ressources/Sprite/Skills/estoc.png" id="3_tgxgx"]
 
 [node name="SkillCard" type="TextureButton"]
 anchors_preset = 8
@@ -33,7 +32,6 @@ offset_top = 26.0
 offset_right = -19.0
 offset_bottom = 170.0
 grow_horizontal = 2
-texture = ExtResource("3_tgxgx")
 stretch_mode = 5
 
 [node name="SkillCardName" type="Label" parent="."]
