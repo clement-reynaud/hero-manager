@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_h6dfx")
 name = "Estoc"
-description = "Inflicts [90%|attack|attack|0varia|ceil]  to the lowest HP ennemy. The damage ignores 10% of the target armor"
+description = "Inflicts [90%|attack|attack|0varia|ceil] physical damage to the lowest HP ennemy. The damage ignores 10% of the target armor"
 icon_texture = ExtResource("1_m16o0")
 effect = ExtResource("1_1yomn")
 mana_cost = 1

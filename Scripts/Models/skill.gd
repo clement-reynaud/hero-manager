@@ -2,7 +2,7 @@ class_name Skill
 extends Resource
 
 @export var name: String
-@export var description: String
+@export_multiline var description: String
 @export var icon_texture: Texture2D
 @export var effect: Script
 

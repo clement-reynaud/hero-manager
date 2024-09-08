@@ -23,7 +23,7 @@ static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
 	caster.mana = max(caster.mana - skill.mana_cost,0)
 
 	var damage = caster._current_attack
-	var combat_log = ""
+	var combat_log_string = ""
 
 	handlePreSkillStatus(caster, target, skill)
 
@@ -31,11 +31,12 @@ static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
 		damage = ceil(damage * 2)
 		target.health = max(target.health - damage,0)
 
-		combat_log = " [color={color}]{damage}[/color] damage dealt"
+		combat_log_string = " [color={color}]{damage}[/color] damage dealt"
 
 	else:
 		caster.health = max(caster.health - ceil(damage),0)
 
-		combat_log = " but inflicted [color={color}]{damage}[/color] damage to self"
+		combat_log_string = " but inflicted [color={color}]{damage}[/color] damage to self"
 
-	return combat_log.format({"color": Global_Variables.StatsTypeColor[Global_Variables.StatsType.True], "damage": damage})
+	combat_log_string = combat_log_string.format({"color": Global_Variables.StatsTypeColor[Global_Variables.StatsType.True], "damage": damage})
+	return combat_log_string

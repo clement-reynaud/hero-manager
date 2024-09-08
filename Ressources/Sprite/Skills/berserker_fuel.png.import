@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cukpqxon5rnvm"
-path="res://.godot/imported/hex.png-beea4882d10a0a32e59df7303110dda0.ctex"
+uid="uid://bptssjhnhk04x"
+path="res://.godot/imported/berserker_fuel.png-cad69eb8da07bb01bf618bcc18ea900d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/Skills/hex.png"
-dest_files=["res://.godot/imported/hex.png-beea4882d10a0a32e59df7303110dda0.ctex"]
+source_file="res://Ressources/Sprite/Skills/berserker_fuel.png"
+dest_files=["res://.godot/imported/berserker_fuel.png-cad69eb8da07bb01bf618bcc18ea900d.ctex"]
 
 [params]
 

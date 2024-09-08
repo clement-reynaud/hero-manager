@@ -29,6 +29,8 @@ func _process(delta):
 	else:
 		$LogUI.visible = false
 
+	$LogUI/ActionProgressBar.value = ($LogUI/ActionProgressBar/ActionProgress.time_left / $LogUI/ActionProgressBar/ActionProgress.wait_time) * 100
+
 
 			
 
@@ -124,6 +126,10 @@ func _process_combat_log_queue(timer: Timer):
 			combat_log_timer.timeout.connect(self._process_combat_log_queue.bind(combat_log_timer))
 			add_child(combat_log_timer)
 			combat_log_timer.start()
+
+			$LogUI/ActionProgressBar/ActionProgress.stop()
+			$LogUI/ActionProgressBar/ActionProgress.wait_time = log_line.execution_time
+			$LogUI/ActionProgressBar/ActionProgress.start()
 		else:
 			_process_combat_log_queue(combat_log_timer)
 	

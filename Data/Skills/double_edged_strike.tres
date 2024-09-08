@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_bki6a")
 name = "Double Edged Strike"
-description = "Roll a d100. Depending on the result, inficts either [200%|attack|true|0varia|ceil] to a random enemy (50 or less) or [100%|attack|true|0varia|ceil] to himself (51 and more). The random number is substacted by [50%|luck|luck|0varia|ceil]."
+description = "Roll a d100. Depending on the result, inficts either [200%|attack|true|0varia|ceil] true damage to a random enemy (50 or less) or [100%|attack|true|0varia|ceil] true damage to himself (51 and more). The random number is substacted by [50%|luck|luck|0varia|ceil]."
 icon_texture = ExtResource("2_35iyn")
 effect = ExtResource("1_ds1l7")
 mana_cost = 2

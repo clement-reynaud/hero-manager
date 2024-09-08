@@ -92,6 +92,9 @@ texture_progress = ExtResource("14_un374")
 tint_under = Color(0.211765, 0.211765, 0.211765, 0.670588)
 tint_progress = Color(0, 0.745098, 0, 1)
 
+[node name="ActionProgress" type="Timer" parent="LogUI/ActionProgressBar"]
+one_shot = true
+
 [node name="LogScroll" type="ScrollContainer" parent="LogUI"]
 layout_mode = 0
 offset_left = 10.0

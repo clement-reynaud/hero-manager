@@ -2,7 +2,7 @@ extends Stats
 class_name PlayerStats
 
 @export var level = 1
-@export var knowledge: int = 110
+@export var knowledge: int = 0
 
 @export var health_growth: int = 50
 @export var mana_growth: int = 50
@@ -38,7 +38,7 @@ func init(node: Node):
 		level_up_data = Global_Functions.level_up_function["slow"]
 
 	if growth_total == 550:
-		level_up_data = Global_Functions.level_up_function["fast"]
+		level_up_data = Global_Functions.level_up_function["medium"]
 
 	var true_available_skills = available_skills.filter(func(skill): return not skills.has(skill))
 	if skills.size() < wisdom:
@@ -96,13 +96,11 @@ func setup_stats():
 	available_skills = [
 		load("res://Data/Skills/basic_attack.tres"),
 		load("res://Data/Skills/magic_missile.tres"),
-		load("res://Data/Skills/shield_bash.tres"),
 	]
 
 	skills = [
-		#load("res://Data/Skills/basic_attack.tres"),
-		load("res://Data/Skills/shield_bash.tres"),
-		load("res://Data/Skills/shield_bash.tres"),
+		load("res://Data/Skills/basic_attack.tres"),
+		load("res://Data/Skills/magic_missile.tres"),
 	]
 
 func randomize_growth():

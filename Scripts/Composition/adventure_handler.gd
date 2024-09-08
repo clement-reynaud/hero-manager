@@ -76,6 +76,7 @@ func _explore_room(room: Array):
 
 	log_string += "]"
 
+	combat_log_queue.append({"type": "announcement", "text": "-------------", "ressource_snapshot": _make_ressource_snapshot(), "alignement":"center"})
 	combat_log_queue.append({"type": "announcement", "text": log_string, "ressource_snapshot": _make_ressource_snapshot(), "alignement":"right"})
 	room_cpt += 1
 	
@@ -197,7 +198,14 @@ func _apply_skill(user, skill, skill_allies: Array, skill_enemies: Array):
 		}
 	)
 
-	combat_log_queue.append({"type": "combat", "text": log_line, "execution_time": execution_time, "ressource_snapshot": _make_ressource_snapshot(), "linked_message": linked_message})
+	var message = {"type": "combat", "text": log_line, "execution_time": execution_time, "ressource_snapshot": _make_ressource_snapshot(), "linked_message": linked_message}
+	_apply_status_to_one(user, "caster_log_manipulation", [user, message, target, skill, combat_log_queue])
+	
+	if typeof(target) == TYPE_ARRAY:
+		for t in target:
+			_apply_status_to_one(t, "target_log_manipulation", [user, message, t, skill, combat_log_queue])
+
+	combat_log_queue.append(message)
 
 	total_execution_time += execution_time
 
@@ -239,13 +247,13 @@ func _check_for_death():
 	for entity in party_copy:
 		if entity.health <= 0 and not entity.has_status("dead"):
 			var log_string = "[color=blue]" + entity.name + "[/color] died."
-			ret.append({"type": "death", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
+			ret.append({"type": "death", "text": log_string})
 			entity.set_status("dead")
 
 	for entity in enemies:
 		if entity.health <= 0 and not entity.has_status("dead"):
 			var log_string = "[color=red]" + entity.name + "[/color] died."
-			ret.append({"type": "death", "text": log_string, "ressource_snapshot": _make_ressource_snapshot()})
+			ret.append({"type": "death", "text": log_string})
 			entity.set_status("dead")
 
 			loots.append_array(entity.process_loot())

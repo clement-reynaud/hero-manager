@@ -7,11 +7,11 @@
 [resource]
 script = ExtResource("1_061sj")
 name = "Shield Bash"
-description = "Inflicts [10%|attack|attack|0.2varia|floor] + [50%|defence|defence|0.2varia|floor] and has a [2%|defence|defence|0varia|ceil]% chance to Stun the target"
+description = "Inflicts [10%|attack|attack|0.2varia|floor] + [50%|defence|defence|0.2varia|floor] physical damage and has a [2%|defence|defence|0varia|ceil]% chance to Stun the target"
 icon_texture = ExtResource("1_svh63")
 effect = ExtResource("1_ofvss")
 mana_cost = 0
 custom_ressource_cost = 0
 cooldown = 2.0
 action_min_time = 2.0
-action_max_time = 0.0
+action_max_time = 4.0

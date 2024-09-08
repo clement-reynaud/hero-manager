@@ -88,8 +88,20 @@ func swap_skills(skill1: Skill, skill2: Skill):
 	skills[skill2_index] = skill1
 
 # Status
-# Possible status: targeting, pre_skill_cast, post_skill_cast, pre_skill_target, post_skill_target, log_manipulation, apply_skill, end_skill
 # Others: turn_cpt, apply_cpt
+
+var status_arguments = {
+	"targeting": ["allies", "enemies", "combat_log_queue"],
+	"pre_skill_cast": ["caster", "target", "skill", "combat_log_queue"],
+	"post_skill_cast": ["caster", "target", "skill", "combat_log_queue"],
+	"pre_skill_target": ["caster", "target", "skill", "combat_log_queue"],
+	"post_skill_target": ["caster", "target", "skill", "combat_log_queue"],
+	"caster_log_manipulation": ["entity", "message", "target", "skill", "combat_log_queue"],
+	"target_log_manipulation": ["entity", "message", "target", "skill", "combat_log_queue"],
+	"turn_order_manipulation": ["entity", "turn_order", "combat_log_queue"],
+	"turn_manipulation": ["entity", "can_play", "combat_log_queue"]
+}
+
 
 func init_current_stats():
 	_current_attack = attack
@@ -151,19 +163,22 @@ func apply_targeting_status(allies: Array, enemies: Array, combat_log_queue = nu
 	_apply_status("targeting", [allies, enemies, combat_log_queue])
 
 func apply_pre_skill_cast_status(caster: Stats, target, skill: Skill, combat_log_queue = null):
-	_apply_status("pre_skill_cast", [target, skill, combat_log_queue])
+	_apply_status("pre_skill_cast", [caster, target, skill, combat_log_queue])
 
 func apply_post_skill_cast_status(caster: Stats, target, skill: Skill, combat_log_queue = null):
-	_apply_status("post_skill_cast", [target, skill, combat_log_queue])
+	_apply_status("post_skill_cast", [caster, target, skill, combat_log_queue])
 
 func apply_pre_skill_target_status(caster: Stats, target, skill: Skill, combat_log_queue = null):
-	_apply_status("pre_skill_target", [caster, skill, combat_log_queue])
+	_apply_status("pre_skill_target", [caster, target, skill, combat_log_queue])
 
 func apply_post_skill_target_status(caster: Stats, target, skill: Skill, combat_log_queue = null):
-	_apply_status("post_skill_target", [caster, skill, combat_log_queue])
+	_apply_status("post_skill_target", [caster, target, skill, combat_log_queue])
 
-func apply_log_manipulation_status(log_string: String, caster: Stats, target, skill: Skill, combat_log_queue = null):
-	_apply_status("log_manipulation", [log_string, target, skill, combat_log_queue])
+func apply_caster_log_manipulation_status(entity: Stats, message: Dictionary, target: Stats, skill: Skill, combat_log_queue = null):
+	_apply_status("caster_log_manipulation", [entity, message, target, skill, combat_log_queue])
+
+func apply_target_log_manipulation_status(entity: Stats, message: Dictionary, target: Stats, skill: Skill, combat_log_queue = null):
+	_apply_status("target_log_manipulation", [entity, message, target, skill, combat_log_queue])
 
 func apply_turn_order_manipulation_status(entity: Stats, turn_order: Array, combat_log_queue = null):
 	_apply_status("turn_order_manipulation", [entity, turn_order, combat_log_queue])

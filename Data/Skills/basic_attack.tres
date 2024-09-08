@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_e8hsi")
 name = "Basic Attack"
-description = "Inflicts  [100%|attack|attack|0.5varia|floor] to a random target "
+description = "Inflicts  [100%|attack|attack|0.5varia|floor] physical damage to a random target "
 icon_texture = ExtResource("2_jtqvk")
 effect = ExtResource("1_2dmiy")
 mana_cost = 0

@@ -120,7 +120,7 @@ func open_skill_obtention_window(entity:Entity):
 	window.get_node("SkillObtentionLabel").text = string 
 
 	var shown_skill=[]
-	for card in window.get_node("SkillObtentionVBox/SkillObtentionHBox").get_children():
+	for card in window.get_node("SkillObtentionHBox").get_children():
 		var learnable_skills = entity.unit_type.learnable_skills.filter(func(skill:Skill): return not entity.stats.available_skills.has(skill) and not shown_skill.has(skill))
 		
 		if learnable_skills.size() <= 0:
@@ -142,7 +142,7 @@ func close_skill_obtention_window():
 	var window = $CenterGUIWindow/SkillObtention
 	window.visible = false
 
-	for card in window.get_node("SkillObtentionVBox/SkillObtentionHBox").get_children():
+	for card in window.get_node("SkillObtentionHBox").get_children():
 		card.unset_skill()
 
 

@@ -40,7 +40,7 @@ static func cast(caster:Stats,target:Stats, skill:Skill) -> String:
 	target.health = max(target.health - damage,0)
 
 	var stun = false
-	if true: #randi() % 100 <= ceil(caster._current_defence * stun_ratio):
+	if randi() % 100 <= ceil(caster._current_defence * stun_ratio):
 		stun = true
 		target.set_status(status_stun.get_status_name(), status_stun.get_status_dict(caster, target))
 

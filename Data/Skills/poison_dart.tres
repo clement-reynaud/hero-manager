@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://ckqcwuuivq3y"]
+
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="1_d0ijn"]
+[ext_resource type="Script" path="res://Scripts/Models/Effect_Script/effect_poison_dart.gd" id="1_iya1k"]
+[ext_resource type="Texture2D" uid="uid://cihr7vaa8cbqn" path="res://Ressources/Sprite/Skills/poison_dart.png" id="2_osb2p"]
+
+[resource]
+script = ExtResource("1_d0ijn")
+name = "Poison Dart"
+description = "Inflicts [70%|speed|speed|0.4varia|floor] magical damage and has a [100%|speed|speed|0varia|ceil]% chance to Poison the target"
+icon_texture = ExtResource("2_osb2p")
+effect = ExtResource("1_iya1k")
+mana_cost = 1
+custom_ressource_cost = 0
+cooldown = 2.0
+action_min_time = 1.0
+action_max_time = 3.0
