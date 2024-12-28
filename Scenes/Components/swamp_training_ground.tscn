@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://doj8pjdoiuy8m"]
+
+[ext_resource type="PackedScene" uid="uid://ijeooolmdx8m" path="res://Scenes/Components/traning_ground.tscn" id="1_j6yxs"]
+[ext_resource type="Resource" uid="uid://bab1j8awyth77" path="res://Data/UnitType/Fighters/Shaman.tres" id="2_lgoeh"]
+[ext_resource type="Texture2D" uid="uid://ca7dfdwu6y62p" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/swamp_training_ground_background.png" id="2_qjhxm"]
+
+[node name="SwampTrainingGround" instance=ExtResource("1_j6yxs")]
+evolve_target = ExtResource("2_lgoeh")
+
+[node name="TrainingSprite" parent="." index="1"]
+texture = ExtResource("2_qjhxm")

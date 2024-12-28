@@ -13,6 +13,7 @@ var transfer_state:TransferState = TransferState.PUSH
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	ready_inventory_handler($InventoryUI, inventory_capacity)
 	ready_selection_handler($StorageButtonContainer)
 

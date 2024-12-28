@@ -4,6 +4,7 @@ var collision_shape = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	ready_selection_handler($HouseButtonContainer)
 	Global_Variables.max_summoned_entity += 2
 

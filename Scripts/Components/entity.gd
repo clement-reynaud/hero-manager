@@ -7,6 +7,7 @@ class_name Entity
 var speed = 300
 var target_position = Vector2.ZERO
 
+var _prev_evolution:Array[UnitType] = []
 @export var unit_type: UnitType
 
 var timer_progress_bar = null
@@ -63,10 +64,17 @@ func _process(delta):
 	if not unit_type.is_fighter:
 		$EntityButtonContainer/SkillsButton.visible = false
 
+	#Training
 	if marks.has("training"):
-		$EntityStatsUI/LevelUpNinePatchRect.visible = true
+		$EntityStatsUI/LevelNinePatchRect.visible = true
 	else:
-		$EntityStatsUI/LevelUpNinePatchRect.visible = false
+		$EntityStatsUI/LevelNinePatchRect.visible = false
+
+	#Evolve
+	if possible_evolve != null and possible_evolve_level != 0:
+		$EntityStatsUI/EvolveNinePatchRect.visible = true
+	else:
+		$EntityStatsUI/EvolveNinePatchRect.visible = false
 
 	var filename = "res://Ressources/Sprite/UI/EntityRank/rank_" + str(rank) + ".png"
 	if ResourceLoader.exists(filename):
@@ -150,6 +158,19 @@ func level_up():
 			
 		speed = stats.speed * 60
 
+var possible_evolve = null
+var possible_evolve_level = 0
+
+func evolve():
+	if possible_evolve != null and possible_evolve_level != 0 and possible_evolve_level >= stats.level:
+		_prev_evolution.append(unit_type)
+		unit_type = possible_evolve
+		possible_evolve = null
+		possible_evolve_level = 0
+	else: 
+		#TODO Better evolved fail message
+		print("Can't evolve, level insufficient")
+	
 # MOVEMENT FUNCTIONS
 
 # Function to set the target position for the unit to move towards

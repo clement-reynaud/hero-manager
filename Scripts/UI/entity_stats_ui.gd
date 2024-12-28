@@ -15,7 +15,13 @@ func _draw_stats(stats:PlayerStats):
 		$StatsNinePatchRect/StatList.get_node(child + "/StatIcon").texture = stats.get_icon(child)
 		$StatsNinePatchRect/StatList.get_node(child + "/StatValue").text = str(stats_dict[child])
 
-	$LevelUpNinePatchRect/KnowledgeCost.text = str(stats.level_up_data["function"].call(stats.level))
+	$LevelNinePatchRect/LevelUpControl/KnowledgeCost.text = str(stats.level_up_data["function"].call(stats.level))
+	$EvolveNinePatchRect/EvolveControl/KnowledgeCost.text = str(stats.level_up_data["function"].call(stats.level))
+	$EvolveNinePatchRect/EvolveControl/LevelReq.text = str(stats.level) + "/" + str(stats.attached_entity.possible_evolve_level)
+	if stats.level < stats.attached_entity.possible_evolve_level:
+		$EvolveNinePatchRect/EvolveControl/LevelReq.set("theme_override_colors/font_color", Color.RED)
+	else:
+		$EvolveNinePatchRect/EvolveControl/LevelReq.set("theme_override_colors/font_color", Color.GREEN)
 
 func handle_level_up_blink(growths:Array):
 	var blink_label:Array[Label] = []

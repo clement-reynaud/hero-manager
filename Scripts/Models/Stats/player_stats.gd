@@ -94,13 +94,13 @@ func setup_stats():
 	wisdom = 2
 
 	available_skills = [
-		load("res://Data/Skills/basic_attack.tres"),
-		load("res://Data/Skills/magic_missile.tres"),
+		load("res://Data/Skills/Basic/basic_attack.tres"),
+		load("res://Data/Skills/Basic/magic_missile.tres"),
 	]
 
 	skills = [
-		load("res://Data/Skills/basic_attack.tres"),
-		load("res://Data/Skills/magic_missile.tres"),
+		load("res://Data/Skills/Basic/basic_attack.tres"),
+		load("res://Data/Skills/Basic/magic_missile.tres"),
 	]
 
 func randomize_growth():

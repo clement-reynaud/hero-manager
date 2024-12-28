@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dmrnyv5ehqixa"]
+
+[ext_resource type="Script" path="res://Scripts/Models/skill.gd" id="1_2c8ed"]
+[ext_resource type="Texture2D" uid="uid://bptssjhnhk04x" path="res://Ressources/Sprite/Skills/berserker_fuel.png" id="1_mv1gp"]
+
+[resource]
+script = ExtResource("1_2c8ed")
+name = "Berserker Fuel"
+description = "temp"
+icon_texture = ExtResource("1_mv1gp")
+is_passive = false
+mana_cost = 2
+custom_ressource_cost = 0
+cooldown = 5.0
+action_min_time = 5.0
+action_max_time = 7.0

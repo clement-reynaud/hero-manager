@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitType" load_steps=4 format=3 uid="uid://bab1j8awyth77"]
+
+[ext_resource type="Script" path="res://Scripts/Models/unitType.gd" id="1_8m05k"]
+[ext_resource type="Texture2D" uid="uid://cei3snj2sdom6" path="res://Ressources/Sprite/Token/icon_shaman.png" id="1_31blw"]
+[ext_resource type="Resource" uid="uid://dmrnyv5ehqixa" path="res://Data/Skills/Shaman/berserker_fuel.tres" id="2_ib3k1"]
+
+[resource]
+script = ExtResource("1_8m05k")
+name = "Shaman"
+is_fighter = true
+description = "RES Scaler focus on debuffing enemies"
+icon_sprite = ExtResource("1_31blw")
+background_color = Color(0, 0.207843, 0, 1)
+learnable_skills = Array[Resource("res://Scripts/Models/skill.gd")]([ExtResource("2_ib3k1")])

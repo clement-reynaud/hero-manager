@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://cntbm2lpishpi" path="res://Data/Items/earth_golem_core.tres" id="1_wpbal"]
 [ext_resource type="Script" path="res://Scripts/Models/Stats/enemy_stats.gd" id="2_4qjfk"]
 [ext_resource type="Script" path="res://Scripts/Models/Stats/loot.gd" id="2_07icn"]
-[ext_resource type="Resource" uid="uid://dev7akynokuf4" path="res://Data/Skills/basic_attack.tres" id="3_10bge"]
+[ext_resource type="Resource" uid="uid://dev7akynokuf4" path="res://Data/Skills/Basic/basic_attack.tres" id="3_10bge"]
 [ext_resource type="Resource" uid="uid://bno4jpv5dk12j" path="res://Data/Items/iron_ore.tres" id="3_swmhp"]
 [ext_resource type="Resource" uid="uid://duvmtn6rqn1nu" path="res://Data/Skills/taunt.tres" id="4_lnbgq"]
 [ext_resource type="Texture2D" uid="uid://cg1wruhxs4b0l" path="res://Ressources/Sprite/Enemies/Small_earth_golem.png" id="5_ciqa2"]

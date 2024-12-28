@@ -2,9 +2,17 @@ extends Area2D
 class_name Building
 
 @export var allowed_unit_types: Array[UnitType] = []
+@export var allow_all_fighters: bool = false
 
 var _participating_entities = []
 @export var max_entities = 0
+
+func _ready():
+	if allow_all_fighters:
+		allowed_unit_types = [
+			load("res://Data/UnitType/Fighters/Adventurer.tres"),
+			load("res://Data/UnitType/Fighters/Shaman.tres")
+		]
 
 func get_random_position_outside_area(area: Area2D, collision_shape: CollisionShape2D, lower_bound: float, upper_bound: float) -> Vector2:
 	var area_rect = collision_shape.shape.get_rect() # Assuming the Area2D has a rectangular collision shape

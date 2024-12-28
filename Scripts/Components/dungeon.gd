@@ -15,6 +15,7 @@ var font_size = 60
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	ready_selection_handler($DungeonButtonContainer)
 	root_camera = get_tree().get_root().get_node("World/Camera2D")
 

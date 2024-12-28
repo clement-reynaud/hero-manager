@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1x830cnhhrct"]
+[gd_scene load_steps=9 format=3 uid="uid://d1x830cnhhrct"]
 
 [ext_resource type="Script" path="res://Scripts/Components/heal.gd" id="1_dfd65"]
-[ext_resource type="Resource" uid="uid://c6heiwdye1sgr" path="res://Data/UnitType/Soldier.tres" id="2_nx8r3"]
 [ext_resource type="Texture2D" uid="uid://bnje2jvraoc1i" path="res://Ressources/Sprite/Building/Buildinng Sprite Rework/hot_spring.png" id="2_x7hgf"]
 [ext_resource type="PackedScene" uid="uid://e51uc8gem23o" path="res://Scenes/UI/context_button.tscn" id="4_640gd"]
 [ext_resource type="PackedScene" uid="uid://s1rwooyghkx3" path="res://Scenes/UI/participant_count.tscn" id="4_cwkj7"]
@@ -16,7 +15,7 @@ radius = 33.0792
 texture_filter = 1
 scale = Vector2(1.3, 1.3)
 script = ExtResource("1_dfd65")
-allowed_unit_types = Array[Resource("res://Scripts/Models/unitType.gd")]([ExtResource("2_nx8r3")])
+allow_all_fighters = true
 max_entities = 2
 
 [node name="HealSprite" type="Sprite2D" parent="."]

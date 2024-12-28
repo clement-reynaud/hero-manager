@@ -1,5 +1,7 @@
 extends GenericEntityUI
 
+#TODO Skill configurable weight / rules
+
 var skill_list_item = preload("res://Scenes/UI/skill_list_item.tscn")
 var available_skill_list_item = preload("res://Scenes/UI/availllable_skill_list_item.tscn")
 var initialized = false

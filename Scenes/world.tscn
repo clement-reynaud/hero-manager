@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://5eyvubtp86e5"]
+[gd_scene load_steps=49 format=3 uid="uid://5eyvubtp86e5"]
 
 [ext_resource type="Script" path="res://Scripts/Global/world.gd" id="1_jc1xp"]
 [ext_resource type="Script" path="res://Scripts/Global/camera.gd" id="2_auns3"]
@@ -21,7 +21,7 @@
 [ext_resource type="Resource" uid="uid://bkwa8glpke0ev" path="res://Data/UnitType/Builder.tres" id="13_yd346"]
 [ext_resource type="Resource" uid="uid://w4d8bodw7rvc" path="res://Data/Building_Blueprint/small_storage.tres" id="15_s5x11"]
 [ext_resource type="PackedScene" uid="uid://ndqu3m84whkv" path="res://Scenes/Components/tree.tscn" id="16_3ogij"]
-[ext_resource type="Resource" uid="uid://c6heiwdye1sgr" path="res://Data/UnitType/Soldier.tres" id="16_ht82x"]
+[ext_resource type="Resource" uid="uid://c6heiwdye1sgr" path="res://Data/UnitType/Fighters/Adventurer.tres" id="16_ht82x"]
 [ext_resource type="Resource" uid="uid://vdpk83r8k42m" path="res://Data/Items/oak_wood.tres" id="17_7q4ie"]
 [ext_resource type="PackedScene" uid="uid://d2d47b2cnkgpe" path="res://Scenes/Components/dungeon.tscn" id="19_u5e32"]
 [ext_resource type="PackedScene" uid="uid://ijeooolmdx8m" path="res://Scenes/Components/traning_ground.tscn" id="22_debwv"]
@@ -32,6 +32,9 @@
 [ext_resource type="Resource" uid="uid://dov8wjr206vvc" path="res://Data/Enemies/Small_Earth_Golem.tres" id="27_6y4k4"]
 [ext_resource type="Resource" uid="uid://bllama8pgqg0j" path="res://Data/Enemies/Crystal_Apparatus.tres" id="28_a6083"]
 [ext_resource type="PackedScene" uid="uid://d1x830cnhhrct" path="res://Scenes/Components/hot_spring.tscn" id="31_aav1l"]
+[ext_resource type="PackedScene" uid="uid://quc265jiaydt" path="res://Scenes/Components/entity.tscn" id="33_vyqpp"]
+[ext_resource type="Resource" uid="uid://bab1j8awyth77" path="res://Data/UnitType/Fighters/Shaman.tres" id="34_16srq"]
+[ext_resource type="PackedScene" uid="uid://doj8pjdoiuy8m" path="res://Scenes/Components/swamp_training_ground.tscn" id="35_88dwh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gcm7b"]
 texture = ExtResource("5_lxjy8")
@@ -161,10 +164,18 @@ dungeon_layout = SubResource("Resource_yoawh")
 max_entities = 3
 
 [node name="TrainingGround" parent="." instance=ExtResource("22_debwv")]
-position = Vector2(579, 564)
+position = Vector2(507, 564)
 
 [node name="Analyzer" parent="." instance=ExtResource("23_dkwus")]
 position = Vector2(1035, 423)
 
 [node name="HotSping" parent="." instance=ExtResource("31_aav1l")]
 position = Vector2(185, 246)
+
+[node name="Entity" parent="." instance=ExtResource("33_vyqpp")]
+position = Vector2(729, 337)
+unit_type = ExtResource("34_16srq")
+
+[node name="SwampTrainingGround" parent="." instance=ExtResource("35_88dwh")]
+position = Vector2(712, 569)
+evolve_level_required = 1

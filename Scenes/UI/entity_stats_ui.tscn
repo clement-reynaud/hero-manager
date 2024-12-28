@@ -23,7 +23,7 @@ script = ExtResource("1_wdgq2")
 
 [node name="StatsNinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_top = -24.0
+offset_top = -37.0
 offset_right = 110.0
 offset_bottom = 119.0
 texture = ExtResource("2_wdj51")
@@ -37,9 +37,9 @@ axis_stretch_vertical = 1
 [node name="NameInputBorder" type="NinePatchRect" parent="StatsNinePatchRect"]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 13.0
+offset_top = 11.0
 offset_right = 102.0
-offset_bottom = 34.0
+offset_bottom = 32.0
 texture = ExtResource("4_v1swq")
 region_rect = Rect2(1, 1, 62, 62)
 patch_margin_left = 2
@@ -71,10 +71,10 @@ flat = true
 
 [node name="StatList" type="GridContainer" parent="StatsNinePatchRect"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 39.0
-offset_right = 464.0
-offset_bottom = 509.0
+offset_left = 8.0
+offset_top = 49.0
+offset_right = 462.0
+offset_bottom = 529.0
 scale = Vector2(0.2, 0.2)
 columns = 2
 
@@ -114,12 +114,30 @@ layout_mode = 2
 [node name="knowledge" parent="StatsNinePatchRect/StatList" instance=ExtResource("3_sa2h2")]
 layout_mode = 2
 
-[node name="LevelUpNinePatchRect" type="NinePatchRect" parent="."]
+[node name="LevelText" type="Label" parent="StatsNinePatchRect"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -45.0
+offset_right = 478.0
+offset_bottom = 24.0
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "LvL X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelNinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = -28.0
-offset_top = -72.0
+offset_top = -90.0
 offset_right = 138.0
-offset_bottom = -19.0
+offset_bottom = -37.0
 texture = ExtResource("5_r8n5n")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -128,7 +146,12 @@ patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="LevelUpButton" type="TextureButton" parent="LevelUpNinePatchRect"]
+[node name="LevelUpControl" type="Control" parent="LevelNinePatchRect"]
+anchors_preset = 0
+offset_right = 166.0
+offset_bottom = 53.0
+
+[node name="LevelUpButton" type="TextureButton" parent="LevelNinePatchRect/LevelUpControl"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -144,7 +167,7 @@ grow_vertical = 2
 texture_normal = ExtResource("6_aubga")
 texture_pressed = ExtResource("7_tlfle")
 
-[node name="KnowledgeCost" type="Label" parent="LevelUpNinePatchRect"]
+[node name="KnowledgeCost" type="Label" parent="LevelNinePatchRect/LevelUpControl"]
 custom_minimum_size = Vector2(26, 0)
 layout_mode = 1
 anchors_preset = 4
@@ -161,7 +184,7 @@ theme_override_font_sizes/font_size = 80
 text = "0"
 vertical_alignment = 1
 
-[node name="KnowledgeIcon" type="TextureRect" parent="LevelUpNinePatchRect/KnowledgeCost"]
+[node name="KnowledgeIcon" type="TextureRect" parent="LevelNinePatchRect/LevelUpControl/KnowledgeCost"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -176,5 +199,110 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("8_ol2wo")
 
+[node name="EvolveNinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -143.0
+offset_right = 138.0
+offset_bottom = -90.0
+texture = ExtResource("5_r8n5n")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="EvolveControl" type="Control" parent="EvolveNinePatchRect"]
+anchors_preset = 0
+offset_right = 166.0
+offset_bottom = 53.0
+
+[node name="EvolveButton" type="TextureButton" parent="EvolveNinePatchRect/EvolveControl"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -16.5
+offset_right = -67.0
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("6_aubga")
+texture_pressed = ExtResource("7_tlfle")
+
+[node name="KnowledgeCost" type="Label" parent="EvolveNinePatchRect/EvolveControl"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 11.0
+offset_top = -15.5
+offset_right = 61.0
+offset_bottom = 144.5
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0.529412, 0.682353, 1, 1)
+theme_override_font_sizes/font_size = 80
+text = "0"
+vertical_alignment = 1
+
+[node name="KnowledgeIcon" type="TextureRect" parent="EvolveNinePatchRect/EvolveControl/KnowledgeCost"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -45.0
+offset_right = 104.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_ol2wo")
+
+[node name="LevelReqLabel" type="Label" parent="EvolveNinePatchRect/EvolveControl"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 107.0
+offset_top = -18.5
+offset_right = 352.0
+offset_bottom = 69.5
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "LvL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelReq" type="Label" parent="EvolveNinePatchRect/EvolveControl"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 105.0
+offset_top = -0.5
+offset_right = 364.0
+offset_bottom = 87.5
+grow_vertical = 2
+rotation = -0.00160138
+scale = Vector2(0.2, 0.2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="text_changed" from="StatsNinePatchRect/NameInputBorder/EntityName" to="." method="_on_name_input_changed"]
-[connection signal="pressed" from="LevelUpNinePatchRect/LevelUpButton" to="." method="_on_level_up_button_pressed"]
+[connection signal="pressed" from="LevelNinePatchRect/LevelUpControl/LevelUpButton" to="." method="_on_level_up_button_pressed"]
+[connection signal="pressed" from="EvolveNinePatchRect/EvolveControl/EvolveButton" to="." method="_on_level_up_button_pressed"]

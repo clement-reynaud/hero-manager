@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="UnitType" load_steps=12 format=3 uid="uid://c6heiwdye1sgr"]
+
+[ext_resource type="Texture2D" uid="uid://cqw5157dtdi7m" path="res://Ressources/Sprite/Token/icon_sword.png" id="1_gwdj5"]
+[ext_resource type="Resource" uid="uid://dev7akynokuf4" path="res://Data/Skills/Basic/basic_attack.tres" id="2_8x0x2"]
+[ext_resource type="Resource" uid="uid://cw8f2ubb5kg54" path="res://Data/Skills/Basic/double_edged_strike.tres" id="3_drovn"]
+[ext_resource type="Resource" uid="uid://ufktr1mjjcdw" path="res://Data/Skills/Basic/estoc.tres" id="4_aim07"]
+[ext_resource type="Resource" uid="uid://bt0ei44nbq6kb" path="res://Data/Skills/Basic/flame_wave.tres" id="5_tiy7h"]
+[ext_resource type="Resource" uid="uid://chv56hn7p4je" path="res://Data/Skills/Basic/heal.tres" id="6_ir1rb"]
+[ext_resource type="Resource" uid="uid://cgyvicy346hve" path="res://Data/Skills/Basic/magic_missile.tres" id="7_3v0u8"]
+[ext_resource type="Resource" uid="uid://eka1v6q725sf" path="res://Data/Skills/Basic/hex.tres" id="9_ojd4j"]
+[ext_resource type="Resource" uid="uid://cenlo0nymri4q" path="res://Data/Skills/Basic/shield_bash.tres" id="10_tw8so"]
+[ext_resource type="Resource" uid="uid://ckqcwuuivq3y" path="res://Data/Skills/Basic/poison_dart.tres" id="11_iq12k"]
+[ext_resource type="Script" path="res://Scripts/Models/unitType.gd" id="12_2pc70"]
+
+[resource]
+script = ExtResource("12_2pc70")
+name = "Soldier"
+is_fighter = true
+description = ""
+icon_sprite = ExtResource("1_gwdj5")
+background_color = Color(0.188235, 0.364706, 0.313726, 1)
+learnable_skills = Array[Resource("res://Scripts/Models/skill.gd")]([ExtResource("2_8x0x2"), ExtResource("3_drovn"), ExtResource("4_aim07"), ExtResource("5_tiy7h"), ExtResource("6_ir1rb"), ExtResource("7_3v0u8"), ExtResource("9_ojd4j"), ExtResource("10_tw8so"), ExtResource("11_iq12k")])

@@ -4,6 +4,7 @@ var _analyzer_displayed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	ready_selection_handler($AnalyzerButtonContainer)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
